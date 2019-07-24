@@ -1,0 +1,85 @@
+﻿using System.Collections;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.Monetization;
+using UnityEngine.Advertisements;
+
+
+public class BannerAdManager : MonoBehaviour
+{
+    public static BannerAdManager instance;
+    public bool testMode = false;
+
+    private string bannerId = "BannerAD";              
+
+#if UNITY_IOS
+    private string storeId = "3083044";
+#elif UNITY_ANDROID
+    private string storeId = "3083045";
+#elif UNITY_EDITOR
+    private string storeId = null;
+#endif
+
+    private void Awake()
+    {
+        CheckForInstance();
+
+        if (storeId != null)
+        {
+            Monetization.Initialize(storeId, testMode);
+            Advertisement.Initialize(storeId, testMode);
+            Advertisement.Banner.Load(storeId);
+            Advertisement.Banner.Hide(true);
+        }            
+    }
+
+    private void CheckForInstance() // CHECK FOR SINGLETON INSTANCE
+    {
+        if (instance != null)
+            Destroy(gameObject);
+        else
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+    }
+
+    private void Update()
+    {
+        if (storeId != null)
+            StartCoroutine(ShowBannerWhenReady()); 
+    }
+    
+    private bool IsSceneValid() // RETURNS TRUE IF CURRENT SCENE IS "EXTRAS" OR "LEVEL_SELECT"
+    {
+        string sceneName = SceneManager.GetActiveScene().name;
+
+        if(sceneName == "Extras" || sceneName == "Level_Select")
+        {
+            return true;            
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    private IEnumerator ShowBannerWhenReady() // DISPLAYS THE BANNER IF CONDITIONS ARE MET
+    {
+        if(IsSceneValid())
+        {
+            yield return new WaitForSeconds(0.3f);
+
+            if (Advertisement.IsReady(bannerId) && IsSceneValid())
+            {
+                Advertisement.Banner.Show(bannerId);
+                Advertisement.Banner.Hide(false);                                                                     
+            }
+        }
+        else
+        {
+            Advertisement.Banner.Hide(true);
+        }       
+    }
+
+}
