@@ -1,0 +1,59 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - StickyTile
+  - WhiteTile
+  - BouncyTile
+  - DynamicTile
+  - Enemy
+  - Collectable
+  - Ground
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - 
+  - 
+  - Player
+  - Ground
+  - Enemy
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Background
+    uniqueID: 3463480389
+    locked: 0
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: Blocks
+    uniqueID: 604344093
+    locked: 0
+  - name: UI
+    uniqueID: 1644220463
+    locked: 0
