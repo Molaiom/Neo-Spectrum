@@ -219,44 +219,9 @@ public class PlayerController : CharacterPhysics
         Gizmos.DrawLine(transform.position, transform.position + Vector3.right * transform.localScale.x * wallJumpRaycastRange);
     }
     
-    private void PCClickInput() // MAKES A COPY OF RANGE CONTROLLER SYSTEM TO RECIEVE MOUSE CLICKS INSTEAD OF TOUCH PRESSES
+    private void PaintTiles()
     {
-        if (RangeController.instance != null)
-        {
-            Vector2 touchPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-
-            if (touchPosition.y > -5)
-            {
-                // CLICK SOUNDS
-                if (Input.GetMouseButtonDown(0))
-                {
-                    if (AudioController.instance != null)
-                        AudioController.instance.PlayClick();
-                }
-                if (Input.GetMouseButton(0))
-                {
-                    // DISPLAYS THE RANGE INDICATOR IF THE PLAYER TOUCHES OUTSIDE THE RANGE
-                    if (Vector2.Distance(touchPosition, PlayerController.instance.gameObject.transform.position) >= 4.5f)
-                    {
-                        RangeController.instance.DisplayRangeIndicator();
-                    }
-                    // IF THE PLAYER TOUCHES INSIDE THE RANGE
-                    else
-                    {
-                        // DISPLAYS THE TOUCH PARTICLES
-                        RangeController.instance.DisplayTouchParticles(touchPosition);
-
-                        // PAINT VALID TILES
-                        RangeController.instance.PaintTile(touchPosition);
-                    }
-                }
-            }
-            else
-            {
-                RangeController.instance.trail.enabled = false;
-                StartCoroutine(RangeController.instance.TouchParticlesFadeOut());
-            }
-        }
+        RangeController.instance.DisplayRangeIndicator();        
     }
     #endregion
 

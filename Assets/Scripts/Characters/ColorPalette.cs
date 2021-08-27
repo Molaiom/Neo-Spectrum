@@ -5,9 +5,10 @@ using UnityEngine;
 public class ColorPalette : MonoBehaviour
 {
     #region Atributtes
-    public static ColorPalette instance;    
+    public static ColorPalette instance;
 
     [Header("Colors")]
+    public GameObject whitePrefab;
     public GameObject redPrefab;
     public GameObject greenPrefab;
     public GameObject bluePrefab;    
@@ -19,7 +20,7 @@ public class ColorPalette : MonoBehaviour
     private void Awake()
     {
         instance = this;
-        currentPrefab = redPrefab;        
+        currentPrefab = whitePrefab;
     }
 
     public GameObject GetCurrentColor()
