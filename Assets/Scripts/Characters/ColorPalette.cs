@@ -4,56 +4,16 @@ using UnityEngine;
 
 public class ColorPalette : MonoBehaviour
 {
-    #region Atributtes
-    public static ColorPalette instance;
-
-    [Header("Colors")]
-    public GameObject whitePrefab;
-    public GameObject redPrefab;
-    public GameObject greenPrefab;
-    public GameObject bluePrefab;    
-
-    private GameObject currentPrefab;
-    #endregion
-
-    #region Methods
-    private void Awake()
-    {
-        instance = this;
-        currentPrefab = whitePrefab;
-    }
-
-    public GameObject GetCurrentColor()
-    {
-        return currentPrefab;
-    }
-    #endregion
-
-    #region Buttons
-    public void ChangeColorToRed()
-    {
-        currentPrefab = redPrefab;
-        UpdatePlayerColor();        
-    }
-
-    public void ChangeColorToGreen()
-    {
-        currentPrefab = greenPrefab;
-        UpdatePlayerColor();        
-    }
-
-    public void ChangeColorToBlue()
-    {
-        currentPrefab = bluePrefab;
-        UpdatePlayerColor();        
-    }
-
-    private void UpdatePlayerColor()
-    {
-        if(FindObjectOfType<PlayerColorChange>() != null)
+    public void Paint(GameObject blockPrefab)
+    { 
+        if(FindObjectOfType<PlayerController>() != null) // CALL THE PAINT FUNCTION FROM THE PLAYER
         {
-            FindObjectOfType<PlayerColorChange>().ChangeCurrentColor();            
+            FindObjectOfType<PlayerController>().PaintTiles(blockPrefab);
+        }
+
+        if (FindObjectOfType<PlayerColorChange>() != null) // UPDATES PLAYER'S SPRITES COLORS
+        {
+            FindObjectOfType<PlayerColorChange>().ChangeCurrentColor(blockPrefab);
         }
     }
-    #endregion
 }

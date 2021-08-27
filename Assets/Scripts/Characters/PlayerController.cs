@@ -215,9 +215,10 @@ public class PlayerController : CharacterPhysics
         Gizmos.DrawLine(transform.position, transform.position + Vector3.right * transform.localScale.x * wallJumpRaycastRange);
     }
     
-    private void PaintTiles()
+    public void PaintTiles(GameObject blockPrefab)
     {
-        RangeController.instance.DisplayRangeIndicator();        
+        RangeController.instance.DisplayRangeIndicator();
+        // ADD PAINTING FUNCTION
     }
     #endregion
 

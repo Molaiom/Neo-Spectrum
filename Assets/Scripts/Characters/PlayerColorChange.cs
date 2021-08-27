@@ -10,39 +10,31 @@ public class PlayerColorChange : MonoBehaviour
 
     private float velocity = 0;
 
-    void Start()
-    {        
-        ChangeCurrentColor();
-    }
 
     private void LateUpdate()
     {
-        ChangeCurrentColor();
+        //ChangeCurrentColor();
     }
 
-    public void ChangeCurrentColor()
-    {
-        if (ColorPalette.instance.GetCurrentColor() != null)
+    public void ChangeCurrentColor(GameObject blockPrefab)
+    {        
+        switch (blockPrefab.tag)
         {
-            GameObject o = ColorPalette.instance.GetCurrentColor();
-            switch (o.tag)
-            {
-                case "StickyTile":
-                    currentColor = new Color32(41, 82, 204, 255);
-                    break;
+            case "StickyTile":
+                currentColor = new Color32(41, 82, 204, 255);
+                break;
 
-                case "BouncyTile":
-                    currentColor = new Color32(153, 229, 80, 255);
-                    break;
+            case "BouncyTile":
+                currentColor = new Color32(153, 229, 80, 255);
+                break;
 
-                case "DynamicTile":
-                    currentColor = new Color32(210, 54, 54, 255);
-                    break;
+            case "DynamicTile":
+                currentColor = new Color32(210, 54, 54, 255);
+                break;
 
-                default:
-                    currentColor = new Color(0.2f, 0.2f, 0.2f, 1);
-                    break;
-            }
+            default:
+                currentColor = Color.white;
+                break;
         }
 
         float R = playerLight.color.r;

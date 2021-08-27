@@ -90,6 +90,7 @@ public class TileInteractable : MonoBehaviour
     */
     }
 
+    /* @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
     public void PaintTile()
     {
         if (timerToPaint <= 0 && ColorPalette.instance.GetCurrentColor() != null && ColorPalette.instance.GetCurrentColor().tag != gameObject.tag && !IsInsidePlayer())
@@ -102,7 +103,7 @@ public class TileInteractable : MonoBehaviour
             Destroy(gameObject);
         }
     }
-
+    */
     private bool IsInsidePlayer() // CHECKS IF THE TILE IS INSIDE THE PLAYER
     {
         return Physics2D.OverlapCircle(new Vector2(transform.position.x, transform.position.y - 0.05f), 0.4f, playerLayer);

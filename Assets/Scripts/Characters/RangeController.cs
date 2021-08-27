@@ -134,7 +134,7 @@ public class RangeController : MonoBehaviour // THIS SCRIPT MAKES THE RANGE APPE
 
             if ((diferenceX <= 0.5f && diferenceX >= -0.5f) && (diferenceY <= 0.5f && diferenceY >= -0.5f))
             {
-                tiles[i].PaintTile();
+                //tiles[i].PaintTile();
             }
         }
     }
