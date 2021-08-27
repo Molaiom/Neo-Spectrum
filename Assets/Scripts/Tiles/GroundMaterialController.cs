@@ -7,16 +7,15 @@ public class GroundMaterialController : MonoBehaviour
     public Material area1Material;
     public Material area2Material;
     public Material area3Material;
-    public Material area4Material;
+    public Material area4Material;    
 
-    private void Awake() { SetLevelMaterial(); }
-
-    private void Start() { SetLevelMaterial(); }
+    private void Start() 
+    { 
+        SetLevelMaterial();
+    }
 
     private void SetLevelMaterial()
     {
-        materialToChange.renderQueue = 3000;
-
         // CHECKS FOR GAMECONTROLLER INSTANCE
         if (GameController.instance != null)
         {

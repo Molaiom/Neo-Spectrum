@@ -47,13 +47,9 @@ public class PlayerController : CharacterPhysics
         if (Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D))
             PC = true;
 
-
-
         // KEYBOARD INPUTS (FOR TESTING ONLY)
         if (PC)
         {
-            PCClickInput();
-
             if (Input.GetKey(KeyCode.Space))
                 SetJumpAxis(Input.GetAxis("Jump"));
             else
