@@ -1,13 +1,14 @@
 ﻿using System;
 using UnityEngine.SceneManagement;
 using UnityEngine;
+using System.Collections;
 
 public class PlayerController : CharacterPhysics
 {
     #region Attributes
     [Header("Player Ranges")]
     public float wallJumpRaycastRange;
-    public GameObject rangeIndicator;
+    public SpriteRenderer rangeSprite;
     [HideInInspector]
     public bool PC;
     [HideInInspector]
@@ -215,10 +216,34 @@ public class PlayerController : CharacterPhysics
         Gizmos.DrawLine(transform.position, transform.position + Vector3.right * transform.localScale.x * wallJumpRaycastRange);
     }
     
-    public void PaintTiles(GameObject blockPrefab)
+    public void PaintTiles(GameObject blockPrefab) // PAINTS ALL BLOCKS IN RANGE
     {
-        RangeController.instance.DisplayRangeIndicator();
-        // ADD PAINTING FUNCTION
+        // CHECKS FOR VALID BLOCKS AND PAINT THEM
+        Collider2D[] blocks = Physics2D.OverlapCircleAll(new Vector2(transform.position.x, transform.position.y), 4.5f);
+        for (int i = 0; i < blocks.Length; i++)
+        {
+            if(blocks[i].GetComponent<TileInteractable>() != null)
+            {
+                blocks[i].GetComponent<TileInteractable>().PaintTile(blockPrefab);
+            }
+        }
+
+        // DISPLAYS RANGE INDICATOR
+        StartCoroutine(DisplayRange());
+    }
+
+    private IEnumerator DisplayRange()
+    {        
+        rangeSprite.color = new Color(rangeSprite.color.r, rangeSprite.color.g, rangeSprite.color.b, .75f);
+        rangeSprite.enabled = true;
+
+        yield return new WaitForSeconds(0.15f);
+        while (rangeSprite.color.a >= 0)
+        {
+            rangeSprite.color = new Color(rangeSprite.color.r, rangeSprite.color.g, rangeSprite.color.b, rangeSprite.color.a - 0.025f);
+            yield return new WaitForSeconds(0.025f);
+        }
+        rangeSprite.enabled = false;
     }
     #endregion
 

@@ -20,8 +20,6 @@ public class TileInteractable : MonoBehaviour
     #region Methods
     public virtual void Awake()
     {
-        Input.simulateMouseWithTouches = false;
-
         if (GetComponentInChildren<Light>() != null)
         {
             componentLight = GetComponentInChildren<Light>();
@@ -41,69 +39,23 @@ public class TileInteractable : MonoBehaviour
         timerToFade -= 1 * Time.deltaTime;
         Mathf.Clamp(timerToFade, 0, Mathf.Infinity);
 
-        IsInsidePlayer();
-
         if (componentLight != null && timerToFade > 0)
             FadeColor();
     }
 
-    private void OnMouseOver()
+    public void PaintTile(GameObject blockPrefab)
     {
-    /*
-        if (FindObjectOfType<RangeController>() != null)
+        if(timerToPaint <= 0 && !IsInsidePlayer() && !blockPrefab.CompareTag(gameObject.tag))
         {
-            RangeController rangeCtrl = FindObjectOfType<RangeController>();
-            Vector2 touchPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-
-            if (touchPosition.y > -5)
-            {
-                // CLICK SOUNDS
-                if (Input.GetMouseButtonDown(0))
-                {
-                    if (AudioController.instance != null)
-                        AudioController.instance.PlayClick();
-                }
-                if (Input.GetMouseButton(0))
-                {
-                    // DISPLAYS THE RANGE INDICATOR IF THE PLAYER TOUCHES OUTSIDE THE RANGE
-                    if (Vector2.Distance(touchPosition, PlayerController.instance.gameObject.transform.position) >= 4.5f)
-                    {
-                        rangeCtrl.DisplayRangeIndicator();
-                    }
-                    // IF THE PLAYER TOUCHES INSIDE THE RANGE
-                    else
-                    {
-                        // DISPLAYS THE TOUCH PARTICLES
-                        rangeCtrl.DisplayTouchParticles(touchPosition);
-
-                        // PAINT VALID TILES
-                        rangeCtrl.PaintTile(touchPosition);
-                    }
-                }
-            }
-            else
-            {
-                rangeCtrl.trail.enabled = false;
-                StartCoroutine(rangeCtrl.TouchParticlesFadeOut());
-            }
-        }
-    */
-    }
-
-    /* @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-    public void PaintTile()
-    {
-        if (timerToPaint <= 0 && ColorPalette.instance.GetCurrentColor() != null && ColorPalette.instance.GetCurrentColor().tag != gameObject.tag && !IsInsidePlayer())
-        {
-            Instantiate(ColorPalette.instance.GetCurrentColor(), transform.position, transform.rotation);
-            if (AudioController.instance != null)
+            Instantiate(blockPrefab, transform.position, transform.rotation);
+            if(AudioController.instance != null)
             {
                 AudioController.instance.PlayBlockPlaced();
             }
             Destroy(gameObject);
         }
     }
-    */
+
     private bool IsInsidePlayer() // CHECKS IF THE TILE IS INSIDE THE PLAYER
     {
         return Physics2D.OverlapCircle(new Vector2(transform.position.x, transform.position.y - 0.05f), 0.4f, playerLayer);

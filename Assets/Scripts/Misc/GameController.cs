@@ -123,6 +123,7 @@ public class GameController : MonoBehaviour
         CheckForSavedData();
         ChangePauseState(false);
         TriggerSceneChanged();
+        Input.simulateMouseWithTouches = false;
     }
 
     private void CheckForSavedData()

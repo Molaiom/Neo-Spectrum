@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class PlayerColorChange : MonoBehaviour
 {
-    private Color currentColor = Color.white;   
+    private Color currentColor = Color.white;
     public SpriteRenderer heartSprite;
     public SpriteRenderer rangeSprite;
     public Light playerLight;
@@ -13,11 +13,11 @@ public class PlayerColorChange : MonoBehaviour
 
     private void LateUpdate()
     {
-        //ChangeCurrentColor();
+        FadePlayerColor();
     }
 
     public void ChangeCurrentColor(GameObject blockPrefab)
-    {        
+    {
         switch (blockPrefab.tag)
         {
             case "StickyTile":
@@ -35,8 +35,16 @@ public class PlayerColorChange : MonoBehaviour
             default:
                 currentColor = Color.white;
                 break;
-        }
+        }        
 
+        if (currentColor != rangeSprite.color)
+        {
+            rangeSprite.color = new Color(currentColor.r, currentColor.g, currentColor.b, rangeSprite.color.a);
+        }
+    }
+    
+    private void FadePlayerColor() // SLOWLY FADES THE HEART AND LIGHT COLORS
+    {
         float R = playerLight.color.r;
         float G = playerLight.color.g;
         float B = playerLight.color.b;
@@ -50,15 +58,9 @@ public class PlayerColorChange : MonoBehaviour
             heartSprite.color = new Color(R, G, B, heartSprite.color.a);
         }
 
-        if (currentColor != rangeSprite.color)
-        {
-            rangeSprite.color = new Color(R, G, B, rangeSprite.color.a);
-        }
-
         if (currentColor != playerLight.color)
-        {                        
+        {
             playerLight.color = new Color(R, G, B, playerLight.color.a);
-        }                
+        }
     }
-    
 }

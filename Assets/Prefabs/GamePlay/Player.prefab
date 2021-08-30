@@ -5342,7 +5342,7 @@ MonoBehaviour:
     m_Bits: 512
   groundCheckVerticalOffset: -0.265
   wallJumpRaycastRange: 0.5
-  rangeIndicator: {fileID: 1632278246860222}
+  rangeSprite: {fileID: 212720878055547672}
   PC: 0
   collectable: 0
   levelCompleted: 0
