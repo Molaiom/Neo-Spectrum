@@ -10,6 +10,7 @@ public class TileInteractable : MonoBehaviour
     protected float timerToFade = 1.5f;
     protected float lightIntensity;
     protected Color lightColor;
+    protected Color originalColor;
     protected Light componentLight;
     public GameObject particlesPrefab;
 
@@ -29,6 +30,9 @@ public class TileInteractable : MonoBehaviour
             componentLight.color = new Color(lightColor.r / 2, lightColor.g / 2, lightColor.b / 2, lightColor.a / 2);
             componentLight.intensity = lightIntensity / 1.5f;
         }
+
+        if (GetComponent <SpriteRenderer>() != null)
+            originalColor = GetComponent<SpriteRenderer>().color;
     }
 
     private void Update()
@@ -45,10 +49,15 @@ public class TileInteractable : MonoBehaviour
 
     public void PaintTile(GameObject blockPrefab)
     {
-        if(timerToPaint <= 0 && !IsInsidePlayer() && !blockPrefab.CompareTag(gameObject.tag))
+        if (IsInsidePlayer()) // IF THE PLAYER OVERLAPS THE BLOCK, THEN FLASH IT RED
+        {
+            StopAllCoroutines();
+            StartCoroutine(FlashRed());
+        }
+        else if (!blockPrefab.CompareTag(gameObject.tag)) // IF THE PLAYER DOESN'T OVERLAP THE BLOCK, PAINT IT
         {
             Instantiate(blockPrefab, transform.position, transform.rotation);
-            if(AudioController.instance != null)
+            if (AudioController.instance != null)
             {
                 AudioController.instance.PlayBlockPlaced();
             }
@@ -58,7 +67,10 @@ public class TileInteractable : MonoBehaviour
 
     private bool IsInsidePlayer() // CHECKS IF THE TILE IS INSIDE THE PLAYER
     {
-        return Physics2D.OverlapCircle(new Vector2(transform.position.x, transform.position.y - 0.05f), 0.4f, playerLayer);
+        if (gameObject.tag == "WhiteTile")
+            return Physics2D.OverlapCircle(new Vector2(transform.position.x, transform.position.y - 0.05f), 0.4f, playerLayer);
+        else
+            return false;
     }
 
     private void FadeColor()
@@ -75,6 +87,23 @@ public class TileInteractable : MonoBehaviour
         componentLight.intensity = Mathf.SmoothDamp(componentLight.intensity, lightIntensity, ref velocity, 0.1f, 1.25f, Time.deltaTime * 5);
 
         componentLight.color = new Color(R, G, B, A);
+    }
+
+    private IEnumerator FlashRed()
+    {
+        SpriteRenderer blockSprite = GetComponent<SpriteRenderer>();
+        blockSprite.color = new Color(1, 0, 0, originalColor.a);
+
+        float G = blockSprite.color.g;
+        float B = blockSprite.color.b;
+
+        for (int i = 0; i < 10; i++)
+        {
+            yield return new WaitForSeconds(0.2f);
+            G = G >= 1 ? 1 : G + (i > 5 ? 0.15f : 0.05f); 
+            B = B >= 1 ? 1 : B + (i > 5 ? 0.15f : 0.05f);
+            blockSprite.color = new Color(blockSprite.color.r, G, B, originalColor.a);
+        }
     }
 
     public void DestroyTile(Color particlesColor)

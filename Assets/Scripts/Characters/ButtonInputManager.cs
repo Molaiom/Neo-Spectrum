@@ -16,7 +16,6 @@ public class ButtonInputManager : MonoBehaviour
         if (PlayerController.instance != null)
         {
             PlayerController.instance.SetMovementAxis(value);
-            PlayerController.instance.PC = false;
         }
 
         if (value != 0)
@@ -30,7 +29,6 @@ public class ButtonInputManager : MonoBehaviour
         if (PlayerController.instance != null)
         {
             PlayerController.instance.SetJumpAxis(value);
-            PlayerController.instance.PC = false;
         }
 
         if (value != 0)

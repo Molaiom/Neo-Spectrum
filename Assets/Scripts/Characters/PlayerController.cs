@@ -10,8 +10,6 @@ public class PlayerController : CharacterPhysics
     public float wallJumpRaycastRange;
     public SpriteRenderer rangeSprite;
     [HideInInspector]
-    public bool PC;
-    [HideInInspector]
     public bool collectable = false;
 
     public static PlayerController instance;
@@ -36,20 +34,16 @@ public class PlayerController : CharacterPhysics
         base.FixedUpdate();
 
         // KILLS THE PLAYER IF OUT OF BOUNDS
-        if(transform.position.y < -5.5f || transform.position.y > 8.5f || transform.position.x < -12 || transform.position.x > 12)
+        if (transform.position.y < -5.5f || transform.position.y > 8.5f || transform.position.x < -12 || transform.position.x > 12)
         {
-            if(!playerDead)
+            if (!playerDead)
                 Die();
         }
     }
 
     private void Update() // INPUTS AND ANIMATIONS
     {
-        if (Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D))
-            PC = true;
-
-        // KEYBOARD INPUTS (FOR TESTING ONLY)
-        if (PC)
+        if (!Application.isMobilePlatform)
         {
             if (Input.GetKey(KeyCode.Space))
                 SetJumpAxis(Input.GetAxis("Jump"));
@@ -63,9 +57,8 @@ public class PlayerController : CharacterPhysics
             else
                 SetMovementAxis(0);
         }
-        
-        UpdateAnimations();
 
+        UpdateAnimations();
     }
 
     private void UpdateAnimations() // MAKES ANIMATIONS TRANSITIONS
@@ -153,13 +146,13 @@ public class PlayerController : CharacterPhysics
         Vector2 size = new Vector2(groundRadius, groundRadius * 1.7f);
         Collider2D blockBellow = Physics2D.OverlapBox(position, size, 0, groundLayer);
 
-        if(blockBellow != null)
-        {            
+        if (blockBellow != null)
+        {
             if (blockBellow.gameObject.CompareTag("BouncyTile") && !BlockAboveHead() && AudioController.instance != null)
             {
-                AudioController.instance.PlayBounce();                
+                AudioController.instance.PlayBounce();
             }
-        }        
+        }
     }
 
     protected override void WallJump() // ALLOWS THE PLAYER TO WALLJUMP ON SOME PLATFORMS
@@ -186,7 +179,7 @@ public class PlayerController : CharacterPhysics
 
     public void Die() // KILLS THE PLAYER IF CALLED
     {
-        if(AudioController.instance != null)
+        if (AudioController.instance != null)
         {
             AudioController.instance.PlayPlayerDeath();
             AudioController.instance.PlayDeath();
@@ -202,27 +195,27 @@ public class PlayerController : CharacterPhysics
         GetComponentInChildren<ParticleSystem>().Emit(20);
 
         playerDead = true;
-        
+
     }
 
     public bool GetPlayerDead() // GETTER FOR THE PLAYER DEAD BOOLEAN
     {
         return playerDead;
-    }    
+    }
 
     private void OnDrawGizmos() // DISPLAYS THE WALLJUMP RANGE
     {
         Gizmos.color = Color.blue;
         Gizmos.DrawLine(transform.position, transform.position + Vector3.right * transform.localScale.x * wallJumpRaycastRange);
     }
-    
+
     public void PaintTiles(GameObject blockPrefab) // PAINTS ALL BLOCKS IN RANGE
     {
         // CHECKS FOR VALID BLOCKS AND PAINT THEM
         Collider2D[] blocks = Physics2D.OverlapCircleAll(new Vector2(transform.position.x, transform.position.y), 4.5f);
         for (int i = 0; i < blocks.Length; i++)
         {
-            if(blocks[i].GetComponent<TileInteractable>() != null)
+            if (blocks[i].GetComponent<TileInteractable>() != null)
             {
                 blocks[i].GetComponent<TileInteractable>().PaintTile(blockPrefab);
             }
@@ -233,7 +226,7 @@ public class PlayerController : CharacterPhysics
     }
 
     private IEnumerator DisplayRange()
-    {        
+    {
         rangeSprite.color = new Color(rangeSprite.color.r, rangeSprite.color.g, rangeSprite.color.b, .75f);
         rangeSprite.enabled = true;
 
@@ -245,6 +238,6 @@ public class PlayerController : CharacterPhysics
         }
         rangeSprite.enabled = false;
     }
-    #endregion
+#endregion
 
 }
