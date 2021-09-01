@@ -4,49 +4,31 @@ using UnityEngine;
 public class GroundMaterialController : MonoBehaviour
 {
     public Material materialToChange;
-    public Material area1Material;
-    public Material area2Material;
-    public Material area3Material;
-    public Material area4Material;    
+    public Material[] areaMaterial;
 
     private void Start() 
     { 
         SetLevelMaterial();
     }
 
-    private void SetLevelMaterial()
+    private void SetLevelMaterial() // CHANGES THE MATERIAL TO CORRESPOND THE LEVEL'S AREA
     {
         // CHECKS FOR GAMECONTROLLER INSTANCE
         if (GameController.instance != null)
         {
-            if(GameController.instance.GetLevelNumber() != 0)
+            if(GameController.instance.GetLevelArea() >= 0 && GameController.instance.GetLevelArea() <= areaMaterial.Length)
             {
-                // SETS AREA 1 MATERIAL
-                if (GameController.instance.GetLevelNumber() <= 5)
-                {
-                    materialToChange.CopyPropertiesFromMaterial(area1Material);
-                }
-                // SETS AREA 2 MATERIAL
-                else if (GameController.instance.GetLevelNumber() <= 12)
-                {
-                    materialToChange.CopyPropertiesFromMaterial(area2Material);
-                }
-                // SETS AREA 3 MATERIAL
-                else if (GameController.instance.GetLevelNumber() <= 20)
-                {
-                    materialToChange.CopyPropertiesFromMaterial(area3Material);
-                }
-                // SETS AREA 4 MATERIAL
-                else
-                {
-                    materialToChange.CopyPropertiesFromMaterial(area4Material);
-                }
-            }            
-        }        
+                materialToChange.CopyPropertiesFromMaterial(areaMaterial[GameController.instance.GetLevelArea() - 1]);
+            }
+            else
+            {
+                materialToChange.CopyPropertiesFromMaterial(areaMaterial[0]);
+            }
+        }
     }
 
     private void OnApplicationQuit()
     {
-        materialToChange.CopyPropertiesFromMaterial(area1Material);
+        materialToChange.CopyPropertiesFromMaterial(areaMaterial[0]);
     }
 }

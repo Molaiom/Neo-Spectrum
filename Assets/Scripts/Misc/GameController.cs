@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 public class GameController : MonoBehaviour
 {
     #region Attributes
-    // DATA TO BE SAVED    
+    // DATA TO BE SAVED
     private int numberOfLevelsCompleted;
     private int numberOfCollectablesCollected;
     private bool[] collectableFromLevel;
@@ -96,6 +96,7 @@ public class GameController : MonoBehaviour
             PlayerPrefs.Save();
         }
     }
+
     // KEYS
     private readonly string k_Levels = "numberOfLevelsCompleted";
     private readonly string k_Collectables = "numberOfCollectablesCollected";
@@ -104,7 +105,9 @@ public class GameController : MonoBehaviour
 
     // MISC
     public static GameController instance;
-    private const int levelCount = 23;
+    private int levelCount;
+    [SerializeField]
+    private int[] LastLevelOfArea;//USED TO DETERMINE WICH AREA A LEVEL IS FROM
     #endregion
 
     //------------------------------------------------------
@@ -119,9 +122,13 @@ public class GameController : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
+        levelCount = SceneManager.sceneCountInBuildSettings - 3;
         CheckForSavedData();
         ChangePauseState(false);
+    }
+
+    private void Start()
+    {
         TriggerSceneChanged();
     }
 
@@ -161,6 +168,17 @@ public class GameController : MonoBehaviour
         PlayerPrefs.DeleteAll();
     }
 
+    public int GetLevelArea()
+    {
+        for (int i = 0; i < LastLevelOfArea.Length; i++)
+        {
+            if (GetLevelNumber() <= LastLevelOfArea[i] && GetLevelNumber() != 0)
+            {
+                return i + 1;
+            }
+        }
+        return (GetLevelNumber() > 0 && GetLevelNumber() <= levelCount ? LastLevelOfArea.Length + 1 : 0);
+    }
 
     #region SceneManagement
     public void RestartScene()
@@ -212,17 +230,14 @@ public class GameController : MonoBehaviour
     public int GetLevelNumber()
     {
         string currentLevelName = SceneManager.GetActiveScene().name;
-        int levelNumber = 0;
-
-        if (currentLevelName.Split('_')[0] == "Level" && Int32.TryParse(currentLevelName.Split('_')[1], out levelNumber))
+        if (currentLevelName.Split('_')[0] == "Level" && Int32.TryParse(currentLevelName.Split('_')[1], out _))
         {
-            levelNumber = Int32.Parse(currentLevelName.Split('_')[1]);            
-            return levelNumber;
+            return Int32.Parse(currentLevelName.Split('_')[1]);
         }
         else
         {
             return 0;
-        }        
+        }
     }
 
     public void CheckForMuteState()
@@ -252,6 +267,11 @@ public class GameController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.R))
         {
             RestartScene();
+        }
+        if (Input.GetKeyDown(KeyCode.F12) && (Input.GetKeyDown(KeyCode.LeftControl) || Input.GetKeyDown(KeyCode.RightControl)))
+        {
+            UnlockAllLevels();
+            print("All levels unlocked!");
         }
     }
 
