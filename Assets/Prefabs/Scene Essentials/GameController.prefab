@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4410365576944214}
   - component: {fileID: 114792883470002020}
-  - component: {fileID: 114438996555768060}
   m_Layer: 0
   m_Name: GameController
   m_TagString: GameController
@@ -44,22 +43,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad8fa215b43cb9d40bc35bcb0489cffc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LastLevelOfArea: 050000000c00000014000000
---- !u!114 &114438996555768060
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1277751294462456}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4ac636d6458a4e4083aade70c01f0c5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  materialToChange: {fileID: 2100000, guid: d74d80a138f53f04a80fccdfb78e777a, type: 2}
-  areaMaterial:
-  - {fileID: 2100000, guid: f505bd1de52d1034b9a4ed22257f1e8e, type: 2}
-  - {fileID: 2100000, guid: 9094402631d50ae4aa128d99b1bf2aab, type: 2}
-  - {fileID: 2100000, guid: 25caca4055788eb4aaca4ddfebc059d8, type: 2}
-  - {fileID: 2100000, guid: 7c014b2c1501ddb48a42bffbd7917a3c, type: 2}
+  LastLevelOfArea: 050000000c0000001400000017000000

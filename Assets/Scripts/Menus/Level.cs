@@ -7,12 +7,13 @@ public class Level : MonoBehaviour
     public Button levelButton;
     public Text levelNumberText;
     public Image collectableMarker;
-    public Image lockedMarker;   
+    public Image lockedMarker;
     public int levelNumber;
 
-    
-    private void Start()
+
+    public void Initialize(int levelNumber)
     {
+        this.levelNumber = levelNumber;
         UpdateLevelText();
         CheckIfLevelIsUnlocked();
         CheckLevelCollectable();
@@ -43,7 +44,8 @@ public class Level : MonoBehaviour
                 lockedMarker.CrossFadeColor(Color.gray, 0, true, false);
             }            
             else
-            {                
+            {
+                levelButton.interactable = true;
                 lockedMarker.enabled = false;
                 collectableMarker.enabled = true;
             }

@@ -809,6 +809,7 @@ GameObject:
   - component: {fileID: 114991019501827826}
   - component: {fileID: 114309304872284052}
   - component: {fileID: 114865170542014422}
+  - component: {fileID: 8359333661514225827}
   m_Layer: 5
   m_Name: Death Text
   m_TagString: Untagged
@@ -830,10 +831,10 @@ RectTransform:
   m_Father: {fileID: 224174237243130120}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 72.82}
-  m_SizeDelta: {x: 500, y: 200}
+  m_AnchorMin: {x: 0.14716569, y: 0.3928427}
+  m_AnchorMax: {x: 0.845, y: 0.8361144}
+  m_AnchoredPosition: {x: 0.028961182, y: 1.487999}
+  m_SizeDelta: {x: 4.0579224, y: 2.9759064}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &222751961721013994
 CanvasRenderer:
@@ -971,6 +972,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Padding: {x: 0, y: 0, z: 0, w: 0}
   m_Softness: {x: 0, y: 0}
+--- !u!114 &8359333661514225827
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1336400997987802}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7dc8fea9d9589594397320b5256884af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  restartTimer: 4
 --- !u!1 &1362786109777632
 GameObject:
   m_ObjectHideFlags: 0

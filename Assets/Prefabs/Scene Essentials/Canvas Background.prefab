@@ -110,7 +110,7 @@ GameObject:
   - component: {fileID: 224495828879579378}
   - component: {fileID: 222188884836840668}
   - component: {fileID: 114245600431469384}
-  - component: {fileID: 3151876849246680098}
+  - component: {fileID: 8514809161534911953}
   - component: {fileID: 114487838670453572}
   m_Layer: 5
   m_Name: Background Image
@@ -175,7 +175,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &3151876849246680098
+--- !u!114 &8514809161534911953
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -184,7 +184,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1778245362444472}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0bd19dfa72df8d742975b85801cd88a9, type: 3}
+  m_Script: {fileID: 11500000, guid: ae4c96b1eeb64cf4a9552159b2964445, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   backgroundImage:
@@ -192,6 +192,12 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 56a9aaf0cd0caed4f92fa9898470fb8f, type: 3}
   - {fileID: 21300000, guid: 5ea3f42d438953147a580b22653e36f9, type: 3}
   - {fileID: 21300000, guid: 6b7ddd229e6b5d84998f33400ba4a298, type: 3}
+  materialToChange: {fileID: 2100000, guid: d74d80a138f53f04a80fccdfb78e777a, type: 2}
+  areaMaterial:
+  - {fileID: 2100000, guid: f505bd1de52d1034b9a4ed22257f1e8e, type: 2}
+  - {fileID: 2100000, guid: 9094402631d50ae4aa128d99b1bf2aab, type: 2}
+  - {fileID: 2100000, guid: 25caca4055788eb4aaca4ddfebc059d8, type: 2}
+  - {fileID: 2100000, guid: 7c014b2c1501ddb48a42bffbd7917a3c, type: 2}
 --- !u!114 &114487838670453572
 MonoBehaviour:
   m_ObjectHideFlags: 0

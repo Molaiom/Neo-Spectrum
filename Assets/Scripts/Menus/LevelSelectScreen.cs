@@ -3,29 +3,54 @@ using UnityEngine.UI;
 
 public class LevelSelectScreen : MonoBehaviour
 {
+    public GameObject levelButtonPrefab;
     public GameObject[] levelsPanel;
     public Color[] backgroundColor;
-    public Image backgroundImage;    
+    public Image backgroundImage;
     
-    private void Start() // SHOWS THE LAST LEVEL'S UNLOCKED SCREEN WHEN SCENE OPENS
+    private void Start() 
+    {
+        CreateLevelButtons();
+        SetInitialScreen();
+    }
+
+    private void CreateLevelButtons()
     {
         if(GameController.instance != null)
         {
-            if(GameController.instance.NumberOfLevelsCompleted < 5)
+            GameController gc = GameController.instance;
+
+            for (int i = 1; i < gc.GetLevelCount() + 1; i++)
             {
-                ChangeToScreen(0);
+                int levelArea = 0;
+                for (int j = 0; j < gc.GetLastLevelOfArea().Length; j++)
+                {
+                    if(i <= gc.GetLastLevelOfArea()[j])
+                    {
+                        levelArea = j;
+                        break;
+                    }
+                }
+                GameObject levelObj = Instantiate(levelButtonPrefab, levelsPanel[levelArea].transform.GetChild(0), false);
+                levelObj.GetComponent<Level>().Initialize(i);
             }
-            else if(GameController.instance.NumberOfLevelsCompleted < 12)
+        }
+    }
+
+    private void SetInitialScreen() // SHOWS THE LAST LEVEL'S UNLOCKED SCREEN WHEN SCENE OPENS
+    {
+        if (GameController.instance != null)
+        {
+            GameController gc = GameController.instance;
+            for (int i = 0; i < gc.GetLastLevelOfArea().Length; i++)
             {
-                ChangeToScreen(1);
-            }
-            else if(GameController.instance.NumberOfLevelsCompleted < 20)
-            {
-                ChangeToScreen(2);
-            }
-            else
-            {
-                ChangeToScreen(3);
+                if (gc.NumberOfLevelsCompleted < gc.GetLastLevelOfArea()[i])
+                {
+                    ChangeToScreen(i);
+                    break;
+                }
+                else if (gc.NumberOfLevelsCompleted == gc.GetLevelCount())
+                    ChangeToScreen(0);
             }
         }
         else

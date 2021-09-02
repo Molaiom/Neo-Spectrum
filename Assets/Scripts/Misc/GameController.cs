@@ -174,11 +174,15 @@ public class GameController : MonoBehaviour
         {
             if (GetLevelNumber() <= LastLevelOfArea[i] && GetLevelNumber() != 0)
             {
-                return i + 1;
+                return i;
             }
         }
-        return (GetLevelNumber() > 0 && GetLevelNumber() <= levelCount ? LastLevelOfArea.Length + 1 : 0);
+        return (GetLevelNumber() > 0 && GetLevelNumber() <= levelCount ? LastLevelOfArea.Length : 0);
     }
+
+    public int GetLevelCount() { return levelCount; }
+
+    public int[] GetLastLevelOfArea() { return LastLevelOfArea; }
 
     #region SceneManagement
     public void RestartScene()
@@ -278,5 +282,6 @@ public class GameController : MonoBehaviour
     public void UnlockAllLevels()
     {
         NumberOfLevelsCompleted = levelCount;
+        RestartScene();
     }
 }
