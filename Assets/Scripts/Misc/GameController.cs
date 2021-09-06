@@ -79,7 +79,7 @@ public class GameController : MonoBehaviour
             else
                 Debug.LogError("Array Index out of range.");
         }
-    }    
+    }
 
     public bool AudioMuted
     {
@@ -107,7 +107,9 @@ public class GameController : MonoBehaviour
     public static GameController instance;
     private int levelCount;
     [SerializeField]
-    private int[] LastLevelOfArea;//USED TO DETERMINE WICH AREA A LEVEL IS FROM
+    private int[] lastLevelOfArea; // USED TO DETERMINE WICH AREA A LEVEL IS FROM
+    [SerializeField]
+    private int[] collectablesRequiredForExtra; // USED TO DETERMINE HOW MANY COLLECTABLES ARE NEEDED FOR EACH EXTRA
     #endregion
 
     //------------------------------------------------------
@@ -170,19 +172,21 @@ public class GameController : MonoBehaviour
 
     public int GetLevelArea()
     {
-        for (int i = 0; i < LastLevelOfArea.Length; i++)
+        for (int i = 0; i < lastLevelOfArea.Length; i++)
         {
-            if (GetLevelNumber() <= LastLevelOfArea[i] && GetLevelNumber() != 0)
+            if (GetLevelNumber() <= lastLevelOfArea[i] && GetLevelNumber() != 0)
             {
                 return i;
             }
         }
-        return (GetLevelNumber() > 0 && GetLevelNumber() <= levelCount ? LastLevelOfArea.Length : 0);
+        return (GetLevelNumber() > 0 && GetLevelNumber() <= levelCount ? lastLevelOfArea.Length : 0);
     }
 
     public int GetLevelCount() { return levelCount; }
 
-    public int[] GetLastLevelOfArea() { return LastLevelOfArea; }
+    public int[] GetLastLevelOfArea() { return lastLevelOfArea; }
+
+    public int[] GetCollectablesRequiredForExtra() { return collectablesRequiredForExtra; }
 
     #region SceneManagement
     public void RestartScene()

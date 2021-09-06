@@ -7,6 +7,8 @@ public class LevelCompleted : MonoBehaviour
     private Image blankImage;
     private GameObject levelCompletedPanel;
     private ParticleSystem particles;
+    [SerializeField]
+    private GameObject newExtraUnlockedObj;
 
     private void Awake() // ASSIGN COMPONENTS
     {
@@ -101,5 +103,10 @@ public class LevelCompleted : MonoBehaviour
         }
 
         levelCompletedPanel.transform.localScale = new Vector3(1, 1, 1);
+    }
+
+    public void ShowNewExtraUnlockedText()
+    {
+        newExtraUnlockedObj.SetActive(true);
     }
 }

@@ -54,9 +54,12 @@ public class TileDynamic : TileInteractable
         {
             timerToPaint = 0.5f;
             gameObject.GetComponent<BoxCollider2D>().enabled = false;
-            gameObject.GetComponent<Rigidbody2D>().Sleep();                       
-            Instantiate(whiteTilePrefab, startingPosition, transform.rotation);
-            DestroyTile(redTileColor);
+            gameObject.GetComponent<Rigidbody2D>().Sleep();
+            if (collision.gameObject.GetComponent<TileInteractable>() != null)
+                collision.gameObject.GetComponent<TileInteractable>().FlashCoroutine();
+            GameObject newTile = Instantiate(whiteTilePrefab, startingPosition, transform.rotation);
+            newTile.GetComponent<TileInteractable>().FlashCoroutine();
+            Destroy(gameObject);
         }
     }
 

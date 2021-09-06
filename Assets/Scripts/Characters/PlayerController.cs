@@ -97,6 +97,39 @@ public class PlayerController : CharacterPhysics
                 int levelNumber = GameController.instance.GetLevelNumber();
                 levelCompleted = true;
 
+                // OPENS THE "LEVEL COMPLETED" SCREEN
+                if (FindObjectOfType<LevelCompleted>() != null)
+                {
+                    LevelCompleted lvlCompleted = FindObjectOfType<LevelCompleted>();
+                    StartCoroutine(lvlCompleted.OpenLevelCompletedMenu());
+
+                    // DISPLAYS THE "NEW EXTRA UNLOCKED" TEXT, IF THE PLAYER UNLOCKED ONE
+                    if(collectable)
+                    {
+                        for (int i = 0; i < GameController.instance.GetCollectablesRequiredForExtra().Length; i++)
+                        {
+                            if(GameController.instance.NumberOfCollectablesCollected == 
+                                GameController.instance.GetCollectablesRequiredForExtra()[i] - 1)
+                            {
+                                lvlCompleted.ShowNewExtraUnlockedText();
+                            }
+                        }
+                    }
+
+                    rb2d.simulated = false;
+                    SpriteRenderer[] sprites = GetComponentsInChildren<SpriteRenderer>();
+                    for (int i = 0; i < sprites.Length; i++)
+                    {
+                        sprites[i].enabled = false;
+                    }
+                    GetComponentInChildren<Light>().enabled = false;
+
+                    if (AudioController.instance != null)
+                        AudioController.instance.PlayLevelCompleted();
+                }
+                else
+                    GameController.instance.LoadLevelSelect();
+
                 // SAVES THE LEVEL COMPLETION 
                 if (levelNumber > 0)
                 {
@@ -112,25 +145,6 @@ public class PlayerController : CharacterPhysics
                         GameController.instance.CollectableFromLevel = newArray;
                     }
                 }
-
-                // OPENS THE "LEVEL COMPLETED" SCREEN
-                if (FindObjectOfType<LevelCompleted>() != null)
-                {
-                    StartCoroutine(FindObjectOfType<LevelCompleted>().OpenLevelCompletedMenu());
-
-                    rb2d.simulated = false;
-                    SpriteRenderer[] sprites = GetComponentsInChildren<SpriteRenderer>();
-                    for (int i = 0; i < sprites.Length; i++)
-                    {
-                        sprites[i].enabled = false;
-                    }
-                    GetComponentInChildren<Light>().enabled = false;
-
-                    if (AudioController.instance != null)
-                        AudioController.instance.PlayLevelCompleted();
-                }
-                else
-                    GameController.instance.LoadLevelSelect();
             }
 
         }

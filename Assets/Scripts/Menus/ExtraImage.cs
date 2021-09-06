@@ -7,10 +7,11 @@ public class ExtraImage : MonoBehaviour
     public GameObject fullImage;
     public Image lockedMarker;
     public Text collectablesText;
-    public float collectablesRequired;
     public float fadeDuration;
+    public int index;
 
-    private Button button;    
+    private float collectablesRequired;
+    private Button button;
 
     // ---------------------------------------------
 
@@ -21,6 +22,10 @@ public class ExtraImage : MonoBehaviour
 
     private void  Start() // CHECK IF UNLOCKED HERE
     {
+        if (GameController.instance != null)
+        {
+            collectablesRequired = GameController.instance.GetCollectablesRequiredForExtra()[index];
+        }
         CheckIfUnlocked();
         UpdateText();
 
