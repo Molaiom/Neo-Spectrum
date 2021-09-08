@@ -6,16 +6,17 @@ using System.Collections;
 public class PlayerController : CharacterPhysics
 {
     #region Attributes
+    public bool levelCompleted = false;
     [Header("Player Ranges")]
     public float wallJumpRaycastRange;
     public SpriteRenderer rangeSprite;
+    public float paintRange;
     [HideInInspector]
     public bool collectable = false;
 
     public static PlayerController instance;
 
-    private bool playerDead = false;
-    public bool levelCompleted = false;
+    private bool playerDead = false;    
     private RaycastHit2D hit;
     private Animator anim;
     #endregion
@@ -221,12 +222,13 @@ public class PlayerController : CharacterPhysics
     {
         Gizmos.color = Color.blue;
         Gizmos.DrawLine(transform.position, transform.position + Vector3.right * transform.localScale.x * wallJumpRaycastRange);
+        Gizmos.DrawWireSphere(transform.position, paintRange);
     }
 
     public void PaintTiles(GameObject blockPrefab) // PAINTS ALL BLOCKS IN RANGE
     {
         // CHECKS FOR VALID BLOCKS AND PAINT THEM
-        Collider2D[] blocks = Physics2D.OverlapCircleAll(new Vector2(transform.position.x, transform.position.y), 4.5f);
+        Collider2D[] blocks = Physics2D.OverlapCircleAll(new Vector2(transform.position.x, transform.position.y), paintRange);
         for (int i = 0; i < blocks.Length; i++)
         {
             if (blocks[i].GetComponent<TileInteractable>() != null)
@@ -239,11 +241,19 @@ public class PlayerController : CharacterPhysics
         StartCoroutine(DisplayRange());
     }
 
-    private IEnumerator DisplayRange()
+    private IEnumerator DisplayRange() // DISPLAYS AND FADES THE RANGE INDICATOR
     {
-        rangeSprite.color = new Color(rangeSprite.color.r, rangeSprite.color.g, rangeSprite.color.b, .75f);
+        // MAKES THE RANGE STAY IN PLACE WHEN IT APPEARS
+        rangeSprite.gameObject.transform.parent = gameObject.transform;
+        rangeSprite.gameObject.transform.position = gameObject.transform.position;
+        rangeSprite.gameObject.transform.parent = null;
         rangeSprite.enabled = true;
 
+        // ADJUSTS THE RANGE SPRITE SCALE TO MATCH THE PLAYER RANGE VARIABLE
+        rangeSprite.gameObject.transform.localScale = new Vector3((paintRange * 1) / 4.5f, (paintRange * 1) / 4.5f, 1);
+
+        // FADE AWAY THE RANGE SPRITE
+        rangeSprite.color = new Color(rangeSprite.color.r, rangeSprite.color.g, rangeSprite.color.b, .75f);
         yield return new WaitForSeconds(0.15f);
         while (rangeSprite.color.a >= 0)
         {

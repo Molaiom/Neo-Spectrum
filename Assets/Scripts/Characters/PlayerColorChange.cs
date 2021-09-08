@@ -7,6 +7,7 @@ public class PlayerColorChange : MonoBehaviour
     public SpriteRenderer heartSprite;
     public SpriteRenderer rangeSprite;
     public Light playerLight;
+    public Color[] playerColors;
 
     private float velocity = 0;
 
@@ -20,16 +21,16 @@ public class PlayerColorChange : MonoBehaviour
     {
         switch (blockPrefab.tag)
         {
-            case "StickyTile":
-                currentColor = new Color32(41, 82, 204, 255);
+            case "DynamicTile":
+                currentColor = playerColors[0];
                 break;
 
             case "BouncyTile":
-                currentColor = new Color32(153, 229, 80, 255);
+                currentColor = playerColors[1];
                 break;
 
-            case "DynamicTile":
-                currentColor = new Color32(210, 54, 54, 255);
+            case "StickyTile":
+                currentColor = playerColors[2];
                 break;
 
             default:
