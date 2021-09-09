@@ -14,11 +14,10 @@ public class PlayerController : CharacterPhysics
     [HideInInspector]
     public bool collectable = false;
 
-    public static PlayerController instance;
-
-    private bool playerDead = false;    
+    private bool playerDead = false;
     private RaycastHit2D hit;
     private Animator anim;
+    private Coroutine coroutine;
     #endregion
 
 
@@ -26,7 +25,6 @@ public class PlayerController : CharacterPhysics
     protected override void Awake()
     {
         base.Awake();
-        instance = this;
         anim = GetComponent<Animator>();
     }
 
@@ -44,7 +42,7 @@ public class PlayerController : CharacterPhysics
 
     private void Update() // INPUTS AND ANIMATIONS
     {
-        if (!Application.isMobilePlatform)
+        if (!Application.isMobilePlatform && !levelCompleted)
         {
             if (Input.GetKey(KeyCode.Space))
                 SetJumpAxis(Input.GetAxis("Jump"));
@@ -58,7 +56,7 @@ public class PlayerController : CharacterPhysics
             else
                 SetMovementAxis(0);
         }
-
+        
         UpdateAnimations();
     }
 
@@ -194,13 +192,18 @@ public class PlayerController : CharacterPhysics
 
     public void Die() // KILLS THE PLAYER IF CALLED
     {
+        // PLAYER DEATH SOUND
         if (AudioController.instance != null)
         {
             AudioController.instance.PlayPlayerDeath();
             AudioController.instance.PlayDeath();
         }
+
+        // STOPS THE PLAYER MOVEMENT SO NOTHING WEIRD HAPPENS AFTER THEY DIE
         SetJumpAxis(0);
         rb2d.simulated = false;
+
+        // VISUAL FEEDBACK OF THE PLAYER DEATH
         SpriteRenderer[] sprites = GetComponentsInChildren<SpriteRenderer>();
         for (int i = 0; i < sprites.Length; i++)
         {
@@ -209,8 +212,15 @@ public class PlayerController : CharacterPhysics
         GetComponentInChildren<Light>().enabled = false;
         GetComponentInChildren<ParticleSystem>().Emit(20);
 
+        // SETS THE PLAYER DEAD ATTRIBUTE FOR OTHER CLASSES
         playerDead = true;
 
+        // KILLS ALL OTHER PLAYERS, IF THERE ARE ANY
+        PlayerController[] otherPlayers = FindObjectsOfType<PlayerController>();
+        for (int i = 0; i < otherPlayers.Length; i++)
+        {
+            if (!otherPlayers[i].GetPlayerDead()) otherPlayers[i].Die();
+        }
     }
 
     public bool GetPlayerDead() // GETTER FOR THE PLAYER DEAD BOOLEAN
@@ -238,7 +248,8 @@ public class PlayerController : CharacterPhysics
         }
 
         // DISPLAYS RANGE INDICATOR
-        StartCoroutine(DisplayRange());
+        if (coroutine != null) StopCoroutine(coroutine); 
+        coroutine = StartCoroutine(DisplayRange());
     }
 
     private IEnumerator DisplayRange() // DISPLAYS AND FADES THE RANGE INDICATOR
@@ -252,7 +263,7 @@ public class PlayerController : CharacterPhysics
         // ADJUSTS THE RANGE SPRITE SCALE TO MATCH THE PLAYER RANGE VARIABLE
         rangeSprite.gameObject.transform.localScale = new Vector3((paintRange * 1) / 4.5f, (paintRange * 1) / 4.5f, 1);
 
-        // FADE AWAY THE RANGE SPRITE
+        // FADES AWAY THE RANGE SPRITE
         rangeSprite.color = new Color(rangeSprite.color.r, rangeSprite.color.g, rangeSprite.color.b, .75f);
         yield return new WaitForSeconds(0.15f);
         while (rangeSprite.color.a >= 0)

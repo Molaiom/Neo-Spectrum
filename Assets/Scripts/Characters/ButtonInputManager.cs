@@ -13,9 +13,13 @@ public class ButtonInputManager : MonoBehaviour
 
     public void HorizontalAxisInput(float value)
     {
-        if (PlayerController.instance != null)
+        if (FindObjectsOfType<PlayerController>() != null)
         {
-            PlayerController.instance.SetMovementAxis(value);
+            PlayerController[] players = FindObjectsOfType<PlayerController>();
+            for (int i = 0; i < players.Length; i++)
+            {
+                players[i].SetMovementAxis(value);
+            }
         }
 
         if (value != 0)
@@ -26,9 +30,13 @@ public class ButtonInputManager : MonoBehaviour
 
     public void JumpAxisInput(float value)
     {
-        if (PlayerController.instance != null)
+        if (FindObjectsOfType<PlayerController>() != null)
         {
-            PlayerController.instance.SetJumpAxis(value);
+            PlayerController[] players = FindObjectsOfType<PlayerController>();
+            for (int i = 0; i < players.Length; i++)
+            {
+                players[i].SetJumpAxis(value);
+            }
         }
 
         if (value != 0)

@@ -114,6 +114,7 @@ public class GameController : MonoBehaviour
 
     //------------------------------------------------------
 
+    #region Setters and Getters
     private void Awake()
     {
         if (instance == null)
@@ -187,6 +188,7 @@ public class GameController : MonoBehaviour
     public int[] GetLastLevelOfArea() { return lastLevelOfArea; }
 
     public int[] GetCollectablesRequiredForExtra() { return collectablesRequiredForExtra; }
+    #endregion
 
     #region SceneManagement
     public void RestartScene()

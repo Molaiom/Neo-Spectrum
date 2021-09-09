@@ -30,7 +30,7 @@ public class LevelAreaModifier : MonoBehaviour
             {
                 //print(backgroundImage[levelArea].name + ", " + areaMaterial[levelArea].name);
                 materialToChange.CopyPropertiesFromMaterial(areaMaterial[GameController.instance.GetLevelArea()]);
-                GetComponent<Image>().sprite = backgroundImage[levelArea];                
+                GetComponent<Image>().sprite = backgroundImage[levelArea];
             }
             // IF THE LEVEL AREA ISN'T VALID, SET A DEFAULT MATERIAL AND IMAGE
             else
