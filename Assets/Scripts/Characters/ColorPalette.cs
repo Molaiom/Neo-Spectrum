@@ -6,14 +6,16 @@ public class ColorPalette : MonoBehaviour
 {
     [SerializeField]
     private GameObject[] blocks = new GameObject[3];
+    [SerializeField]
+    private GameObject[] buttons = new GameObject[3];
 
     private void Update() // KEYBOARD INPUT
     {
         if(!Application.isMobilePlatform)
         {
-            if(Input.GetKeyDown(KeyCode.Alpha1)) { Paint(blocks[0]); }
-            if(Input.GetKeyDown(KeyCode.Alpha2)) { Paint(blocks[1]); }
-            if(Input.GetKeyDown(KeyCode.Alpha3)) { Paint(blocks[2]); }
+            if(Input.GetKeyDown(KeyCode.Alpha1) && buttons[0].activeSelf) { Paint(blocks[0]); }
+            if(Input.GetKeyDown(KeyCode.Alpha2) && buttons[1].activeSelf) { Paint(blocks[1]); }
+            if(Input.GetKeyDown(KeyCode.Alpha3) && buttons[2].activeSelf) { Paint(blocks[2]); }
         }
     }
 
