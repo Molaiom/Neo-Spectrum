@@ -8011,7 +8011,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1928931302052504}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: df541b644022f174aaffa8845d5eda95, type: 3}
+  m_Script: {fileID: 11500000, guid: 7637e8f343194a545b021ed2647a686e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   newExtraUnlockedObj: {fileID: 3218013119345723208}
@@ -8027,6 +8027,7 @@ GameObject:
   - component: {fileID: 223587076886579712}
   - component: {fileID: 114266873466096150}
   - component: {fileID: 114837112956811236}
+  - component: {fileID: 4259087701211152413}
   m_Layer: 5
   m_Name: HUD
   m_TagString: Untagged
@@ -8125,6 +8126,20 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &4259087701211152413
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1968475396726902}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80109cf8868652143951b5a4e086cb9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  deathText: {fileID: 1336400997987802}
+  levelCompletedScreen: {fileID: 114578619189220824}
 --- !u!1 &3218013119345723208
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,12 +1,14 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class LevelCompleted : MonoBehaviour
+public class LevelCompletedScreen : MonoBehaviour
 {
     private Image blankImage;
     private GameObject levelCompletedPanel;
     private ParticleSystem particles;
+    private bool isScreenOpen;
     [SerializeField]
     private GameObject newExtraUnlockedObj;
 
@@ -17,8 +19,21 @@ public class LevelCompleted : MonoBehaviour
         particles = transform.GetChild(1).gameObject.GetComponent<ParticleSystem>();
     }
 
-    public IEnumerator OpenLevelCompletedMenu() // ANIMATES THE LEVEL COMPLETED SCREEN
+    public void OpenLevelCompletedMenu() // CALLS THE OPEN LEVEL COMPLETED COROUTINE
     {
+        if (!isScreenOpen)
+            StartCoroutine(OpenLevelCompletedMenuRoutine());
+    }
+
+    public void ShowNewExtraUnlockedText()
+    {
+        newExtraUnlockedObj.SetActive(true);
+    }
+
+
+    private IEnumerator OpenLevelCompletedMenuRoutine() // ANIMATES THE LEVEL COMPLETED SCREEN
+    {
+        isScreenOpen = true;
         blankImage.enabled = true;
         blankImage.CrossFadeAlpha(0, 0, true);
         blankImage.CrossFadeAlpha(1, 0.5f, true);
@@ -26,7 +41,7 @@ public class LevelCompleted : MonoBehaviour
         yield return new WaitForSeconds(0.25f);
         OpenPanel(0.6f);
         StartCoroutine(AnimatePanel());
-        
+
         yield return new WaitForSeconds(0.25f);
         EmitParticles();
 
@@ -41,7 +56,7 @@ public class LevelCompleted : MonoBehaviour
         particles.transform.localScale = new Vector3(1, 1, 1);
 
         particles.Emit(40);
-    }    
+    }
 
     private void OpenPanel(float timeToFadeIn) // FADES IN ALL IMAGES AND TEXTS IN THE PANEL
     {
@@ -62,7 +77,7 @@ public class LevelCompleted : MonoBehaviour
         // FADE IN IMAGES / BUTTONS
         for (int i = 0; i < childImages.Length; i++)
         {
-            if(childImages[i] != null)
+            if (childImages[i] != null)
             {
                 childImages[i].CrossFadeAlpha(0, 0, true);
                 childImages[i].CrossFadeAlpha(1, timeToFadeIn, true);
@@ -81,7 +96,7 @@ public class LevelCompleted : MonoBehaviour
         // FADE IN TEXT
         for (int i = 0; i < childTexts.Length; i++)
         {
-            if(childTexts[i] != null)
+            if (childTexts[i] != null)
             {
                 childTexts[i].CrossFadeAlpha(0, 0, true);
                 childTexts[i].CrossFadeAlpha(1, timeToFadeIn, true);
@@ -103,10 +118,5 @@ public class LevelCompleted : MonoBehaviour
         }
 
         levelCompletedPanel.transform.localScale = new Vector3(1, 1, 1);
-    }
-
-    public void ShowNewExtraUnlockedText()
-    {
-        newExtraUnlockedObj.SetActive(true);
     }
 }

@@ -56,7 +56,7 @@ public class PlayerController : CharacterPhysics
             else
                 SetMovementAxis(0);
         }
-        
+
         UpdateAnimations();
     }
 
@@ -88,72 +88,24 @@ public class PlayerController : CharacterPhysics
 
     private void OnTriggerEnter2D(Collider2D collision) // END OF THE LEVEL INTERACTIONS
     {
-        if (GameController.instance != null)
+        if (collision.gameObject.CompareTag("Finish"))
         {
-            // END OF THE LEVEL
-            if (collision.gameObject.CompareTag("Finish"))
+            HideAndStopPlayer();
+            levelCompleted = true;
+
+            if (AudioController.instance != null)
+                AudioController.instance.PlayLevelCompleted();
+
+            if (LevelController.instance != null)
             {
-                int levelNumber = GameController.instance.GetLevelNumber();
-                levelCompleted = true;
-
-                // OPENS THE "LEVEL COMPLETED" SCREEN
-                if (FindObjectOfType<LevelCompleted>() != null)
-                {
-                    LevelCompleted lvlCompleted = FindObjectOfType<LevelCompleted>();
-                    StartCoroutine(lvlCompleted.OpenLevelCompletedMenu());
-
-                    // DISPLAYS THE "NEW EXTRA UNLOCKED" TEXT, IF THE PLAYER UNLOCKED ONE
-                    if(collectable)
-                    {
-                        for (int i = 0; i < GameController.instance.GetCollectablesRequiredForExtra().Length; i++)
-                        {
-                            if(GameController.instance.NumberOfCollectablesCollected == 
-                                GameController.instance.GetCollectablesRequiredForExtra()[i] - 1)
-                            {
-                                lvlCompleted.ShowNewExtraUnlockedText();
-                            }
-                        }
-                    }
-
-                    rb2d.simulated = false;
-                    SpriteRenderer[] sprites = GetComponentsInChildren<SpriteRenderer>();
-                    for (int i = 0; i < sprites.Length; i++)
-                    {
-                        sprites[i].enabled = false;
-                    }
-                    GetComponentInChildren<Light>().enabled = false;
-
-                    if (AudioController.instance != null)
-                        AudioController.instance.PlayLevelCompleted();
-                }
-                else
-                    GameController.instance.LoadLevelSelect();
-
-                // SAVES THE LEVEL COMPLETION 
-                if (levelNumber > 0)
-                {
-                    if (levelNumber > GameController.instance.NumberOfLevelsCompleted)
-                    {
-                        GameController.instance.NumberOfLevelsCompleted = levelNumber;
-                    }
-
-                    if (collectable)
-                    {
-                        bool[] newArray = GameController.instance.CollectableFromLevel;
-                        newArray[levelNumber - 1] = true;
-                        GameController.instance.CollectableFromLevel = newArray;
-                    }
-                }
+                LevelController.instance.playerCompletedCount++;
+                if (collectable)
+                    LevelController.instance.collectable = true;
             }
-
-        }
-        else
-        {
-            Debug.LogWarning("No GameController instance found in the scene!");
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision) // BOUNCY SOUND WHEN JUMPING INTO THE BOUNCY TILE
+    private void OnCollisionEnter2D(Collision2D collision) // BOUNCY SOUND WHEN JUMPING ONTO THE BOUNCY TILE
     {
         Vector2 position = new Vector2(transform.position.x, transform.position.y + groundCheckVerticalOffset * 2f);
         Vector2 size = new Vector2(groundRadius, groundRadius * 1.7f);
@@ -192,35 +144,47 @@ public class PlayerController : CharacterPhysics
 
     public void Die() // KILLS THE PLAYER IF CALLED
     {
-        // PLAYER DEATH SOUND
-        if (AudioController.instance != null)
-        {
-            AudioController.instance.PlayPlayerDeath();
-            AudioController.instance.PlayDeath();
-        }
-
-        // STOPS THE PLAYER MOVEMENT SO NOTHING WEIRD HAPPENS AFTER THEY DIE
-        SetJumpAxis(0);
-        rb2d.simulated = false;
-
-        // VISUAL FEEDBACK OF THE PLAYER DEATH
-        SpriteRenderer[] sprites = GetComponentsInChildren<SpriteRenderer>();
-        for (int i = 0; i < sprites.Length; i++)
-        {
-            sprites[i].enabled = false;
-        }
-        GetComponentInChildren<Light>().enabled = false;
-        GetComponentInChildren<ParticleSystem>().Emit(20);
-
         // SETS THE PLAYER DEAD ATTRIBUTE FOR OTHER CLASSES
         playerDead = true;
+        if (LevelController.instance != null)
+            LevelController.instance.playerDeathCount++;
 
+        if (!levelCompleted)
+        {
+            // PLAYER DEATH PARTICLES        
+            GetComponentInChildren<ParticleSystem>().Emit(20);
+
+            // MAKES THE PLAYER INVISIBLE AND UNCONTROLLABLE
+            HideAndStopPlayer();
+
+            // PLAYER DEATH SOUND
+            if (AudioController.instance != null)
+            {
+                AudioController.instance.PlayPlayerDeath();
+                AudioController.instance.PlayDeath();
+            }
+        }
         // KILLS ALL OTHER PLAYERS, IF THERE ARE ANY
         PlayerController[] otherPlayers = FindObjectsOfType<PlayerController>();
         for (int i = 0; i < otherPlayers.Length; i++)
         {
             if (!otherPlayers[i].GetPlayerDead()) otherPlayers[i].Die();
         }
+    }
+
+    private void HideAndStopPlayer() // MAKES THE PLAYER INVISIBLE AND UNCONTROLLABLE FOR DIE() AND LEVEL COMPLETION
+    {
+        // MAKES PLAYER UNCONTROLLABLE
+        SetJumpAxis(0);
+        rb2d.simulated = false;
+
+        // MAKES PLAYER INVISIBLE
+        SpriteRenderer[] sprites = GetComponentsInChildren<SpriteRenderer>();
+        for (int i = 0; i < sprites.Length; i++)
+        {
+            sprites[i].enabled = false;
+        }
+        GetComponentInChildren<Light>().enabled = false;
     }
 
     public bool GetPlayerDead() // GETTER FOR THE PLAYER DEAD BOOLEAN
@@ -248,7 +212,7 @@ public class PlayerController : CharacterPhysics
         }
 
         // DISPLAYS RANGE INDICATOR
-        if (coroutine != null) StopCoroutine(coroutine); 
+        if (coroutine != null) StopCoroutine(coroutine);
         coroutine = StartCoroutine(DisplayRange());
     }
 
@@ -273,6 +237,6 @@ public class PlayerController : CharacterPhysics
         }
         rangeSprite.enabled = false;
     }
-#endregion
+    #endregion
 
 }
