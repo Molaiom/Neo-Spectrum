@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+// THIS CLASS HANDLES END OF LEVEL INTERACTIONS (SAVES) AND PLAYER DEATH (DEATH SCREEN)
 public class LevelController : MonoBehaviour
 {
-    // END OF LEVEL IMPLEMENTATIONS (HUD / COLLECTABLE / SAVE)
-    // PLAYER DEATH IMPLEMENTATIONS (HUD)
+
     // EXTERNAL ATTRIBUTES
     [SerializeField]
     private GameObject deathText;
@@ -22,7 +22,14 @@ public class LevelController : MonoBehaviour
 
     private void Awake() // ASSIGN SINGLETON
     {
-        instance = this;
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else if (instance != this)
+        {
+            Destroy(gameObject);
+        }
     }
 
     private void Start() // ASSIGN PLAYER COUNT

@@ -2010,7 +2010,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.77254903, g: 0.77254903, b: 0.77254903, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -2308,9 +2308,9 @@ MonoBehaviour:
   - {fileID: 954105177}
   backgroundColor:
   - {r: 0.77254903, g: 0.77254903, b: 0.77254903, a: 1}
-  - {r: 0.68841916, g: 0.69697094, b: 0.78676474, a: 1}
-  - {r: 0.66073745, g: 0.74264705, b: 0.66756326, a: 1}
-  - {r: 0.80784315, g: 0.69411767, b: 0.69411767, a: 1}
+  - {r: 0.61785716, g: 0.865, b: 0.6436012, a: 1}
+  - {r: 0.67547756, g: 0.6949157, b: 0.865, a: 1}
+  - {r: 0.83, g: 0.52857894, b: 0.52857894, a: 1}
   backgroundImage: {fileID: 1764659876}
 --- !u!114 &2080785605
 MonoBehaviour:

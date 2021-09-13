@@ -18,6 +18,8 @@ public class PlayerController : CharacterPhysics
     private RaycastHit2D hit;
     private Animator anim;
     private Coroutine coroutine;
+    private GameObject tileIgnoredForCollision;
+    private float minDistanceToIgnoreCol = .5f;
     #endregion
 
 
@@ -37,6 +39,16 @@ public class PlayerController : CharacterPhysics
         {
             if (!playerDead)
                 Die();
+        }
+
+        // RE-ENABLES THE COLLISION WITH A TILE THAT WAS OVERLAPING THE PLAYER
+        if(tileIgnoredForCollision != null)
+        {
+            if (Vector2.Distance(tileIgnoredForCollision.transform.position, transform.position) > minDistanceToIgnoreCol)
+            {
+                Physics2D.IgnoreCollision(GetComponent<Collider2D>(), tileIgnoredForCollision.GetComponent<Collider2D>(), false);
+                tileIgnoredForCollision = null;
+            }
         }
     }
 
@@ -105,8 +117,9 @@ public class PlayerController : CharacterPhysics
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision) // BOUNCY SOUND WHEN JUMPING ONTO THE BOUNCY TILE
+    private void OnCollisionEnter2D(Collision2D collision) // INTERACTIONS WITH COLORED TILES
     {
+        // BOUNCY SOUND WHEN JUMPING ONTO THE BOUNCY TILE
         Vector2 position = new Vector2(transform.position.x, transform.position.y + groundCheckVerticalOffset * 2f);
         Vector2 size = new Vector2(groundRadius, groundRadius * 1.7f);
         Collider2D blockBellow = Physics2D.OverlapBox(position, size, 0, groundLayer);
@@ -117,6 +130,14 @@ public class PlayerController : CharacterPhysics
             {
                 AudioController.instance.PlayBounce();
             }
+        }
+
+        // IF A TILE IS INSIDE THE PLAYER, IGNORE THE COLLISION WITH IT (RE-ENABLES ON FIXED UPDATE())
+        if (collision.gameObject.GetComponent<TileInteractable>() != null 
+            && Vector2.Distance(collision.transform.position, transform.position) <= minDistanceToIgnoreCol)
+        {
+            Physics2D.IgnoreCollision(GetComponent<Collider2D>(), collision.collider, true);
+            tileIgnoredForCollision = collision.gameObject;
         }
     }
 

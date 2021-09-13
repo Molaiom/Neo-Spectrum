@@ -85,41 +85,6 @@ public class LevelStartAnim : MonoBehaviour
                 miscText.text = "Welcome";
                 break;
 
-            case 2:
-                miscText.text = "Touch";
-                break;
-
-            case 3:
-                miscText.text = "Colors";
-                break;
-
-            case 8:
-                miscText.text = "Hmmmm...";
-                break;
-
-            case 11:
-                miscText.text = "...How are you even here?";
-                break;
-
-            case 15:
-                miscText.text = "You'll fail too...";
-                break;
-
-            case 18:
-                miscText.text = "Just like the others...";
-                break;
-
-            case 21:
-                miscText.text = "You can't stop me...";
-                break;
-
-            case 22:
-                miscText.text = "Last Warning...";
-                break;
-
-            case 23:
-                miscText.text = "...I Warned you!";
-                break;
 
             default:
                 miscText.text = "";

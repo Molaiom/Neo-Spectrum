@@ -49,11 +49,7 @@ public class TileInteractable : MonoBehaviour
 
     public void PaintTile(GameObject blockPrefab)
     {
-        if (IsObstructured()) // IF THE PLAYER OVERLAPS THIS BLOCK, THEN FLASH IT RED
-        {
-            FlashCoroutine();
-        }
-        else if (!blockPrefab.CompareTag(gameObject.tag)) // IF NOTHING OVERLAPS THE BLOCK, PAINT IT
+        if (!blockPrefab.CompareTag(gameObject.tag)) // IF NOTHING OVERLAPS THE BLOCK, PAINT IT
         {
             Instantiate(blockPrefab, transform.position, transform.rotation);
             if (AudioController.instance != null)
@@ -62,14 +58,6 @@ public class TileInteractable : MonoBehaviour
             }
             Destroy(gameObject);
         }
-    }
-
-    private bool IsObstructured() // CHECKS IF THE TILE IS INSIDE THE PLAYER
-    {
-        if (gameObject.tag == "WhiteTile")
-            return Physics2D.OverlapCircle(new Vector2(transform.position.x, transform.position.y - 0.05f), 0.4f, playerLayer);
-        else
-            return false;
     }
 
     private void FadeColor()
