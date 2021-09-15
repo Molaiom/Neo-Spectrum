@@ -5,8 +5,10 @@ using UnityEngine;
 public class TileInteractable : MonoBehaviour
 {
     #region Attributes
-    public LayerMask playerLayer;
-    protected float timerToPaint = 0.1f;
+    [SerializeField]
+    protected LayerMask playerLayer;
+    private float timerToChangeLayer = .5f;
+
     protected float timerToFade = 1.5f;
     protected float lightIntensity;
     protected Color lightColor;
@@ -19,7 +21,7 @@ public class TileInteractable : MonoBehaviour
     #endregion
 
     #region Methods
-    public virtual void Awake()
+    protected virtual void Awake()
     {
         if (GetComponentInChildren<Light>() != null)
         {
@@ -35,13 +37,19 @@ public class TileInteractable : MonoBehaviour
             originalColor = GetComponent<SpriteRenderer>().color;
     }
 
+    private void Start()
+    {
+        // IF SPAWNED INSIDE A PLAYER
+        if(tag != "WhiteTile" && Physics2D.OverlapBox(transform.position, new Vector2(.8f, .8f), 0, playerLayer) != null)
+        {
+            StartCoroutine(ChangeLayer());
+        }
+    }
+
     private void Update()
     {
-        timerToPaint -= 1 * Time.deltaTime;
-        Mathf.Clamp(timerToPaint, 0, Mathf.Infinity);
-
         timerToFade -= 1 * Time.deltaTime;
-        Mathf.Clamp(timerToFade, 0, Mathf.Infinity);
+        timerToFade = Mathf.Clamp(timerToFade, 0, Mathf.Infinity);
 
         if (componentLight != null && timerToFade > 0)
             FadeColor();
@@ -99,6 +107,13 @@ public class TileInteractable : MonoBehaviour
         }
     }
 
+    private IEnumerator ChangeLayer() // CHANGES THE LAYER TO DEFAULT FOR A SHORT TIME IF SPAWNED INSIDE THE PLAYER
+    {
+        gameObject.layer = 0;
+        yield return new WaitForSeconds(timerToChangeLayer);
+        gameObject.layer = LayerMask.NameToLayer("Ground");
+    }
+
     public void DestroyTile(Color particlesColor)
     {
         if (AudioController.instance != null)
@@ -122,5 +137,4 @@ public class TileInteractable : MonoBehaviour
         Destroy(gameObject, 2);
     }
     #endregion
-
 }

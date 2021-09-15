@@ -5335,6 +5335,7 @@ MonoBehaviour:
   startingMoveSpeed: 4
   jumpForce: 11
   wallJumpForce: 15
+  startingJumpDelay: 0.3
   smoothFallMultiplier: 6.5
   groundRadius: 0.5
   groundLayer:

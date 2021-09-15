@@ -82,9 +82,28 @@ public class LevelStartAnim : MonoBehaviour
         switch (levelNumber)
         {
             case 1:
-                miscText.text = "Welcome";
+                miscText.text = "Welcome !";
                 break;
 
+            case 2:
+                miscText.text = "Coloring !";
+                break;
+
+            case 3:
+                miscText.text = "Platforms !";
+                break;
+
+            case 5:
+                miscText.text = "Long Push !";
+                break;
+
+            case 6:
+                miscText.text = "Green !";
+                break;
+
+            case 7:
+                miscText.text = "Both Colors !";
+                break;
 
             default:
                 miscText.text = "";

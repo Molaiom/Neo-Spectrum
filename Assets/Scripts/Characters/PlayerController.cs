@@ -18,8 +18,6 @@ public class PlayerController : CharacterPhysics
     private RaycastHit2D hit;
     private Animator anim;
     private Coroutine coroutine;
-    private GameObject tileIgnoredForCollision;
-    private float minDistanceToIgnoreCol = .5f;
     #endregion
 
 
@@ -40,16 +38,6 @@ public class PlayerController : CharacterPhysics
             if (!playerDead)
                 Die();
         }
-
-        // RE-ENABLES THE COLLISION WITH A TILE THAT WAS OVERLAPING THE PLAYER
-        if(tileIgnoredForCollision != null)
-        {
-            if (Vector2.Distance(tileIgnoredForCollision.transform.position, transform.position) > minDistanceToIgnoreCol)
-            {
-                Physics2D.IgnoreCollision(GetComponent<Collider2D>(), tileIgnoredForCollision.GetComponent<Collider2D>(), false);
-                tileIgnoredForCollision = null;
-            }
-        }
     }
 
     private void Update() // INPUTS AND ANIMATIONS
@@ -61,9 +49,9 @@ public class PlayerController : CharacterPhysics
             else
                 SetJumpAxis(0);
 
-            if (Input.GetKey(KeyCode.A))
+            if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A))
                 SetMovementAxis(-1);
-            else if (Input.GetKey(KeyCode.D))
+            else if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D))
                 SetMovementAxis(1);
             else
                 SetMovementAxis(0);
@@ -74,7 +62,7 @@ public class PlayerController : CharacterPhysics
 
     private void UpdateAnimations() // MAKES ANIMATIONS TRANSITIONS
     {
-        if (!isGrounded)
+        if (!IsGrounded())
         {
             if (onWall) // WALLJUMP ANIM
             {
@@ -117,8 +105,10 @@ public class PlayerController : CharacterPhysics
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision) // INTERACTIONS WITH COLORED TILES
+    protected override void OnCollisionEnter2D(Collision2D collision)
     {
+        base.OnCollisionEnter2D(collision);
+
         // BOUNCY SOUND WHEN JUMPING ONTO THE BOUNCY TILE
         Vector2 position = new Vector2(transform.position.x, transform.position.y + groundCheckVerticalOffset * 2f);
         Vector2 size = new Vector2(groundRadius, groundRadius * 1.7f);
@@ -130,14 +120,6 @@ public class PlayerController : CharacterPhysics
             {
                 AudioController.instance.PlayBounce();
             }
-        }
-
-        // IF A TILE IS INSIDE THE PLAYER, IGNORE THE COLLISION WITH IT (RE-ENABLES ON FIXED UPDATE())
-        if (collision.gameObject.GetComponent<TileInteractable>() != null 
-            && Vector2.Distance(collision.transform.position, transform.position) <= minDistanceToIgnoreCol)
-        {
-            Physics2D.IgnoreCollision(GetComponent<Collider2D>(), collision.collider, true);
-            tileIgnoredForCollision = collision.gameObject;
         }
     }
 

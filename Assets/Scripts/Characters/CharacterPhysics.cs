@@ -7,8 +7,10 @@ public class CharacterPhysics : MonoBehaviour
     #region Attributes
     [Header("Attributes")]
     public float startingMoveSpeed;
+    public float startingJumpDelay;
     public float jumpForce;
-    public float wallJumpForce;
+    
+    public float wallJumpForce;  
 
     [Header("Unity Components")]
     public float smoothFallMultiplier;
@@ -17,12 +19,15 @@ public class CharacterPhysics : MonoBehaviour
     public float groundCheckVerticalOffset;
 
     protected bool isFacingRight = true;
-    protected bool isGrounded;
     protected bool wallJumpAvailable;
     protected bool onWall;
     protected float currentMoveSpeed;
+    protected float currentJumpDelay;
     protected Rigidbody2D rb2d;
-    protected FixedJoint2D joint2D;
+    protected FixedJoint2D joint2D;   
+
+    private GameObject tileIgnoredForCollision;
+    private float minDistanceToIgnoreCol = .5f;
 
     private float movementAxis;
     private float jumpAxis;
@@ -39,21 +44,23 @@ public class CharacterPhysics : MonoBehaviour
     protected virtual void FixedUpdate() // APPLY PHYSICS
     {
         //PHYSICS
-        CheckGround();
+        currentJumpDelay = currentJumpDelay < 0 ? currentJumpDelay = 0 : currentJumpDelay -= 1 * Time.deltaTime;
         HorizontalMovement(movementAxis);
         Jump(jumpAxis);
         SmoothFall();
         Flip();
         WallJump();
+        ReEnableCollision();
+        IsGrounded();
     }
     #endregion
 
     #region Methods
-    private void CheckGround()
+    protected bool IsGrounded() // CHECKS IF THE PLAYER IS TOUCHING THE GROUND
     {
         Vector2 position = new Vector2(transform.position.x, transform.position.y + groundCheckVerticalOffset);
         Vector2 size = new Vector2(groundRadius, groundRadius);
-        isGrounded = Physics2D.OverlapBox(position, size, 0, groundLayer);
+        return Physics2D.OverlapBox(position, size, 0, groundLayer);
     }
 
     private void HorizontalMovement(float direction) // MAKES THE PLAYER MOVE
@@ -62,13 +69,11 @@ public class CharacterPhysics : MonoBehaviour
         currentMoveSpeed = Mathf.Clamp(currentMoveSpeed, 0.5f, startingMoveSpeed);
 
         rb2d.velocity = new Vector2(direction * currentMoveSpeed, rb2d.velocity.y);
-
-
     }
 
     private void Jump(float jumpInput) // MAKES THE PLAYER JUMP 
     {
-        if (jumpInput >= 1)
+        if (jumpInput >= 1 && currentJumpDelay <= 0)
         {
             if (onWall) // WALL JUMP
             {
@@ -78,21 +83,44 @@ public class CharacterPhysics : MonoBehaviour
                 SetSpeed(2);
                 rb2d.velocity = new Vector2(rb2d.velocity.x, jumpForce);
                 rb2d.AddForce(new Vector2(transform.localScale.x * (wallJumpForce * 100) * -1, 0));
+                currentJumpDelay = startingJumpDelay;
                 if (AudioController.instance != null && !BlockAboveHead())
                 {
                     AudioController.instance.PlayPlayerJump();
                 }
             }
-            else if (isGrounded) // GROUND JUMP
+            else if (IsGrounded()) // GROUND JUMP
             {
                 rb2d.velocity = new Vector2(rb2d.velocity.x, jumpForce);
+                currentJumpDelay = startingJumpDelay;
                 if (AudioController.instance != null && !BlockAboveHead())
                 {
                     AudioController.instance.PlayPlayerJump();
                 }
             }
+        }
+    }
 
-            
+    protected virtual void OnCollisionEnter2D(Collision2D collision) // INTERACTIONS WITH COLORED TILES
+    {
+        // IF A TILE IS INSIDE THE PLAYER, IGNORE THE COLLISION WITH IT (RE-ENABLES ON FIXED UPDATE())
+        if (collision.gameObject.GetComponent<TileInteractable>() != null
+            && Vector2.Distance(collision.transform.position, transform.position) <= minDistanceToIgnoreCol)
+        {
+            Physics2D.IgnoreCollision(GetComponent<Collider2D>(), collision.collider, true);
+            tileIgnoredForCollision = collision.gameObject;
+        }
+    }
+
+    private void ReEnableCollision() // RE-ENABLES THE COLLISION WITH A TILE THAT WAS OVERLAPING THE PLAYER
+    {
+        if (tileIgnoredForCollision != null)
+        {
+            if (Vector2.Distance(tileIgnoredForCollision.transform.position, transform.position) > minDistanceToIgnoreCol)
+            {
+                Physics2D.IgnoreCollision(GetComponent<Collider2D>(), tileIgnoredForCollision.GetComponent<Collider2D>(), false);
+                tileIgnoredForCollision = null;
+            }
         }
     }
 
@@ -148,11 +176,6 @@ public class CharacterPhysics : MonoBehaviour
     public float GetMovementAxis()
     {
         return movementAxis;
-    }
-
-    public bool GetIsGrounded()
-    {
-        return isGrounded;
     }
 
     public void SetMovementAxis(float f)

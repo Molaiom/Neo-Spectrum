@@ -14,7 +14,7 @@ public class TileDynamic : TileInteractable
     #endregion
 
     #region Methods
-    public override void Awake() // ASSIGN COMPONENTS
+    protected override void Awake() // ASSIGN COMPONENTS
     {
         base.Awake();
         startingPosition = transform.position;
@@ -50,9 +50,8 @@ public class TileDynamic : TileInteractable
 
     private void OnTriggerStay2D(Collider2D collision) // IF THE DYNAMIC TILE TOUCHES A WHITE TILE
     {
-        if (collision.gameObject.CompareTag("WhiteTile") && timerToPaint <= 0)
+        if (collision.gameObject.CompareTag("WhiteTile"))
         {
-            timerToPaint = 0.5f;
             gameObject.GetComponent<BoxCollider2D>().enabled = false;
             gameObject.GetComponent<Rigidbody2D>().Sleep();
             if (collision.gameObject.GetComponent<TileInteractable>() != null)
