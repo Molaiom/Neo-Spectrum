@@ -94,7 +94,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f1daeeeeb90ab64ea2f8e77f6ac54cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingMoveSpeed: 1.3
+  startingMoveSpeed: 1
+  startingJumpDelay: 0
   jumpForce: 0
   wallJumpForce: 0
   smoothFallMultiplier: 0
@@ -103,8 +104,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   groundCheckVerticalOffset: -0.3
-  leftRange: 0
-  rightRange: 8.5
+  leftRange: -1.5
+  rightRange: 1.5
   boss: 0
 --- !u!1 &1650209241947066
 GameObject:
