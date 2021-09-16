@@ -440,17 +440,17 @@ Transform:
   - {fileID: 1320820174}
   - {fileID: 2033670873}
   - {fileID: 881929641}
+  - {fileID: 897657214}
   - {fileID: 796690888}
+  - {fileID: 463880023}
   - {fileID: 911533935}
   - {fileID: 347819995}
-  - {fileID: 897657214}
   - {fileID: 1089549314}
-  - {fileID: 854993451}
   - {fileID: 572833787}
+  - {fileID: 854993451}
   - {fileID: 1048176392}
   - {fileID: 65334098}
   - {fileID: 375073275}
-  - {fileID: 463880023}
   - {fileID: 283405510}
   m_Father: {fileID: 1893087373}
   m_RootOrder: 0
@@ -1025,6 +1025,11 @@ PrefabInstance:
         type: 3}
       propertyPath: rightRange
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114805593210897596, guid: 91423c81b4acfd94ca19a39511d85dd5,
+        type: 3}
+      propertyPath: startingMoveSpeed
+      value: 1.3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 91423c81b4acfd94ca19a39511d85dd5, type: 3}
