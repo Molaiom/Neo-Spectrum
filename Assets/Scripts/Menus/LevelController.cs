@@ -6,18 +6,22 @@ using UnityEngine.UI;
 // THIS CLASS HANDLES END OF LEVEL INTERACTIONS (SAVES) AND PLAYER DEATH (DEATH SCREEN)
 public class LevelController : MonoBehaviour
 {
-
     // EXTERNAL ATTRIBUTES
     [SerializeField]
     private GameObject deathText;
     [SerializeField]
     private LevelCompletedScreen levelCompletedScreen;
-    private int playerCount;
+    [SerializeField]
+    private Text levelNumberText;
 
     // INTERNAL ATTRIBUTES
     public static LevelController instance;
+    private int playerCount;
+    [HideInInspector]
     public int playerCompletedCount;
+    [HideInInspector]
     public int playerDeathCount;
+    [HideInInspector]
     public bool collectable;
 
     private void Awake() // ASSIGN SINGLETON
@@ -34,13 +38,29 @@ public class LevelController : MonoBehaviour
 
     private void Start() // ASSIGN PLAYER COUNT
     {
-        if(FindObjectsOfType<PlayerController>() != null) playerCount = FindObjectsOfType<PlayerController>().Length;
+        if(FindObjectsOfType<PlayerController>() != null)
+        {
+            playerCount = FindObjectsOfType<PlayerController>().Length;
+        }
+
+        AssignLevelNumberText();
     }
 
     private void FixedUpdate()
     {
         FailLevel();
         CompleteLevel();
+    }
+
+    private void AssignLevelNumberText()
+    {
+        if (GameController.instance != null && levelNumberText != null)
+        {
+            if (GameController.instance.GetLevelNumber() != 0)
+            {
+                levelNumberText.text = "Level " + GameController.instance.GetLevelNumber().ToString();
+            }
+        }
     }
 
     public void FailLevel() // SHOWS THE DEATH SCREEN

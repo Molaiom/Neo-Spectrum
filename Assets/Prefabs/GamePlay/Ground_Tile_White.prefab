@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 114077292702811396}
   - component: {fileID: 50478701656167182}
   - component: {fileID: 95284947589323012}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Ground_Tile_White
   m_TagString: WhiteTile
   m_Icon: {fileID: 0}
@@ -109,8 +109,8 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
+  m_Size: {x: 0.8, y: 0.8}
+  m_EdgeRadius: 0.1
 --- !u!114 &114077292702811396
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -126,15 +126,8 @@ MonoBehaviour:
   playerLayer:
     serializedVersion: 2
     m_Bits: 256
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 512
-  defaultLayer:
-    serializedVersion: 2
-    m_Bits: 1
   particlesPrefab: {fileID: 1530281067631818, guid: 10982de3999980141886378a1e262b04,
     type: 3}
-  spawnedInsidePlayer: 0
 --- !u!50 &50478701656167182
 Rigidbody2D:
   serializedVersion: 4

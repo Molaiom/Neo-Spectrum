@@ -164,7 +164,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08f8619537a08f3439c891eadf1d643d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  testMode: 0
 --- !u!1001 &34503343
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17004,7 +17003,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 444d9fde535776e4d8e980eedba1a863, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fadeDuration: 1.5
+  imageToFade:
+  - {fileID: 2012477942}
+  spriteToFade: []
+  textToFade: []
+  fadeIn: 0
+  timeToStartFadeIn: 0
+  fadeInDuration: 0
+  fadeOut: 1
+  timeToStartFadeOut: 0
+  fadeOutDuration: 1.5
 --- !u!114 &2012477942
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -219,15 +219,8 @@ MonoBehaviour:
   playerLayer:
     serializedVersion: 2
     m_Bits: 256
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 512
-  defaultLayer:
-    serializedVersion: 2
-    m_Bits: 1
   particlesPrefab: {fileID: 1530281067631818, guid: 10982de3999980141886378a1e262b04,
     type: 3}
-  spawnedInsidePlayer: 0
   whiteTilePrefab: {fileID: 1880968004384106, guid: 215676ee9e99903478f7b398bf5dce1e,
     type: 3}
   smoothFallMultiplier: 1.9

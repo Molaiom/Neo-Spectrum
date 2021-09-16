@@ -1616,7 +1616,6 @@ GameObject:
   - component: {fileID: 224034026587565720}
   - component: {fileID: 222890914401056640}
   - component: {fileID: 114899231616360878}
-  - component: {fileID: 114460301145656284}
   m_Layer: 5
   m_Name: Level Indicator Text
   m_TagString: Untagged
@@ -1684,18 +1683,6 @@ MonoBehaviour:
     m_VerticalOverflow: 1
     m_LineSpacing: 1
   m_Text: 
---- !u!114 &114460301145656284
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1560707483971948}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0e8f16f7c63f2db40a4bfae6bd5a36ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1587561352507314
 GameObject:
   m_ObjectHideFlags: 0
@@ -2174,7 +2161,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 444d9fde535776e4d8e980eedba1a863, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fadeDuration: 0.7
+  imageToFade:
+  - {fileID: 114568473968810550}
+  spriteToFade: []
+  textToFade: []
+  fadeIn: 0
+  timeToStartFadeIn: 0
+  fadeInDuration: 0
+  fadeOut: 1
+  timeToStartFadeOut: 0
+  fadeOutDuration: 0.7
 --- !u!1 &1709391122527622
 GameObject:
   m_ObjectHideFlags: 0
@@ -8233,6 +8229,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   deathText: {fileID: 1336400997987802}
   levelCompletedScreen: {fileID: 114578619189220824}
+  levelNumberText: {fileID: 114899231616360878}
   playerCompletedCount: 0
   playerDeathCount: 0
   collectable: 0

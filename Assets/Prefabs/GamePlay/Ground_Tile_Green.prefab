@@ -110,8 +110,8 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
+  m_Size: {x: 0.8, y: 0.8}
+  m_EdgeRadius: 0.1
 --- !u!114 &114831908011913118
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -127,15 +127,8 @@ MonoBehaviour:
   playerLayer:
     serializedVersion: 2
     m_Bits: 256
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 512
-  defaultLayer:
-    serializedVersion: 2
-    m_Bits: 1
   particlesPrefab: {fileID: 1530281067631818, guid: 10982de3999980141886378a1e262b04,
     type: 3}
-  spawnedInsidePlayer: 0
 --- !u!50 &50614694668500048
 Rigidbody2D:
   serializedVersion: 4
