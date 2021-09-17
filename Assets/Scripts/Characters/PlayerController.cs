@@ -208,9 +208,9 @@ public class PlayerController : CharacterPhysics
         Collider2D[] blocks = Physics2D.OverlapCircleAll(new Vector2(transform.position.x, transform.position.y), paintRange);
         for (int i = 0; i < blocks.Length; i++)
         {
-            if (blocks[i].GetComponent<TileInteractable>() != null)
+            if(blocks[i].TryGetComponent(out TileInteractable tile))
             {
-                blocks[i].GetComponent<TileInteractable>().PaintTile(blockPrefab);
+                tile.PaintTile(blockPrefab);
             }
         }
 

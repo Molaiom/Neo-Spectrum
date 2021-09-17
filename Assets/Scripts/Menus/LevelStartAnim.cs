@@ -94,7 +94,7 @@ public class LevelStartAnim : MonoBehaviour
                 break;
 
             case 5:
-                miscText.text = "Long Push !";
+                miscText.text = "Careful !";
                 break;
 
             case 6:

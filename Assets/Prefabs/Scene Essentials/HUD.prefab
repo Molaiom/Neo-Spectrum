@@ -2161,16 +2161,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 444d9fde535776e4d8e980eedba1a863, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  imageToFade:
-  - {fileID: 114568473968810550}
-  spriteToFade: []
-  textToFade: []
   fadeIn: 0
   timeToStartFadeIn: 0
   fadeInDuration: 0
+  fadeInMaxAlpha: 1
   fadeOut: 1
   timeToStartFadeOut: 0
-  fadeOutDuration: 0.7
+  fadeOutDuration: 1
 --- !u!1 &1709391122527622
 GameObject:
   m_ObjectHideFlags: 0
