@@ -7,16 +7,16 @@ using UnityEngine.UI;
 // FADES IN / OUT ALL CANVAS GRAPHIC COMPONENTS AND SPRITE RENDERERS
 public class Fade : MonoBehaviour
 {
-    public bool fadeIn;
     [Header("Fade in settings")]
     [Tooltip("If both Fade In and Fade Out are set to happen at once, results may not work as expected.")]
+    public bool fadeIn;
     public float timeToStartFadeIn;
     public float fadeInDuration;
     public float fadeInMaxAlpha = 1;
 
-    public bool fadeOut;
     [Header("Fade out settings")]
     [Tooltip("If both Fade In and Fade Out are set to happen at once, results may not work as expected.")]
+    public bool fadeOut;
     public float timeToStartFadeOut;
     public float fadeOutDuration;
 
@@ -88,40 +88,5 @@ public class Fade : MonoBehaviour
             }
             sprite.enabled = false;
         }
-    }
-}
-
-// ONLY SHOWS NEEDED PROPERTIES ON THE INSPECTOR
-[CustomEditor(typeof(Fade))]
-[CanEditMultipleObjects]
-public class FadeEditor : Editor
-{
-    public override void OnInspectorGUI()
-    {
-        serializedObject.Update();
-
-        Fade fade = target as Fade;
-
-        // FADE IN
-        fade.fadeIn = GUILayout.Toggle(fade.fadeIn, "Fade In");
-        if (fade.fadeIn)
-        {
-            //fade.timeToStartFadeIn = EditorGUILayout.FloatField()
-            fade.timeToStartFadeIn = EditorGUILayout.FloatField("Time To Start Fade In" ,fade.timeToStartFadeIn);
-            fade.fadeInDuration = EditorGUILayout.FloatField("Fade In Duration" ,fade.fadeInDuration);
-            fade.fadeInMaxAlpha = EditorGUILayout.FloatField("Fade In Max Alpha" ,fade.fadeInMaxAlpha);
-        }
-
-        EditorGUILayout.Space();
-
-        // FADE OUT
-        fade.fadeOut = GUILayout.Toggle(fade.fadeOut, "Fade Out");
-        if (fade.fadeOut)
-        {
-            fade.timeToStartFadeOut = EditorGUILayout.FloatField("Time To Start Fade Out", fade.timeToStartFadeOut);
-            fade.fadeOutDuration = EditorGUILayout.FloatField("Fade Out Duration", fade.fadeOutDuration);
-        }
-
-        serializedObject.ApplyModifiedProperties();
     }
 }
