@@ -36,30 +36,26 @@ public class LevelStartAnim : MonoBehaviour
         // FADE IN
         levelText.CrossFadeAlpha(1, 0.7f, true);
         miscText.CrossFadeAlpha(1, 0.7f, true);
-        yield return new WaitForSeconds(1.4f);
+        yield return new WaitForSeconds(1.6f);
 
         // FADE OUT
         levelText.CrossFadeAlpha(0, 1.2f, false);
         miscText.CrossFadeAlpha(0, 1.2f, false);
 
         // TEXTS GOES AWAY
-        for (int i = 0; i < 27; i++)
+        for (float f = 0; f < 30; f += 1 * Time.deltaTime)
         {
             // ROTATES
-            transform.Rotate(Vector3.forward, (-i * 1.5f));
+            transform.Rotate(Vector3.forward, (-f * 15f));
 
             // MOVES UP
-            if(i < 5)
-                transform.Translate(Vector3.up * i, Space.World);
-            else
-                transform.Translate(Vector3.up * (i * 5), Space.World);
+            transform.Translate(Vector3.up * f * (f < 10 ? 15 : 90), Space.World);
 
             // SHRINKS
             transform.localScale = new Vector3(transform.localScale.x * 1.01f, transform.localScale.y * 0.95f, 1);
 
 
-            yield return new WaitForEndOfFrame();
-            yield return new WaitForEndOfFrame();
+            yield return null;
         }
         
 
@@ -102,7 +98,7 @@ public class LevelStartAnim : MonoBehaviour
                 break;
 
             case 7:
-                miscText.text = "Both Colors !";
+                miscText.text = "Red AND Green !";
                 break;
 
             default:

@@ -58,8 +58,6 @@ public class Fade : MonoBehaviour
 
     private IEnumerator FadeOut()
     {
-        
-
         // FADES OUT GRAPHIC COMPONENTS
         if (TryGetComponent(out Graphic graphic))
         {

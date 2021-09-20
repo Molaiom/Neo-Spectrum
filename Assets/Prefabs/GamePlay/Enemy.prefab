@@ -94,7 +94,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f1daeeeeb90ab64ea2f8e77f6ac54cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingMoveSpeed: 1
+  startingMoveSpeed: 0.8
   startingJumpDelay: 0
   jumpForce: 0
   wallJumpForce: 0
