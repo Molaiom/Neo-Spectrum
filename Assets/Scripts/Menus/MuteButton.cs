@@ -17,6 +17,11 @@ public class MuteButton : MonoBehaviour
         CheckForMuteState();
     }
 
+    private void Start()
+    {
+        CheckForMuteState();
+    }
+
     public void CheckForMuteState()
     {
         if (GameController.instance != null)

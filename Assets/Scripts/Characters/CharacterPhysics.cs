@@ -65,10 +65,13 @@ public class CharacterPhysics : MonoBehaviour
 
     private void HorizontalMovement(float direction) // MAKES THE PLAYER MOVE
     {
-        currentMoveSpeed += 5 * Time.deltaTime;
-        currentMoveSpeed = Mathf.Clamp(currentMoveSpeed, 0.5f, startingMoveSpeed);
+        if(!onWall)
+        {
+            currentMoveSpeed += 5 * Time.deltaTime;
+            currentMoveSpeed = Mathf.Clamp(currentMoveSpeed, 0.5f, startingMoveSpeed);
 
-        rb2d.velocity = new Vector2(direction * currentMoveSpeed, rb2d.velocity.y);
+            rb2d.velocity = new Vector2(direction * currentMoveSpeed, rb2d.velocity.y);
+        }
     }
 
     private void Jump(float jumpInput) // MAKES THE PLAYER JUMP 

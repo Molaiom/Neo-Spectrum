@@ -223,7 +223,7 @@ MonoBehaviour:
     type: 3}
   whiteTilePrefab: {fileID: 1880968004384106, guid: 215676ee9e99903478f7b398bf5dce1e,
     type: 3}
-  smoothFallMultiplier: 1.9
+  smoothFallMultiplier: 0.9
 --- !u!50 &50537335006865438
 Rigidbody2D:
   serializedVersion: 4

@@ -33,11 +33,11 @@ public class TileDynamic : TileInteractable
         }
     }
 
-    private void SmoothFall() // MAKES THE BLCOK FALL FASTER
+    private void SmoothFall() // MAKES THE BLOCK FALL FASTER
     {
         if (rb2d.velocity.y < 0)
         {
-            rb2d.velocity += Vector2.up * Physics2D.gravity.y * (smoothFallMultiplier - 1) * Time.deltaTime;
+            rb2d.velocity += Vector2.up * Physics2D.gravity.y * smoothFallMultiplier * Time.deltaTime;
             airTime += Time.deltaTime;
             if (airTime >= 0.25f)
                 canMakeImpactSound = true;
@@ -45,6 +45,39 @@ public class TileDynamic : TileInteractable
         else
         {
             airTime = 0;
+        }
+    }
+    #endregion
+
+    #region Collisions
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        // IF THE BLOCK ENTERS CONTACT WITH THE "Ground" LAYER
+        if (collision.gameObject.layer == 9)
+        {
+            // IF THE BLOCK COLLIDES WITH THE "GROUND" LAYER, PLAY A SOUND
+            if (canMakeImpactSound && AudioController.instance != null && airTime >= 0.25f && IsGrounded())
+            {
+                if(collision.gameObject.CompareTag("BouncyTile"))
+                {
+                    AudioController.instance.PlayBounce();
+                }
+                else
+                {
+                    AudioController.instance.PlayBlockImpact();
+                }
+            }
+
+            canMakeImpactSound = false;
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        // IF THE BLOCK EXITS COLLISION WITH THE "GROUND" LAYER, MAKES SO IT CAN PLAY A SOUND
+        if (collision.gameObject.layer == 9 && !rb2d.IsTouchingLayers(9))
+        {
+            canMakeImpactSound = true;
         }
     }
 
@@ -62,39 +95,6 @@ public class TileDynamic : TileInteractable
         }
     }
 
-
-    // COLLISION SOUNDS --------------------------
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {               
-        // IF THE BLOCK COLLIDES WITH THE "GROUND" LAYER
-        if (collision.gameObject.layer == 9)
-        {            
-            if (canMakeImpactSound && AudioController.instance != null && airTime >= 0.25f && IsGrounded())
-            {
-                if(collision.gameObject.CompareTag("BouncyTile"))
-                {
-                    AudioController.instance.PlayBounce();
-                }
-                else
-                {
-                    AudioController.instance.PlayBlockImpact();
-                }                    
-            }
-
-            canMakeImpactSound = false;
-        }
-    }
-
-    private void OnCollisionExit2D(Collision2D collision)
-    {
-        // IF THE BLOCK EXITS COLLISION WITH THE "GROUND" LAYER
-        if (collision.gameObject.layer == 9 && !rb2d.IsTouchingLayers(9))
-        {
-            canMakeImpactSound = true;
-        }
-    }
-    
     private bool IsGrounded()
     {
         bool result = false;
@@ -105,12 +105,12 @@ public class TileDynamic : TileInteractable
 
         for (int i = 0; i < hitColliders.Length; i++)
         {
-            if(hitColliders[i].transform != transform)
+            if (hitColliders[i].transform != transform)
             {
                 result = true;
             }
         }
-        
+
         return result;
     }
     #endregion

@@ -17,6 +17,8 @@ public class LevelController : MonoBehaviour
     // INTERNAL ATTRIBUTES
     public static LevelController instance;
     private int playerCount;
+    private bool levelCompleted;
+
     [HideInInspector]
     public int playerCompletedCount;
     [HideInInspector]
@@ -44,6 +46,7 @@ public class LevelController : MonoBehaviour
         }
 
         AssignLevelNumberText();
+        levelCompleted = false;
     }
 
     private void FixedUpdate()
@@ -73,42 +76,45 @@ public class LevelController : MonoBehaviour
 
     public void CompleteLevel() // SHOWS THE LEVEL COMPLETED SCREEN AND SAVES PROGRESS 
     {
-        if (playerCompletedCount < playerCount)
-            return;
-
-        levelCompletedScreen.OpenLevelCompletedMenu();
-
-        if(GameController.instance != null)
+        if(playerCompletedCount >= playerCount && !levelCompleted)
         {
-            // SAVES THE LEVEL COMPLETION 
-            int levelNumber = GameController.instance.GetLevelNumber();
-            if (levelNumber > 0)
-            {
-                if (levelNumber > GameController.instance.NumberOfLevelsCompleted)
-                {
-                    GameController.instance.NumberOfLevelsCompleted = levelNumber;
-                }
+            levelCompletedScreen.OpenLevelCompletedMenu();
+            levelCompleted = true;
 
-                if (collectable)
+            if (GameController.instance != null)
+            {
+                // SAVES THE LEVEL COMPLETION 
+                int levelNumber = GameController.instance.GetLevelNumber();
+                if (levelNumber > 0)
                 {
-                    // DISPLAYS THE "NEW EXTRA UNLOCKED" TEXT, IF THE PLAYERS UNLOCKED ONE
-                    for (int i = 0; i < GameController.instance.GetCollectablesRequiredForExtra().Length; i++)
+                    if (levelNumber > GameController.instance.NumberOfLevelsCompleted)
                     {
-                        if (GameController.instance.NumberOfCollectablesCollected ==
-                            GameController.instance.GetCollectablesRequiredForExtra()[i] - 1)
-                        {
-                            levelCompletedScreen.ShowNewExtraUnlockedText();
-                        }
+                        GameController.instance.NumberOfLevelsCompleted = levelNumber;
                     }
 
-                    // SAVES THE COLLECTABLE
-                    bool[] newArray = GameController.instance.CollectableFromLevel;
-                    newArray[levelNumber - 1] = true;
-                    GameController.instance.CollectableFromLevel = newArray;
+                    if (collectable)
+                    {
+                        // DISPLAYS THE "NEW EXTRA UNLOCKED" TEXT, IF THE PLAYERS UNLOCKED ONE
+                        print("Collected: " + GameController.instance.NumberOfCollectablesCollected);
+                        for (int i = 0; i < GameController.instance.GetCollectablesRequiredForExtra().Length; i++)
+                        {
+                            if (GameController.instance.NumberOfCollectablesCollected ==
+                                GameController.instance.GetCollectablesRequiredForExtra()[i] - 1)
+                            {
+                                print("Required: " + GameController.instance.GetCollectablesRequiredForExtra()[i]);
+                                levelCompletedScreen.ShowNewExtraUnlockedText();
+                            }
+                        }
+
+                        // SAVES THE COLLECTABLE
+                        bool[] newArray = GameController.instance.CollectableFromLevel;
+                        newArray[levelNumber - 1] = true;
+                        GameController.instance.CollectableFromLevel = newArray;
+                    }
                 }
             }
+            else
+                Debug.LogWarning("No GameController instance found in the scene!");
         }
-        else
-            Debug.LogWarning("No GameController instance found in the scene!");
     }
 }
