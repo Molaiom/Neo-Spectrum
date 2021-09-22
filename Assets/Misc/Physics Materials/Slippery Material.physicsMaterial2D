@@ -6,6 +6,6 @@ PhysicsMaterial2D:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Bounce Material
+  m_Name: Slippery Material
   friction: 0
-  bounciness: 0.775
+  bounciness: 0

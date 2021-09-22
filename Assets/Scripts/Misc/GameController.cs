@@ -77,7 +77,11 @@ public class GameController : MonoBehaviour
                 PlayerPrefs.Save();
             }
             else
-                Debug.LogError("Array Index out of range.");
+            {
+                Debug.LogError("Array Index out of range. \nReseting saved data.");
+                ClearAllSavedData();
+                RestartScene();
+            }
         }
     }
 
@@ -125,8 +129,19 @@ public class GameController : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        levelCount = SceneManager.sceneCountInBuildSettings - 3;
-        CheckForSavedData();
+
+        try
+        {
+            levelCount = SceneManager.sceneCountInBuildSettings - 3;
+            CheckForSavedData();
+        }
+        catch (ArgumentOutOfRangeException)
+        {
+            ClearAllSavedData();
+            RestartScene();
+            throw;
+        }
+
         ChangePauseState(false);
     }
 

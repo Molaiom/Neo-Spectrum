@@ -43,17 +43,19 @@ public class LevelStartAnim : MonoBehaviour
         miscText.CrossFadeAlpha(0, 1.2f, false);
 
         // TEXTS GOES AWAY
-        for (float f = 0; f < 30; f += 1 * Time.deltaTime)
+        for (float f = 0; f < 2; f += 1 * Time.deltaTime)
         {
             // ROTATES
             transform.Rotate(Vector3.forward, (-f * 15f));
 
             // MOVES UP
-            transform.Translate(Vector3.up * f * (f < 10 ? 15 : 90), Space.World);
+            if (transform.position.y <= 1000)
+                transform.Translate(Vector3.up * f * (f < 0.2f ? 5 : 20), Space.World);
 
             // SHRINKS
-            transform.localScale = new Vector3(transform.localScale.x * 1.01f, transform.localScale.y * 0.95f, 1);
-
+            float yScale = transform.localScale.y * 0.95f <= 0 ? transform.localScale.y : transform.localScale.y * 0.95f;
+            float xScale = transform.localScale.x * 1.01f >= 10 ? transform.localScale.x : transform.localScale.x * 1.01f;
+            transform.localScale = new Vector3(xScale , yScale, 1);
 
             yield return null;
         }

@@ -11,6 +11,7 @@ public class LevelCompletedScreen : MonoBehaviour
     private bool isScreenOpen;
     [SerializeField]
     private GameObject newExtraUnlockedObj;
+    public float timeToOpen = 1;
 
     private void Awake() // ASSIGN COMPONENTS
     {
@@ -106,15 +107,15 @@ public class LevelCompletedScreen : MonoBehaviour
 
     private IEnumerator AnimatePanel()
     {
-        float actualScale = 0;
+        float actualScale = 0.2f;
 
         levelCompletedPanel.transform.localScale = new Vector3(actualScale, actualScale, actualScale);
 
-        while (actualScale < 1)
+        for (float f = 0; f < 1; f += Time.deltaTime / timeToOpen)
         {
-            actualScale += 0.035f;
+            actualScale = actualScale >= 1 ? 1 : actualScale += (0.025f * 1 / timeToOpen);
             levelCompletedPanel.transform.localScale = new Vector3(actualScale, actualScale, actualScale);
-            yield return new WaitForSeconds(0.01f);
+            yield return null;
         }
 
         levelCompletedPanel.transform.localScale = new Vector3(1, 1, 1);
