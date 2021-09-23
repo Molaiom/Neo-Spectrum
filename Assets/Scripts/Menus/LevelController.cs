@@ -95,13 +95,11 @@ public class LevelController : MonoBehaviour
                     if (collectable)
                     {
                         // DISPLAYS THE "NEW EXTRA UNLOCKED" TEXT, IF THE PLAYERS UNLOCKED ONE
-                        print("Collected: " + GameController.instance.NumberOfCollectablesCollected);
                         for (int i = 0; i < GameController.instance.GetCollectablesRequiredForExtra().Length; i++)
                         {
                             if (GameController.instance.NumberOfCollectablesCollected ==
                                 GameController.instance.GetCollectablesRequiredForExtra()[i] - 1)
                             {
-                                print("Required: " + GameController.instance.GetCollectablesRequiredForExtra()[i]);
                                 levelCompletedScreen.ShowNewExtraUnlockedText();
                             }
                         }
