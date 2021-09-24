@@ -51,7 +51,6 @@ public class CharacterPhysics : MonoBehaviour
         Flip();
         WallJump();
         ReEnableCollision();
-        IsGrounded();
     }
     #endregion
 

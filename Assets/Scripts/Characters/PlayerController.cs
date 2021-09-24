@@ -127,7 +127,7 @@ public class PlayerController : CharacterPhysics
     {
         hit = Physics2D.Raycast(transform.position, Vector2.right * transform.localScale.x, wallJumpRaycastRange, groundLayer);
 
-        if (hit.collider != null && hit.collider.CompareTag("StickyTile") && wallJumpAvailable)
+        if (hit.collider != null && hit.collider.CompareTag("StickyTile") && wallJumpAvailable && !IsGrounded())
         {
             onWall = true;
 
