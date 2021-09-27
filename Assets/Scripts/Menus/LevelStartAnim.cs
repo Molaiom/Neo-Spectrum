@@ -103,6 +103,10 @@ public class LevelStartAnim : MonoBehaviour
                 miscText.text = "Red AND Green !";
                 break;
 
+            case 16:
+                miscText.text = "Blue !";
+                break;
+
             default:
                 miscText.text = "";
                 break;

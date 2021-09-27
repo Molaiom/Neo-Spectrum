@@ -20,8 +20,7 @@ public class PlayerController : CharacterPhysics
     private Coroutine coroutine;
     #endregion
 
-
-    #region Methods
+    
     protected override void Awake()
     {
         base.Awake();
@@ -60,6 +59,8 @@ public class PlayerController : CharacterPhysics
         UpdateAnimations();
     }
 
+
+    #region Methods
     private void UpdateAnimations() // MAKES ANIMATIONS TRANSITIONS
     {
         if (!IsGrounded())

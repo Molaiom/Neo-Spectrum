@@ -472,13 +472,13 @@ Transform:
   - {fileID: 1771340433}
   - {fileID: 724619041}
   - {fileID: 2137138613}
+  - {fileID: 1133594869}
+  - {fileID: 1852578124}
   - {fileID: 1081953647}
   - {fileID: 156081470}
   - {fileID: 967569413}
   - {fileID: 1885480856}
   - {fileID: 509127550}
-  - {fileID: 1133594869}
-  - {fileID: 1852578124}
   m_Father: {fileID: 2068819544}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -706,7 +706,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fadeIn: 1
-  timeToStartFadeIn: 2
+  timeToStartFadeIn: 3
   fadeInDuration: 3
   fadeInMaxAlpha: 1
   fadeOut: 0

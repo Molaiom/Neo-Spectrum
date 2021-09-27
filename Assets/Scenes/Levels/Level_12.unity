@@ -4124,7 +4124,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fadeIn: 1
-  timeToStartFadeIn: 8
+  timeToStartFadeIn: 5
   fadeInDuration: 3
   fadeInMaxAlpha: 1
   fadeOut: 0
