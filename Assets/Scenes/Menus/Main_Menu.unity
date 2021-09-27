@@ -137,7 +137,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &32702463
 Transform:
   m_ObjectHideFlags: 0
@@ -17003,13 +17003,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 444d9fde535776e4d8e980eedba1a863, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  imageToFade:
-  - {fileID: 2012477942}
-  spriteToFade: []
-  textToFade: []
   fadeIn: 0
   timeToStartFadeIn: 0
   fadeInDuration: 0
+  fadeInMaxAlpha: 1
   fadeOut: 1
   timeToStartFadeOut: 0
   fadeOutDuration: 1.5

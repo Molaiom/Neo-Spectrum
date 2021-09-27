@@ -112,13 +112,16 @@ public class PlayerController : CharacterPhysics
         // BOUNCY SOUND WHEN JUMPING ONTO THE BOUNCY TILE
         Vector2 position = new Vector2(transform.position.x, transform.position.y + groundCheckVerticalOffset * 2f);
         Vector2 size = new Vector2(groundRadius, groundRadius * 1.7f);
-        Collider2D blockBellow = Physics2D.OverlapBox(position, size, 0, groundLayer);
+        Collider2D[] blocksBellow = Physics2D.OverlapBoxAll(position, size, 0, groundLayer);
 
-        if (blockBellow != null)
+        if (blocksBellow != null && !BlockAboveHead() && AudioController.instance != null && rb2d.velocity.y != 0)
         {
-            if (blockBellow.gameObject.CompareTag("BouncyTile") && !BlockAboveHead() && AudioController.instance != null)
+            foreach (Collider2D blockBelow in blocksBellow)
             {
-                AudioController.instance.PlayBounce();
+                if(blockBelow.gameObject.CompareTag("BouncyTile"))
+                {
+                    AudioController.instance.PlayBounce();
+                }
             }
         }
     }
@@ -208,7 +211,7 @@ public class PlayerController : CharacterPhysics
         Collider2D[] blocks = Physics2D.OverlapCircleAll(new Vector2(transform.position.x, transform.position.y), paintRange);
         for (int i = 0; i < blocks.Length; i++)
         {
-            if(blocks[i].TryGetComponent(out TileInteractable tile))
+            if (blocks[i].TryGetComponent(out TileInteractable tile))
             {
                 tile.PaintTile(blockPrefab);
             }

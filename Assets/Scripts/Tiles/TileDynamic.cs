@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 public class TileDynamic : TileInteractable
 {
@@ -50,23 +51,37 @@ public class TileDynamic : TileInteractable
     #endregion
 
     #region Collisions
+    private List<GameObject> allCollisions = new List<GameObject>();
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         // IF THE BLOCK ENTERS CONTACT WITH THE "Ground" LAYER
         if (collision.gameObject.layer == 9)
         {
-            // IF THE BLOCK COLLIDES WITH THE "GROUND" LAYER, PLAY A SOUND
-            if (canMakeImpactSound && AudioController.instance != null && airTime >= 0.25f && IsGrounded())
+            if (allCollisions.Contains(collision.gameObject)) return;
+            else
             {
-                if(collision.gameObject.CompareTag("BouncyTile"))
+                allCollisions.Add(collision.gameObject);
+
+                // IF THE BLOCK COLLIDES WITH THE "GROUND" LAYER, PLAY A SOUND
+                if (canMakeImpactSound && AudioController.instance != null && airTime >= 0.22f)
                 {
-                    AudioController.instance.PlayBounce();
+                    bool isTouchingBouncyTile = false;
+                    for (int i = 0; i < allCollisions.Count; i++)
+                    {
+                        if (allCollisions[i].CompareTag("BouncyTile")) isTouchingBouncyTile = true;
+                    }
+                    
+                    if(isTouchingBouncyTile)
+                    {
+                        AudioController.instance.PlayBounce();
+                    }
+                    else
+                    {
+                        AudioController.instance.PlayBlockImpact();
+                    }
                 }
-                else
-                {
-                    AudioController.instance.PlayBlockImpact();
-                }
-            }
+            }            
 
             canMakeImpactSound = false;
         }
@@ -78,6 +93,9 @@ public class TileDynamic : TileInteractable
         if (collision.gameObject.layer == 9 && !rb2d.IsTouchingLayers(9))
         {
             canMakeImpactSound = true;
+
+            if(allCollisions.Contains(collision.gameObject))
+                allCollisions.Remove(collision.gameObject);
         }
     }
 
