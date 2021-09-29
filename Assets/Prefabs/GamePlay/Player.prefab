@@ -5098,7 +5098,7 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 2
+  m_Intensity: 2.5
   m_Range: 8
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -5363,6 +5363,6 @@ MonoBehaviour:
   rangeSprite: {fileID: 212720878055547672}
   playerLight: {fileID: 108922158183447130}
   playerColors:
-  - {r: 0.8235294, g: 0.21176471, b: 0.21176471, a: 1}
-  - {r: 0.6, g: 0.8980392, b: 0.3137255, a: 0}
+  - {r: 0.9339623, g: 0.13656995, b: 0.13656995, a: 1}
+  - {r: 0.52348524, g: 0.9433962, b: 0.12014952, a: 1}
   - {r: 0.16078432, g: 0.32156864, b: 0.8, a: 1}
