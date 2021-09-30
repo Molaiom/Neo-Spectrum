@@ -32,7 +32,7 @@ public class TileLaser : MonoBehaviour
             AudioController.instance.PlayLaserTile();
         }
 
-        InvokeRepeating("ShootLaser", 0, Time.deltaTime * 4);
+        InvokeRepeating("ShootLaser", 0, Time.deltaTime * 2f);
     }
 
     private void FixedUpdate()
