@@ -10,6 +10,9 @@ public class TileLaser : MonoBehaviour
     private bool isClockwise = false;
     private float initialZRotation;
 
+    public float maxDelayAfterRTile = 0.1f;
+    private float currentDelayAfterRTile = 0;
+
     public LayerMask targetLayers;
     public bool ableToRotate = false;
     public float rotationMaxAngle = 10;
@@ -31,12 +34,15 @@ public class TileLaser : MonoBehaviour
         {
             AudioController.instance.PlayLaserTile();
         }
-
-        InvokeRepeating("ShootLaser", 0, Time.deltaTime * 2f);
     }
 
     private void FixedUpdate()
     {
+        if(currentDelayAfterRTile <= 0)
+            ShootLaser();
+
+        currentDelayAfterRTile = currentDelayAfterRTile <= 0 ? 0 : currentDelayAfterRTile - Time.deltaTime;
+
         // ROTATES THE TILE IF IT IS MARKED TO DO SO
         if(ableToRotate)
             RotateLaser();
@@ -65,6 +71,11 @@ public class TileLaser : MonoBehaviour
             if (hit.collider.GetComponent<EnemyController>() != null)
             {
                 hit.collider.GetComponent<EnemyController>().Die();
+            }
+
+            if(hit.collider.gameObject.CompareTag("DynamicTile"))
+            {
+                currentDelayAfterRTile = maxDelayAfterRTile;
             }
         }
     }
