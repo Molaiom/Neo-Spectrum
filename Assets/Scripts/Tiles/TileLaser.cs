@@ -6,7 +6,7 @@ public class TileLaser : MonoBehaviour
 {
     private RaycastHit2D hit;
     private LineRenderer laser;
-    private ParticleSystem particles;    
+    private ParticleSystem particles;
     private bool isClockwise = false;
     private float initialZRotation;
 
@@ -18,22 +18,31 @@ public class TileLaser : MonoBehaviour
 
     private void Awake()
     {
-        initialZRotation = transform.eulerAngles.z;        
+        initialZRotation = transform.eulerAngles.z;
         laser = GetComponent<LineRenderer>();
         particles = GetComponentInChildren<ParticleSystem>();
     }
 
     private void Start()
     {
-        laser.SetPosition(0, transform.position);   
+        laser.SetPosition(0, transform.position);
         
         if(AudioController.instance != null)
         {
             AudioController.instance.PlayLaserTile();
         }
+
+        InvokeRepeating("ShootLaser", 0, Time.deltaTime * 4);
     }
 
     private void FixedUpdate()
+    {
+        // ROTATES THE TILE IF IT IS MARKED TO DO SO
+        if(ableToRotate)
+            RotateLaser();
+    }
+
+    private void ShootLaser()
     {
         // ASSIGN THE RAYCAST
         hit = Physics2D.Raycast(transform.position, transform.up, 100, targetLayers);
@@ -44,25 +53,19 @@ public class TileLaser : MonoBehaviour
             laser.SetPosition(1, hit.point);
             particles.gameObject.transform.position = new Vector3(hit.point.x, hit.point.y, particles.gameObject.transform.position.z);
             particles.Emit(1);
-            
+
 
             // HITS THE PLAYER
-            if(hit.collider.GetComponent<PlayerController>() != null)
+            if (hit.collider.GetComponent<PlayerController>() != null)
             {
                 hit.collider.GetComponent<PlayerController>().Die();
             }
 
             // HITS AN ENEMY
-            if(hit.collider.GetComponent<EnemyController>() != null)
+            if (hit.collider.GetComponent<EnemyController>() != null)
             {
-                hit.collider.GetComponent<EnemyController>().Die();                
+                hit.collider.GetComponent<EnemyController>().Die();
             }
-        }
-
-        // ROTATES THE TILE IF IT IS MARKED TO DO SO
-        if(ableToRotate)
-        {
-            RotateLaser();
         }
     }
 

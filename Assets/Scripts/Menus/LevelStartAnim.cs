@@ -59,9 +59,6 @@ public class LevelStartAnim : MonoBehaviour
 
             yield return null;
         }
-        
-
-        yield return new WaitForSeconds(1.1f);        
 
         // DEACTIVATE THE TEXT OBJECTS
         levelText.gameObject.SetActive(false);
@@ -91,8 +88,12 @@ public class LevelStartAnim : MonoBehaviour
                 miscText.text = "Platforms !";
                 break;
 
+            case 4:
+                miscText.text = "Think !";
+                break;
+
             case 5:
-                miscText.text = "Careful !";
+                miscText.text = "Enemies !";
                 break;
 
             case 6:
@@ -105,6 +106,10 @@ public class LevelStartAnim : MonoBehaviour
 
             case 16:
                 miscText.text = "Blue !";
+                break;
+
+            case 19:
+                miscText.text = "Lasers !";
                 break;
 
             default:
