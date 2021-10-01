@@ -20,6 +20,12 @@ public class LevelCompletedScreen : MonoBehaviour
         particles = transform.GetChild(1).gameObject.GetComponent<ParticleSystem>();
     }
 
+    private void Update() // FOR PC TESTING ONLY
+    {
+        if (isScreenOpen && Input.GetKeyDown(KeyCode.Return) && GameController.instance != null)
+            GameController.instance.LoadNextLevel();
+    }
+
     public void OpenLevelCompletedMenu() // CALLS THE OPEN LEVEL COMPLETED COROUTINE
     {
         if (!isScreenOpen)

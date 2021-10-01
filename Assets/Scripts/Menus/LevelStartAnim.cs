@@ -93,7 +93,7 @@ public class LevelStartAnim : MonoBehaviour
                 break;
 
             case 5:
-                miscText.text = "Enemies !";
+                miscText.text = "Virus !";
                 break;
 
             case 6:
@@ -105,11 +105,11 @@ public class LevelStartAnim : MonoBehaviour
                 break;
 
             case 16:
-                miscText.text = "Blue !";
+                miscText.text = "Lasers !";
                 break;
 
-            case 19:
-                miscText.text = "Lasers !";
+            case 18:
+                miscText.text = "Blue !";
                 break;
 
             default:
