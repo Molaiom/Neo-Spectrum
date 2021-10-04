@@ -8,7 +8,7 @@ public class LevelController : MonoBehaviour
 {
     // EXTERNAL ATTRIBUTES
     [SerializeField]
-    private GameObject deathText;
+    private GameObject deathScreen;
     [SerializeField]
     private LevelCompletedScreen levelCompletedScreen;
     [SerializeField]
@@ -51,8 +51,11 @@ public class LevelController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        FailLevel();
-        CompleteLevel();
+        if(playerCount > 0)
+        {
+            FailLevel();
+            CompleteLevel();
+        }
     }
 
     private void AssignLevelNumberText()
@@ -71,7 +74,15 @@ public class LevelController : MonoBehaviour
         if (playerDeathCount < playerCount)
             return;
 
-        deathText.SetActive(true);
+        deathScreen.SetActive(true);
+        StartCoroutine(AutoRestart());
+    }
+
+    private IEnumerator AutoRestart() // AUTO RESTART THE LEVEL AFTER THE PLAYER DIES
+    {
+        yield return new WaitForSeconds(3);
+
+        if (GameController.instance != null) GameController.instance.RestartScene();
     }
 
     public void CompleteLevel() // SHOWS THE LEVEL COMPLETED SCREEN AND SAVES PROGRESS 
