@@ -1,25 +1,25 @@
 fileFormatVersion: 2
-guid: 5d08016b17c066c469e261aa6d133f4d
+guid: 1e7e60fd13a204c4e9f4a7c82a7f82c6
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 21300000
-    second: Green_Screen_0
+      213: -1008687115153070311
+    second: Laser_Tile_Pulse_Screen_0
   - first:
-      213: 21300002
-    second: Green_Screen_1
+      213: 2787235840604530428
+    second: Laser_Tile_Pulse_Screen_1
   - first:
-      213: 21300004
-    second: Green_Screen_2
+      213: -2810894296211323581
+    second: Laser_Tile_Pulse_Screen_2
   - first:
-      213: 21300006
-    second: Green_Screen_3
+      213: -8709157474621710146
+    second: Laser_Tile_Pulse_Screen_3
   - first:
-      213: 21300008
-    second: Green_Screen_4
+      213: 6797548603268339212
+    second: Laser_Tile_Pulse_Screen_4
   - first:
-      213: 21300010
-    second: Green_Screen_5
+      213: 7242116665501252250
+    second: Laser_Tile_Pulse_Screen_5
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -75,7 +75,7 @@ TextureImporter:
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
-  applyGammaDecoding: 1
+  applyGammaDecoding: 0
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -88,7 +88,7 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 1
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Standalone
     maxTextureSize: 256
@@ -100,19 +100,7 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 1
-  - serializedVersion: 3
-    buildTarget: iPhone
-    maxTextureSize: 256
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 1
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Android
     maxTextureSize: 256
@@ -124,12 +112,12 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 1
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Green_Screen_0
+      name: Laser_Tile_Pulse_Screen_0
       rect:
         serializedVersion: 2
         x: 0
@@ -143,14 +131,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 02305410000000000800000000000000
-      internalID: 21300000
+      spriteID: 917a9cbb96c6002f0800000000000000
+      internalID: -1008687115153070311
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Green_Screen_1
+      name: Laser_Tile_Pulse_Screen_1
       rect:
         serializedVersion: 2
         x: 32
@@ -164,14 +152,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 22305410000000000800000000000000
-      internalID: 21300002
+      spriteID: cf66878ca304ea620800000000000000
+      internalID: 2787235840604530428
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Green_Screen_2
+      name: Laser_Tile_Pulse_Screen_2
       rect:
         serializedVersion: 2
         x: 64
@@ -185,14 +173,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 42305410000000000800000000000000
-      internalID: 21300004
+      spriteID: 3450725c782bdf8d0800000000000000
+      internalID: -2810894296211323581
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Green_Screen_3
+      name: Laser_Tile_Pulse_Screen_3
       rect:
         serializedVersion: 2
         x: 96
@@ -206,14 +194,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 62305410000000000800000000000000
-      internalID: 21300006
+      spriteID: eb02c308b6bd22780800000000000000
+      internalID: -8709157474621710146
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Green_Screen_4
+      name: Laser_Tile_Pulse_Screen_4
       rect:
         serializedVersion: 2
         x: 128
@@ -227,14 +215,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 82305410000000000800000000000000
-      internalID: 21300008
+      spriteID: c061341907eb55e50800000000000000
+      internalID: 6797548603268339212
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Green_Screen_5
+      name: Laser_Tile_Pulse_Screen_5
       rect:
         serializedVersion: 2
         x: 160
@@ -248,8 +236,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a2305410000000000800000000000000
-      internalID: 21300010
+      spriteID: a9a7325acba218460800000000000000
+      internalID: 7242116665501252250
       vertices: []
       indices: 
       edges: []
@@ -257,7 +245,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 

@@ -47,6 +47,51 @@ TextureImporter:
   - first:
       213: 21300028
     second: Ground_Tile_White_14
+  - first:
+      213: -7256812569046707520
+    second: Ground_Tile_White_0
+  - first:
+      213: -2389149609241315910
+    second: Ground_Tile_White_1
+  - first:
+      213: -1390503224428295782
+    second: Ground_Tile_White_2
+  - first:
+      213: -5493381319177057784
+    second: Ground_Tile_White_3
+  - first:
+      213: 9162731980068184857
+    second: Ground_Tile_White_4
+  - first:
+      213: -2865505443661035622
+    second: Ground_Tile_White_5
+  - first:
+      213: -8740334851531061170
+    second: Ground_Tile_White_6
+  - first:
+      213: -2498502729861629954
+    second: Ground_Tile_White_7
+  - first:
+      213: 109210793400647583
+    second: Ground_Tile_White_8
+  - first:
+      213: 4715785129214650658
+    second: Ground_Tile_White_9
+  - first:
+      213: -4251123061389389590
+    second: Ground_Tile_White_10
+  - first:
+      213: -8746679924688444079
+    second: Ground_Tile_White_11
+  - first:
+      213: -7084739442642258253
+    second: Ground_Tile_White_12
+  - first:
+      213: 7290126626843962983
+    second: Ground_Tile_White_13
+  - first:
+      213: -3333427700245860529
+    second: Ground_Tile_White_14
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -76,7 +121,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -115,7 +160,7 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 1
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Standalone
     maxTextureSize: 512
@@ -127,7 +172,7 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 1
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Android
     maxTextureSize: 512
@@ -139,7 +184,7 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 1
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -158,8 +203,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 02305410000000000800000000000000
-      internalID: 21300000
+      spriteID: 0c2916caa6f9a4b90800000000000000
+      internalID: -7256812569046707520
       vertices: []
       indices: 
       edges: []
@@ -179,8 +224,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 22305410000000000800000000000000
-      internalID: 21300002
+      spriteID: ab578e1b61908ded0800000000000000
+      internalID: -2389149609241315910
       vertices: []
       indices: 
       edges: []
@@ -200,8 +245,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 42305410000000000800000000000000
-      internalID: 21300004
+      spriteID: a998ae04fa0f3bce0800000000000000
+      internalID: -1390503224428295782
       vertices: []
       indices: 
       edges: []
@@ -221,8 +266,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 62305410000000000800000000000000
-      internalID: 21300006
+      spriteID: 80a4fae9bc693c3b0800000000000000
+      internalID: -5493381319177057784
       vertices: []
       indices: 
       edges: []
@@ -242,8 +287,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 82305410000000000800000000000000
-      internalID: 21300008
+      spriteID: 913631c8030982f70800000000000000
+      internalID: 9162731980068184857
       vertices: []
       indices: 
       edges: []
@@ -263,8 +308,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a2305410000000000800000000000000
-      internalID: 21300010
+      spriteID: a97c2a82bfdab38d0800000000000000
+      internalID: -2865505443661035622
       vertices: []
       indices: 
       edges: []
@@ -284,8 +329,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c2305410000000000800000000000000
-      internalID: 21300012
+      spriteID: e484684c2c714b680800000000000000
+      internalID: -8740334851531061170
       vertices: []
       indices: 
       edges: []
@@ -305,8 +350,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e2305410000000000800000000000000
-      internalID: 21300014
+      spriteID: ef7f04c3109835dd0800000000000000
+      internalID: -2498502729861629954
       vertices: []
       indices: 
       edges: []
@@ -326,8 +371,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 03305410000000000800000000000000
-      internalID: 21300016
+      spriteID: f9fb84253aef38100800000000000000
+      internalID: 109210793400647583
       vertices: []
       indices: 
       edges: []
@@ -347,113 +392,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 23305410000000000800000000000000
-      internalID: 21300018
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Ground_Tile_White_10
-      rect:
-        serializedVersion: 2
-        x: 320
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 43305410000000000800000000000000
-      internalID: 21300020
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Ground_Tile_White_11
-      rect:
-        serializedVersion: 2
-        x: 352
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 63305410000000000800000000000000
-      internalID: 21300022
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Ground_Tile_White_12
-      rect:
-        serializedVersion: 2
-        x: 384
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 83305410000000000800000000000000
-      internalID: 21300024
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Ground_Tile_White_13
-      rect:
-        serializedVersion: 2
-        x: 416
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a3305410000000000800000000000000
-      internalID: 21300026
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Ground_Tile_White_14
-      rect:
-        serializedVersion: 2
-        x: 448
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c3305410000000000800000000000000
-      internalID: 21300028
+      spriteID: 229a8e7f695d17140800000000000000
+      internalID: 4715785129214650658
       vertices: []
       indices: 
       edges: []
@@ -461,7 +401,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: c374c28dbe6ba82409345e6929ad9f3b
     internalID: 0
     vertices: []
     indices: 
