@@ -289,20 +289,21 @@ public class GameController : MonoBehaviour
     // DEBUG ----------------------------------------------- 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.R))
+        if (Input.GetAxisRaw("Restart") > 0 && Time.timeSinceLevelLoad > 1 && GetLevelNumber() != 0)
         {
             RestartScene();
         }
+        
         if (Input.GetKeyDown(KeyCode.F12) && (Input.GetKeyDown(KeyCode.LeftControl) || Input.GetKeyDown(KeyCode.RightControl)))
         {
             UnlockAllLevels();
-            print("All levels unlocked!");
         }
     }
 
     public void UnlockAllLevels()
     {
         NumberOfLevelsCompleted = levelCount;
+        print("All levels unlocked!");
         RestartScene();
     }
 }
