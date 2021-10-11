@@ -43,17 +43,8 @@ public class PlayerController : CharacterPhysics
     {
         if (!Application.isMobilePlatform && !levelCompleted)
         {
-            if (Input.GetKey(KeyCode.Space))
-                SetJumpAxis(Input.GetAxis("Jump"));
-            else
-                SetJumpAxis(0);
-
-            if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A))
-                SetMovementAxis(-1);
-            else if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D))
-                SetMovementAxis(1);
-            else
-                SetMovementAxis(0);
+            SetMovementAxis(Input.GetAxisRaw("Horizontal"));
+            SetJumpAxis(Input.GetAxisRaw("Jump"));
         }
 
         UpdateAnimations();

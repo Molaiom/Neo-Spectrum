@@ -22,7 +22,7 @@ public class LevelCompletedScreen : MonoBehaviour
 
     private void Update() // FOR PC TESTING ONLY
     {
-        if (isScreenOpen && Input.GetKeyDown(KeyCode.Return) && GameController.instance != null)
+        if (isScreenOpen && Input.GetAxisRaw("Submit") > 0 && GameController.instance != null)
             GameController.instance.LoadNextLevel();
     }
 

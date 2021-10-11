@@ -4,6 +4,7 @@ using UnityEngine.UI;
 public class ButtonInputManager : MonoBehaviour
 {
     private Image image;
+    PlayerController[] players;
 
     private void Awake()
     {
@@ -11,15 +12,19 @@ public class ButtonInputManager : MonoBehaviour
         Input.simulateMouseWithTouches = false;
     }
 
-    public void HorizontalAxisInput(float value)
+    private void Start()
     {
         if (FindObjectsOfType<PlayerController>() != null)
         {
-            PlayerController[] players = FindObjectsOfType<PlayerController>();
-            for (int i = 0; i < players.Length; i++)
-            {
-                players[i].SetMovementAxis(value);
-            }
+            players = FindObjectsOfType<PlayerController>();
+        }
+    }
+
+    public void HorizontalAxisInput(float value)
+    {
+        for (int i = 0; i < players.Length; i++)
+        {
+            players[i].SetMovementAxis(value);
         }
 
         if (value != 0)
@@ -30,13 +35,9 @@ public class ButtonInputManager : MonoBehaviour
 
     public void JumpAxisInput(float value)
     {
-        if (FindObjectsOfType<PlayerController>() != null)
+        for (int i = 0; i < players.Length; i++)
         {
-            PlayerController[] players = FindObjectsOfType<PlayerController>();
-            for (int i = 0; i < players.Length; i++)
-            {
-                players[i].SetJumpAxis(value);
-            }
+            players[i].SetJumpAxis(value);
         }
 
         if (value != 0)
