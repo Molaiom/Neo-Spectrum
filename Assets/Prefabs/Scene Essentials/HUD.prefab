@@ -8423,7 +8423,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: New Extra Unlocked!
+  m_Text: New Extra Unlocked on main menu !
 --- !u!1 &3425623143623191281
 GameObject:
   m_ObjectHideFlags: 0
