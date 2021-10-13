@@ -4,6 +4,8 @@ public class MainMenuBackButtonController : MonoBehaviour
 {
     public GameObject menuCanvas;
     public GameObject creditsCanvas;
+    public GameObject settingsCanvas;
+    public GameObject resetDataMenu;
     
 
     private void Update()
@@ -15,6 +17,20 @@ public class MainMenuBackButtonController : MonoBehaviour
             {
                 creditsCanvas.SetActive(false);
                 menuCanvas.SetActive(true);
+            }
+
+            if(settingsCanvas.activeSelf)
+            {
+                if(resetDataMenu.activeSelf)
+                {
+                    resetDataMenu.SetActive(false);
+                }
+                else
+                {
+                    settingsCanvas.SetActive(false);
+                    menuCanvas.SetActive(true);
+                }
+                
             }
         }
     }

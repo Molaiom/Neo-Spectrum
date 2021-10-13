@@ -22,8 +22,11 @@ public class LevelCompletedScreen : MonoBehaviour
 
     private void Update() // FOR PC TESTING ONLY
     {
-        if (isScreenOpen && Input.GetAxisRaw("Submit") > 0 && GameController.instance != null)
+        if (isScreenOpen && (Input.GetAxisRaw("Submit") > 0 || Input.GetAxisRaw("Jump") > 0) && GameController.instance != null)
+        {
             GameController.instance.LoadNextLevel();
+            if (AudioController.instance != null) AudioController.instance.PlayButton();
+        }
     }
 
     public void OpenLevelCompletedMenu() // CALLS THE OPEN LEVEL COMPLETED COROUTINE

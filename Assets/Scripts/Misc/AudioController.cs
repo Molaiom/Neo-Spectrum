@@ -32,7 +32,6 @@ public class AudioController : MonoBehaviour
     
     private AudioSource effectsAudioSource;
     private AudioSource musicAudioSource;
-    private AudioSource menusAudioSource;
     public static AudioController instance;
 
     private bool isChangingVolume;
@@ -50,7 +49,6 @@ public class AudioController : MonoBehaviour
             AudioSource[] audioSources = GetComponents<AudioSource>();
             effectsAudioSource = audioSources[0];
             musicAudioSource = audioSources[1];
-            menusAudioSource = audioSources[2];
         }
 
         StartCoroutine(ChangeMusic(musicMenu));
@@ -78,7 +76,7 @@ public class AudioController : MonoBehaviour
         {
             effectsAudioSource.Pause();                        
             isChangingVolume = false;
-            musicAudioSource.volume = 0.1f;   
+            musicAudioSource.volume = musicMaxVolume * 0.2f;
         }
         else
         {
@@ -88,6 +86,11 @@ public class AudioController : MonoBehaviour
                 musicAudioSource.volume = musicMaxVolume;
             }
         }
+    }
+
+    public void SetEffectsVolume(float volume)
+    {
+        effectsAudioSource.volume = volume;
     }
 
     public void OnSceneChanged() // CALLS THE CHANGEMUSIC METHOD DEPENDING ON SCENE
@@ -161,8 +164,8 @@ public class AudioController : MonoBehaviour
     {
         if (instance != null)
         {
-            AudioController audiozinho = instance;
-            audiozinho.menusAudioSource.PlayOneShot(buttonPressed, 0.5f);
+            AudioController ac = instance;
+            ac.effectsAudioSource.PlayOneShot(buttonPressed, 0.5f);
         }
     }
 
@@ -173,7 +176,7 @@ public class AudioController : MonoBehaviour
 
     public void PlayLevelCompleted()
     {
-        menusAudioSource.PlayOneShot(levelCompleted, 1);
+        effectsAudioSource.PlayOneShot(levelCompleted);
     }
 
     public void PlayClick()

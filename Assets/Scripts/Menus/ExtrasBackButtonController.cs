@@ -3,8 +3,6 @@
 public class ExtrasBackButtonController : MonoBehaviour
 {
     public GameObject[] images = new GameObject[4];
-    public GameObject resetDataPanel;
-
 
     private void Update()
     {
@@ -19,16 +17,11 @@ public class ExtrasBackButtonController : MonoBehaviour
                 {
                     imageActive = true;
                     images[i].SetActive(false);
-                }                    
-            }
-            
-            if(resetDataPanel.activeSelf)
-            {
-                resetDataPanel.SetActive(false);
-            }            
-            else if(!imageActive && GameController.instance != null)
-            {
-                GameController.instance.LoadMainMenu();
+                }
+                else if (!imageActive && GameController.instance != null)
+                {
+                    GameController.instance.LoadMainMenu();
+                }
             }
         }
     }

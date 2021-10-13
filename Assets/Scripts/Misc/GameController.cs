@@ -10,6 +10,8 @@ public class GameController : MonoBehaviour
     private int numberOfCollectablesCollected;
     private bool[] collectableFromLevel;
     private bool audioMuted;
+    private float volumeEffects;
+    private float volumeMusic;
 
     public int NumberOfLevelsCompleted
     {
@@ -94,9 +96,41 @@ public class GameController : MonoBehaviour
         set
         {
             audioMuted = value;
-            CheckForMuteState();
+            SetVolume();
 
             PlayerPrefsX.SetBool(k_AudioMuted, audioMuted);
+            PlayerPrefs.Save();
+        }
+    }
+
+    public float VolumeEffects
+    {
+        get
+        {
+            return volumeEffects;
+        }
+        set
+        {
+            volumeEffects = (value >= 0 && value <= 1) ? value : volumeEffects;
+            SetVolume();
+
+            PlayerPrefs.SetFloat(k_VolumeEffects, volumeEffects);
+            PlayerPrefs.Save();
+        }
+    }
+
+    public float VolumeMusic
+    {
+        get
+        {
+            return volumeMusic;
+        }
+        set
+        {
+            volumeMusic = (value >= 0 && value <= 1) ? value : volumeMusic;
+            SetVolume();
+
+            PlayerPrefs.SetFloat(k_VolumeMusic, volumeMusic);
             PlayerPrefs.Save();
         }
     }
@@ -106,6 +140,8 @@ public class GameController : MonoBehaviour
     private readonly string k_Collectables = "numberOfCollectablesCollected";
     private readonly string k_CollectablesArray = "collectableFromLevel";
     private readonly string k_AudioMuted = "audioMuted";
+    private readonly string k_VolumeEffects = "volumeEffects";
+    private readonly string k_VolumeMusic = "volumeMusic";
 
     // MISC
     public static GameController instance;
@@ -147,6 +183,7 @@ public class GameController : MonoBehaviour
 
     private void Start()
     {
+        SetVolume();
         TriggerSceneChanged();
     }
 
@@ -155,17 +192,24 @@ public class GameController : MonoBehaviour
         if (!PlayerPrefs.HasKey(k_Levels))
             PlayerPrefs.SetInt(k_Levels, 0);
 
-
         if (!PlayerPrefs.HasKey(k_Collectables))
             PlayerPrefs.SetInt(k_Collectables, 0);
 
         if (!PlayerPrefs.HasKey(k_AudioMuted))
             PlayerPrefsX.SetBool(k_AudioMuted, false);
 
+        if (!PlayerPrefs.HasKey(k_VolumeEffects))
+            PlayerPrefs.SetFloat(k_VolumeEffects, 1);
+
+        if (!PlayerPrefs.HasKey(k_VolumeMusic))
+            PlayerPrefs.SetFloat(k_VolumeMusic, 0.5f);
+
         // ASSIGN VALUES
         NumberOfLevelsCompleted = PlayerPrefs.GetInt(k_Levels);
         NumberOfCollectablesCollected = PlayerPrefs.GetInt(k_Collectables);
         AudioMuted = PlayerPrefsX.GetBool(k_AudioMuted);
+        VolumeEffects = PlayerPrefs.GetFloat(k_VolumeEffects);
+        VolumeMusic = PlayerPrefs.GetFloat(k_VolumeMusic);
 
         if (PlayerPrefsX.GetBoolArray(k_CollectablesArray).Length != 0)
         {
@@ -182,8 +226,9 @@ public class GameController : MonoBehaviour
 
     public void ClearAllSavedData()
     {
+        PlayerPrefs.DeleteKey(k_Levels);
+        PlayerPrefs.DeleteKey(k_Collectables);
         PlayerPrefsX.SetBoolArray(k_CollectablesArray, new bool[levelCount]);
-        PlayerPrefs.DeleteAll();
     }
 
     public int GetLevelArea()
@@ -196,6 +241,23 @@ public class GameController : MonoBehaviour
             }
         }
         return (GetLevelNumber() > 0 && GetLevelNumber() <= levelCount ? lastLevelOfArea.Length : 0);
+    }
+
+    public void SetVolume() // SETS VOLUME ON SCENE GAMEOBJECTS
+    {
+        if (Camera.main.gameObject.GetComponent<AudioListener>() != null)
+        {
+            if (AudioMuted)
+                AudioListener.volume = 0;
+            else
+                AudioListener.volume = 1;
+        }
+
+        if(AudioController.instance != null)
+        {
+            AudioController.instance.musicMaxVolume = VolumeMusic;
+            AudioController.instance.SetEffectsVolume(VolumeEffects);
+        }
     }
 
     public int GetLevelCount() { return levelCount; }
@@ -264,17 +326,6 @@ public class GameController : MonoBehaviour
             return 0;
         }
     }
-
-    public void CheckForMuteState()
-    {
-        if (Camera.main.gameObject.GetComponent<AudioListener>() != null)
-        {
-            if (AudioMuted)
-                AudioListener.volume = 0;
-            else
-                AudioListener.volume = 1;
-        }
-    }
    
     // TELLS AUDIO CONTROLLER THE SCENE HAS CHANGED
     private void TriggerSceneChanged()
@@ -294,7 +345,7 @@ public class GameController : MonoBehaviour
             RestartScene();
         }
         
-        if (Input.GetKeyDown(KeyCode.F12) && (Input.GetKeyDown(KeyCode.LeftControl) || Input.GetKeyDown(KeyCode.RightControl)))
+        if (Input.GetKeyDown(KeyCode.F12) && (Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl)))
         {
             UnlockAllLevels();
         }
