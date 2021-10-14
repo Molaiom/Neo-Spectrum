@@ -185,6 +185,9 @@ public class GameController : MonoBehaviour
     {
         SetVolume();
         TriggerSceneChanged();
+
+        if (AudioController.instance != null && GetLevelNumber() == 0 && Time.time > 0.1f)
+            AudioController.instance.PlayButton();
     }
 
     private void CheckForSavedData()
@@ -311,6 +314,8 @@ public class GameController : MonoBehaviour
         else
         {
             Time.timeScale = 1;
+            if (AudioController.instance != null && GetLevelNumber() > 0)
+                AudioController.instance.PlayButton();
         }
     }
 

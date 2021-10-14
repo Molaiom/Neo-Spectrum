@@ -103,13 +103,17 @@ public class AudioController : MonoBehaviour
             if(GameController.instance.GetLevelNumber() == 0)
             {
                 if (musicAudioSource.clip != musicMenu)
+                {
                     StartCoroutine(ChangeMusic(musicMenu));
+                }
             }
             // IF THE PLAYER IS IN A LEVEL
             else
             {
                 if (musicAudioSource.clip != musicLevel)
+                {
                     StartCoroutine(ChangeMusic(musicLevel));
+                }
             }
         }
     }
@@ -118,39 +122,39 @@ public class AudioController : MonoBehaviour
     // PLAYER
     public void PlayPlayerJump()
     {
-        effectsAudioSource.PlayOneShot(playerJump);
+        instance.effectsAudioSource.PlayOneShot(playerJump);
     }
 
     public void PlayPlayerDeath()
     {
-        effectsAudioSource.PlayOneShot(playerDeath);
+        instance.effectsAudioSource.PlayOneShot(playerDeath);
     }
 
     public void PlayCollectableCollected()
     {
-        effectsAudioSource.PlayOneShot(collectableCollected);
+        instance.effectsAudioSource.PlayOneShot(collectableCollected);
     }
 
     // ENEMIES   
     public void PlayBossLaugh()
     {
-        effectsAudioSource.PlayOneShot(bossLaugh);
+        instance.effectsAudioSource.PlayOneShot(bossLaugh);
     }
 
     // BLOCKS
     public void PlayBlockPlaced()
     {
-        effectsAudioSource.PlayOneShot(blockPlaced);
+        instance.effectsAudioSource.PlayOneShot(blockPlaced);
     }
 
     public void PlayBlockImpact()
     {
-        effectsAudioSource.PlayOneShot(blockImpact);
+        instance.effectsAudioSource.PlayOneShot(blockImpact);
     }
 
     public void PlayBounce()
     {
-        effectsAudioSource.PlayOneShot(bounce);
+        instance.effectsAudioSource.PlayOneShot(bounce);
     }
 
     public void PlayLaserTile()
@@ -162,26 +166,22 @@ public class AudioController : MonoBehaviour
     // MISC EFFECTS
     public void PlayButton()
     {
-        if (instance != null)
-        {
-            AudioController ac = instance;
-            ac.effectsAudioSource.PlayOneShot(buttonPressed, 0.5f);
-        }
+        instance.effectsAudioSource.PlayOneShot(buttonPressed, .8f);
     }
 
     public void PlayDeath()
     {
-        effectsAudioSource.PlayOneShot(death);
+        instance.effectsAudioSource.PlayOneShot(death);
     }
 
     public void PlayLevelCompleted()
     {
-        effectsAudioSource.PlayOneShot(levelCompleted);
+        instance.effectsAudioSource.PlayOneShot(levelCompleted);
     }
 
     public void PlayClick()
     {
-        effectsAudioSource.PlayOneShot(click);
+        instance.effectsAudioSource.PlayOneShot(click);
     }
     #endregion
 
@@ -221,7 +221,7 @@ public class AudioController : MonoBehaviour
         musicAudioSource.clip = musicToPlay;
         musicAudioSource.Play();
 
-        StartCoroutine(FadeInMusicVolume(0.25f));        
+        StartCoroutine(FadeInMusicVolume(0.25f));
     }
     #endregion
 }
