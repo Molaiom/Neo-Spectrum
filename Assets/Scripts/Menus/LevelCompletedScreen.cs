@@ -25,7 +25,6 @@ public class LevelCompletedScreen : MonoBehaviour
         if (isScreenOpen && (Input.GetAxisRaw("Submit") > 0 || Input.GetAxisRaw("Jump") > 0) && GameController.instance != null)
         {
             GameController.instance.LoadNextLevel();
-            if (AudioController.instance != null) AudioController.instance.PlayButton();
         }
     }
 

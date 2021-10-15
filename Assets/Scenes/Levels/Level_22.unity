@@ -5821,12 +5821,12 @@ PrefabInstance:
     - target: {fileID: 114805593210897596, guid: 91423c81b4acfd94ca19a39511d85dd5,
         type: 3}
       propertyPath: leftRange
-      value: -2
+      value: -2.5
       objectReference: {fileID: 0}
     - target: {fileID: 114805593210897596, guid: 91423c81b4acfd94ca19a39511d85dd5,
         type: 3}
       propertyPath: rightRange
-      value: 3
+      value: 3.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 91423c81b4acfd94ca19a39511d85dd5, type: 3}

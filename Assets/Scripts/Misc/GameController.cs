@@ -9,7 +9,6 @@ public class GameController : MonoBehaviour
     private int numberOfLevelsCompleted;
     private int numberOfCollectablesCollected;
     private bool[] collectableFromLevel;
-    private bool audioMuted;
     private float volumeEffects;
     private float volumeMusic;
 
@@ -87,22 +86,6 @@ public class GameController : MonoBehaviour
         }
     }
 
-    public bool AudioMuted
-    {
-        get
-        {
-            return audioMuted;
-        }
-        set
-        {
-            audioMuted = value;
-            SetVolume();
-
-            PlayerPrefsX.SetBool(k_AudioMuted, audioMuted);
-            PlayerPrefs.Save();
-        }
-    }
-
     public float VolumeEffects
     {
         get
@@ -139,7 +122,6 @@ public class GameController : MonoBehaviour
     private readonly string k_Levels = "numberOfLevelsCompleted";
     private readonly string k_Collectables = "numberOfCollectablesCollected";
     private readonly string k_CollectablesArray = "collectableFromLevel";
-    private readonly string k_AudioMuted = "audioMuted";
     private readonly string k_VolumeEffects = "volumeEffects";
     private readonly string k_VolumeMusic = "volumeMusic";
 
@@ -198,9 +180,6 @@ public class GameController : MonoBehaviour
         if (!PlayerPrefs.HasKey(k_Collectables))
             PlayerPrefs.SetInt(k_Collectables, 0);
 
-        if (!PlayerPrefs.HasKey(k_AudioMuted))
-            PlayerPrefsX.SetBool(k_AudioMuted, false);
-
         if (!PlayerPrefs.HasKey(k_VolumeEffects))
             PlayerPrefs.SetFloat(k_VolumeEffects, 1);
 
@@ -210,7 +189,6 @@ public class GameController : MonoBehaviour
         // ASSIGN VALUES
         NumberOfLevelsCompleted = PlayerPrefs.GetInt(k_Levels);
         NumberOfCollectablesCollected = PlayerPrefs.GetInt(k_Collectables);
-        AudioMuted = PlayerPrefsX.GetBool(k_AudioMuted);
         VolumeEffects = PlayerPrefs.GetFloat(k_VolumeEffects);
         VolumeMusic = PlayerPrefs.GetFloat(k_VolumeMusic);
 
@@ -248,14 +226,6 @@ public class GameController : MonoBehaviour
 
     public void SetVolume() // SETS VOLUME ON SCENE GAMEOBJECTS
     {
-        if (Camera.main.gameObject.GetComponent<AudioListener>() != null)
-        {
-            if (AudioMuted)
-                AudioListener.volume = 0;
-            else
-                AudioListener.volume = 1;
-        }
-
         if(AudioController.instance != null)
         {
             AudioController.instance.musicMaxVolume = VolumeMusic;
@@ -314,8 +284,6 @@ public class GameController : MonoBehaviour
         else
         {
             Time.timeScale = 1;
-            if (AudioController.instance != null && GetLevelNumber() > 0)
-                AudioController.instance.PlayButton();
         }
     }
 

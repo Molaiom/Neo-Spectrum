@@ -2174,7 +2174,7 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: 'if you make a mistake,
 
-    try restarting the level'
+    press R to restart.'
 --- !u!222 &500963719
 CanvasRenderer:
   m_ObjectHideFlags: 0

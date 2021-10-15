@@ -166,7 +166,8 @@ public class AudioController : MonoBehaviour
     // MISC EFFECTS
     public void PlayButton()
     {
-        instance.effectsAudioSource.PlayOneShot(buttonPressed, .8f);
+        if(instance != null)
+            instance.effectsAudioSource.PlayOneShot(buttonPressed, .8f);
     }
 
     public void PlayDeath()

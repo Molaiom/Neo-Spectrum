@@ -3,16 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-// THIS CLASS HANDLES END OF LEVEL INTERACTIONS (SAVES) AND PLAYER DEATH (DEATH SCREEN)
+// THIS CLASS HANDLES END OF LEVEL INTERACTIONS (SAVES), PLAYER DEATH (DEATH SCREEN) AND HUD INTERACTIONS
 public class LevelController : MonoBehaviour
 {
     // EXTERNAL ATTRIBUTES
     [SerializeField]
     private GameObject deathScreen;
     [SerializeField]
+    private GameObject pauseScreen;
+    [SerializeField]
     private LevelCompletedScreen levelCompletedScreen;
     [SerializeField]
-    private Text levelNumberText;
+    private Text pauseLevelNumberText;
+    [SerializeField]
+    private Text hudLevelNumberText;
 
     // INTERNAL ATTRIBUTES
     public static LevelController instance;
@@ -40,7 +44,7 @@ public class LevelController : MonoBehaviour
 
     private void Start() // ASSIGN PLAYER COUNT
     {
-        if(FindObjectsOfType<PlayerController>() != null)
+        if (FindObjectsOfType<PlayerController>() != null)
         {
             playerCount = FindObjectsOfType<PlayerController>().Length;
         }
@@ -49,23 +53,45 @@ public class LevelController : MonoBehaviour
         levelCompleted = false;
     }
 
-    private void FixedUpdate()
+    private void FixedUpdate() // CHECKS FOR LEVEL COMPLETION/FAIL
     {
-        if(playerCount > 0)
+        if (playerCount > 0)
         {
             FailLevel();
             CompleteLevel();
         }
     }
 
+    private void Update() // PAUSES THE LEVEL WITH THE ESCAPE BUTTON
+    {
+        if (Input.GetKeyUp(KeyCode.Escape) && !levelCompleted)
+        {
+            if (GameController.instance != null)
+            {
+                if (pauseScreen.activeSelf)
+                {
+                    pauseScreen.SetActive(false);
+                    GameController.instance.ChangePauseState(false);
+                }
+                else
+                {
+                    pauseScreen.SetActive(true);
+                    GameController.instance.ChangePauseState(true);
+                }
+            }
+        }
+    }
+
     private void AssignLevelNumberText()
     {
-        if (GameController.instance != null && levelNumberText != null)
+        if (GameController.instance != null)
         {
-            if (GameController.instance.GetLevelNumber() != 0)
-            {
-                levelNumberText.text = "Level " + GameController.instance.GetLevelNumber().ToString();
-            }
+            string levelText = "Level " + GameController.instance.GetLevelNumber().ToString();
+            pauseLevelNumberText.text = levelText;
+
+            if (hudLevelNumberText.IsActive())
+                hudLevelNumberText.text = levelText;
+
         }
     }
 
@@ -87,7 +113,7 @@ public class LevelController : MonoBehaviour
 
     public void CompleteLevel() // SHOWS THE LEVEL COMPLETED SCREEN AND SAVES PROGRESS 
     {
-        if(playerCompletedCount >= playerCount && !levelCompleted)
+        if (playerCompletedCount >= playerCount && !levelCompleted)
         {
             levelCompletedScreen.OpenLevelCompletedMenu();
             levelCompleted = true;
