@@ -112,6 +112,10 @@ public class LevelStartAnim : MonoBehaviour
                 miscText.text = "Blue !";
                 break;
 
+            case 26:
+                miscText.text = "Two?";
+                break;
+
             default:
                 miscText.text = "";
                 break;

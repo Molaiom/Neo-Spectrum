@@ -7,11 +7,22 @@ public class LevelSelectScreen : MonoBehaviour
     public GameObject[] levelsPanel;
     public Color[] backgroundColor;
     public Image backgroundImage;
-    
-    private void Start() 
+
+
+    private void Start()
     {
         CreateLevelButtons();
         SetInitialScreen();
+    }
+
+    private void Update()
+    {
+        // IF BACK BUTTON IS PRESSED
+        if (Input.GetKeyUp(KeyCode.Escape))
+        {
+            if (GameController.instance != null)
+                GameController.instance.LoadMainMenu();
+        }
     }
 
     private void CreateLevelButtons()

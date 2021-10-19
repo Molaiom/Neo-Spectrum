@@ -20,11 +20,18 @@ public class LevelCompletedScreen : MonoBehaviour
         particles = transform.GetChild(1).gameObject.GetComponent<ParticleSystem>();
     }
 
-    private void Update() // FOR PC TESTING ONLY
+    private void Update() // INPUTS
     {
-        if (isScreenOpen && (Input.GetAxisRaw("Submit") > 0 || Input.GetAxisRaw("Jump") > 0) && GameController.instance != null)
+        if (isScreenOpen && (Input.GetAxisRaw("Submit")) > 0 && GameController.instance != null)
         {
             GameController.instance.LoadNextLevel();
+        }
+
+        // IF BACK BUTTON IS PRESSED
+        if (Input.GetKeyUp(KeyCode.Escape) && GameController.instance != null)
+        {
+            GameController.instance.LoadLevelSelect();
+
         }
     }
 

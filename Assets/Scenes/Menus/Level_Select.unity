@@ -2170,7 +2170,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2080785603}
   - component: {fileID: 2080785604}
-  - component: {fileID: 2080785605}
   m_Layer: 0
   m_Name: Level Select Controller
   m_TagString: Untagged
@@ -2217,15 +2216,3 @@ MonoBehaviour:
   - {r: 0.67547756, g: 0.6949157, b: 0.865, a: 1}
   - {r: 0.83, g: 0.52857894, b: 0.52857894, a: 1}
   backgroundImage: {fileID: 1764659876}
---- !u!114 &2080785605
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2080785602}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fd869e2b02c43eb4c8d5d4c3e75ac9ec, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

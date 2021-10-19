@@ -68,14 +68,14 @@ public class LevelController : MonoBehaviour
         {
             if (GameController.instance != null)
             {
-                if (pauseScreen.activeSelf)
+                if (pauseScreen.activeSelf) // UNPAUSE
                 {
                     pauseScreen.SetActive(false);
                     GameController.instance.ChangePauseState(false);
                 }
                 else
                 {
-                    pauseScreen.SetActive(true);
+                    pauseScreen.SetActive(true); // PAUSE
                     GameController.instance.ChangePauseState(true);
                 }
             }

@@ -18,10 +18,10 @@ public class ExtrasBackButtonController : MonoBehaviour
                     imageActive = true;
                     images[i].SetActive(false);
                 }
-                else if (!imageActive && GameController.instance != null)
-                {
-                    GameController.instance.LoadMainMenu();
-                }
+            }
+            if (!imageActive && GameController.instance != null)
+            {
+                GameController.instance.LoadMainMenu();
             }
         }
     }
