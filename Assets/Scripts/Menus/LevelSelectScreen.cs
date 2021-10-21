@@ -187,6 +187,7 @@ public class LevelSelectScreen : MonoBehaviour
     {
         Navigation backButtonNavigation = backButton.navigation;
         backButtonNavigation.selectOnUp = levelButtonsList[LastLevelIndexOfArea(areaIndex) - 4];
+        backButtonNavigation.selectOnRight = levelButtonsList[LastLevelIndexOfArea(areaIndex) - 4];
         backButton.navigation = backButtonNavigation;
     }
 

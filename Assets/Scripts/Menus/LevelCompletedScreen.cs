@@ -1,6 +1,6 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class LevelCompletedScreen : MonoBehaviour
@@ -28,7 +28,7 @@ public class LevelCompletedScreen : MonoBehaviour
         }
 
         // IF BACK BUTTON IS PRESSED
-        if (Input.GetKeyUp(KeyCode.Escape) && GameController.instance != null)
+        if (Input.GetKeyUp(KeyCode.Escape) && GameController.instance != null && levelCompletedPanel.activeSelf)
         {
             GameController.instance.LoadLevelSelect();
 
@@ -81,6 +81,7 @@ public class LevelCompletedScreen : MonoBehaviour
         levelCompletedPanel.GetComponent<Image>().CrossFadeAlpha(0, 0, true);
         levelCompletedPanel.GetComponent<Image>().CrossFadeAlpha(1, timeToFadeIn, true);
 
+
         // GET ALL IMAGES / BUTTONS
         Image[] childImages = new Image[levelCompletedPanel.transform.childCount];
 
@@ -99,6 +100,8 @@ public class LevelCompletedScreen : MonoBehaviour
                 childImages[i].CrossFadeAlpha(1, timeToFadeIn, true);
             }
         }
+
+        SelectButtonsForMenuNavigation(timeToFadeIn);
 
         // GET ALL TEXTS
         Text[] childTexts = new Text[levelCompletedPanel.transform.childCount];
@@ -134,5 +137,21 @@ public class LevelCompletedScreen : MonoBehaviour
         }
 
         levelCompletedPanel.transform.localScale = new Vector3(1, 1, 1);
+    }
+
+    private void SelectButtonsForMenuNavigation(float timeToFadeIn)
+    {
+        Button[] levelCompletedButtons = levelCompletedPanel.GetComponentsInChildren<Button>();
+        for (int i = 0; i < levelCompletedButtons.Length; i++)
+        {
+            if (levelCompletedButtons[i].gameObject.activeSelf)
+            {
+                EventSystem.current.SetSelectedGameObject(null);
+                EventSystem.current.SetSelectedGameObject(levelCompletedButtons[i].gameObject);
+                Color selectedColor = levelCompletedButtons[i].colors.selectedColor;
+                levelCompletedButtons[i].image.CrossFadeColor(selectedColor, timeToFadeIn, true, true);
+                break;
+            }
+        }
     }
 }

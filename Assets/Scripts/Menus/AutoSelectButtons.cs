@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
@@ -8,13 +9,20 @@ public class AutoSelectButtons : MonoBehaviour
 
     private void Start()
     {
-        EventSystem.current.SetSelectedGameObject(null);
-        firstSelected.Select();
+        StopAllCoroutines();
+        StartCoroutine(SelectRoutine());
     }
 
     private void OnEnable()
     {
+        StopAllCoroutines();
+        StartCoroutine(SelectRoutine());
+    }
+
+    private IEnumerator SelectRoutine()
+    {
         EventSystem.current.SetSelectedGameObject(null);
-        firstSelected.Select();
+        yield return null;
+        EventSystem.current.SetSelectedGameObject(firstSelected.gameObject);
     }
 }
