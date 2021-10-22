@@ -22,11 +22,6 @@ public class LevelCompletedScreen : MonoBehaviour
 
     private void Update() // INPUTS
     {
-        if (isScreenOpen && (Input.GetAxisRaw("Submit")) > 0 && GameController.instance != null)
-        {
-            GameController.instance.LoadNextLevel();
-        }
-
         // IF BACK BUTTON IS PRESSED
         if (Input.GetKeyUp(KeyCode.Escape) && GameController.instance != null && levelCompletedPanel.activeSelf)
         {
