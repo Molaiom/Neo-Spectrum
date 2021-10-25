@@ -97,7 +97,7 @@ public class PlayerController : CharacterPhysics
         }
     }
 
-    protected override void OnCollisionEnter2D(Collision2D collision)
+    protected override void OnCollisionEnter2D(Collision2D collision) // BOUNCY SOUNDS
     {
         base.OnCollisionEnter2D(collision);
 
@@ -110,9 +110,10 @@ public class PlayerController : CharacterPhysics
         {
             foreach (Collider2D blockBelow in blocksBellow)
             {
-                if(blockBelow.gameObject.CompareTag("BouncyTile"))
+                if(blockBelow.gameObject.CompareTag("BouncyTile") && collision.gameObject.CompareTag("BouncyTile"))
                 {
                     AudioController.instance.PlayBounce();
+                    return;
                 }
             }
         }

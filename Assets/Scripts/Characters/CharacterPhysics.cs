@@ -24,7 +24,8 @@ public class CharacterPhysics : MonoBehaviour
     protected float currentMoveSpeed;
     protected float currentJumpDelay;
     protected Rigidbody2D rb2d;
-    protected FixedJoint2D joint2D;   
+    protected FixedJoint2D joint2D;
+    protected bool isJumpInputPressed = false;
 
     private GameObject tileIgnoredForCollision;
     private float minDistanceToIgnoreCol = .5f;
@@ -75,7 +76,7 @@ public class CharacterPhysics : MonoBehaviour
 
     private void Jump(float jumpInput) // MAKES THE PLAYER JUMP 
     {
-        if (jumpInput >= 1 && currentJumpDelay <= 0)
+        if (jumpInput >= 1 && currentJumpDelay <= 0 && !isJumpInputPressed)
         {
             if (onWall) // WALL JUMP
             {
@@ -86,6 +87,7 @@ public class CharacterPhysics : MonoBehaviour
                 rb2d.velocity = new Vector2(rb2d.velocity.x, jumpForce);
                 rb2d.AddForce(new Vector2(transform.localScale.x * (wallJumpForce * 100) * -1, 0));
                 currentJumpDelay = startingJumpDelay;
+                isJumpInputPressed = true;
                 if (AudioController.instance != null && !BlockAboveHead())
                 {
                     AudioController.instance.PlayPlayerJump();
@@ -93,6 +95,7 @@ public class CharacterPhysics : MonoBehaviour
             }
             else if (IsGrounded()) // GROUND JUMP
             {
+                isJumpInputPressed = true;
                 rb2d.velocity = new Vector2(rb2d.velocity.x, jumpForce);
                 currentJumpDelay = startingJumpDelay;
                 if (AudioController.instance != null && !BlockAboveHead())
@@ -100,6 +103,10 @@ public class CharacterPhysics : MonoBehaviour
                     AudioController.instance.PlayPlayerJump();
                 }
             }
+        }
+        else if (jumpInput <= 0)
+        {
+            isJumpInputPressed = false;
         }
     }
 

@@ -63,7 +63,7 @@ public class TileDynamic : TileInteractable
             {
                 allCollisions.Add(collision.gameObject);
 
-                // IF THE BLOCK COLLIDES WITH THE "GROUND" LAYER, PLAY A SOUND
+                // IF THE BLOCK COLLIDES WITH THE "Ground" LAYER, PLAY A SOUND
                 if (canMakeImpactSound && AudioController.instance != null && airTime >= 0.22f)
                 {
                     bool isTouchingBouncyTile = false;
@@ -76,7 +76,7 @@ public class TileDynamic : TileInteractable
                     {
                         AudioController.instance.PlayBounce();
                     }
-                    else
+                    else if (IsGrounded() || (rb2d.velocity.x > 0.1f || rb2d.velocity.x < -0.1f))
                     {
                         AudioController.instance.PlayBlockImpact();
                     }
