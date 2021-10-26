@@ -1,6 +1,7 @@
 ﻿using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Steamworks;
 
 public class GameController : MonoBehaviour
 {
@@ -240,7 +241,7 @@ public class GameController : MonoBehaviour
     public int[] GetCollectablesRequiredForExtra() { return collectablesRequiredForExtra; }
     #endregion
 
-    #region SceneManagement
+    #region Scene Management
     public void RestartScene()
     {        
         Scene currentScene = SceneManager.GetActiveScene();
@@ -316,6 +317,18 @@ public class GameController : MonoBehaviour
     }
     #endregion
 
+    #region Steam
+    public void UnlockAchievement(string achievementID) // UNLOCKS STEAM ACHIEVEMENTS IF THE PLAYER DOESN'T ALREADY HAS THEM
+    {
+        // IF THE PLAYER DOESN'T ALREADY HAVE THE SPECIFIC ACHIEVEMENT
+        if(!SteamUserStats.GetAchievement(achievementID, out _))
+        {
+            SteamUserStats.SetAchievement(achievementID);
+            SteamUserStats.StoreStats();
+        }
+    }
+    #endregion
+
     // DEBUG ----------------------------------------------- 
     private void Update()
     {
@@ -328,6 +341,20 @@ public class GameController : MonoBehaviour
         {
             UnlockAllLevels();
         }
+
+        #if UNITY_EDITOR
+        if(Input.GetKeyDown(KeyCode.F11))
+        {
+            print("All achievements deleted from steam here");
+            SteamUserStats.ClearAchievement("a_GameCompleted");
+            SteamUserStats.ClearAchievement("a_AllCollectables");
+            SteamUserStats.ClearAchievement("a_FirstArea");
+            SteamUserStats.ClearAchievement("a_SecondArea");
+            SteamUserStats.ClearAchievement("a_ThirdArea");
+
+            SteamUserStats.SetAchievement("a_FirstArea");
+        }
+        #endif
     }
 
     public void UnlockAllLevels()
