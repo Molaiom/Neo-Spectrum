@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class MainMenuBackButtonController : MonoBehaviour
 {
@@ -7,6 +7,8 @@ public class MainMenuBackButtonController : MonoBehaviour
     public GameObject creditsCanvas;
     public GameObject settingsCanvas;
     public GameObject resetDataMenu;
+    public GameObject gameQuitMenu;
+    public GameObject quitMenuButton;
     
 
     private void Update()
@@ -14,6 +16,11 @@ public class MainMenuBackButtonController : MonoBehaviour
         // IF BACK BUTTON IS PRESSED
         if(Input.GetKeyUp(KeyCode.Escape))
         {
+            if(gameQuitMenu.activeSelf)
+            {
+                CloseQuitMenu();
+            }
+
             if(creditsCanvas.activeSelf)
             {
                 creditsCanvas.SetActive(false);
@@ -34,5 +41,11 @@ public class MainMenuBackButtonController : MonoBehaviour
                 
             }
         }
+    }
+
+    public void CloseQuitMenu()
+    {
+        gameQuitMenu.SetActive(false);
+        EventSystem.current.SetSelectedGameObject(quitMenuButton);
     }
 }

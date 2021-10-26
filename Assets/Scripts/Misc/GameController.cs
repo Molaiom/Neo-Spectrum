@@ -300,6 +300,12 @@ public class GameController : MonoBehaviour
         }
     }
    
+    public void QuitGame()
+    {
+        Application.Quit();
+        print("Game build closed.");
+    }
+    
     // TELLS AUDIO CONTROLLER THE SCENE HAS CHANGED
     private void TriggerSceneChanged()
     {
