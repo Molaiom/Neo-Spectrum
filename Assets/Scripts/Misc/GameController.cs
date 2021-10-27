@@ -1,11 +1,13 @@
 ﻿using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+#if !DISABLESTEAMWORKS
 using Steamworks;
+#endif
 
 public class GameController : MonoBehaviour
 {
-    #region Attributes
+#region Attributes
     // DATA TO BE SAVED
     private int numberOfLevelsCompleted;
     private int numberOfCollectablesCollected;
@@ -119,12 +121,19 @@ public class GameController : MonoBehaviour
         }
     }
 
-    // KEYS
+    // PLAYER PREF KEYS
     private readonly string k_Levels = "numberOfLevelsCompleted";
     private readonly string k_Collectables = "numberOfCollectablesCollected";
     private readonly string k_CollectablesArray = "collectableFromLevel";
     private readonly string k_VolumeEffects = "volumeEffects";
     private readonly string k_VolumeMusic = "volumeMusic";
+
+    // ACHIEVEMENT KEYS
+    private readonly string a_AchievementFirstArea = "a_FirstArea";
+    private readonly string a_AchievementSecondArea = "a_SecondArea";
+    private readonly string a_AchievementThirdArea = "a_ThirdArea";
+    private readonly string a_AchievementGameCompleted = "a_GameCompleted";
+    private readonly string a_AchievementAllCollectables = "a_AllCollectables";
 
     // MISC
     public static GameController instance;
@@ -133,11 +142,11 @@ public class GameController : MonoBehaviour
     private int[] lastLevelOfArea; // USED TO DETERMINE WICH AREA A LEVEL IS FROM
     [SerializeField]
     private int[] collectablesRequiredForExtra; // USED TO DETERMINE HOW MANY COLLECTABLES ARE NEEDED FOR EACH EXTRA
-    #endregion
+#endregion
 
     //------------------------------------------------------
 
-    #region Setters and Getters
+#region Setters and Getters
     private void Awake()
     {
         if (instance == null)
@@ -204,6 +213,7 @@ public class GameController : MonoBehaviour
         }
 
         PlayerPrefs.Save();
+        CheckAchievementsStatus();
     }
 
     public void ClearAllSavedData()
@@ -239,9 +249,9 @@ public class GameController : MonoBehaviour
     public int[] GetLastLevelOfArea() { return lastLevelOfArea; }
 
     public int[] GetCollectablesRequiredForExtra() { return collectablesRequiredForExtra; }
-    #endregion
+#endregion
 
-    #region Scene Management
+#region Scene Management
     public void RestartScene()
     {        
         Scene currentScene = SceneManager.GetActiveScene();
@@ -315,19 +325,49 @@ public class GameController : MonoBehaviour
             AudioController.instance.OnSceneChanged();
         }
     }
-    #endregion
+#endregion
 
-    #region Steam
-    public void UnlockAchievement(string achievementID) // UNLOCKS STEAM ACHIEVEMENTS IF THE PLAYER DOESN'T ALREADY HAS THEM
+#region Steam
+    private void UnlockAchievement(string achievementID) // UNLOCKS STEAM ACHIEVEMENTS IF THE PLAYER DOESN'T ALREADY HAS THEM
     {
-        // IF THE PLAYER DOESN'T ALREADY HAVE THE SPECIFIC ACHIEVEMENT
-        if(!SteamUserStats.GetAchievement(achievementID, out _))
+#if !DISABLESTEAMWORKS
+        if(SteamManager.Initialized)
         {
-            SteamUserStats.SetAchievement(achievementID);
-            SteamUserStats.StoreStats();
+            // CHECKS IF THE PLAYER ALREADY HAS THE ACHIEVEMENT
+            SteamUserStats.GetAchievement(achievementID, out bool achievementIsUnlocked);
+            if (!achievementIsUnlocked)
+            {
+                // UNLOCKS THE ACHIEVEMENT AND CALLS STEAM CALLBACK TO UPDATE REAL TIME
+                SteamUserStats.SetAchievement(achievementID);
+                SteamUserStats.StoreStats();
+            }
         }
+#endif
     }
-    #endregion
+
+    public void CheckAchievementsStatus()
+    {
+        // AREA 1
+        if (NumberOfLevelsCompleted >= GetLastLevelOfArea()[0])
+            UnlockAchievement(a_AchievementFirstArea);
+
+        // AREA 2
+        if (NumberOfLevelsCompleted >= GetLastLevelOfArea()[1])
+            UnlockAchievement(a_AchievementSecondArea);
+
+        // AREA 3
+        if (NumberOfLevelsCompleted >= GetLastLevelOfArea()[2])
+            UnlockAchievement(a_AchievementThirdArea);
+
+        // ALL LEVELS COMPLETED
+        if (NumberOfLevelsCompleted >= GetLastLevelOfArea()[3])
+            UnlockAchievement(a_AchievementGameCompleted);
+
+        // ALL COLLECTABLES
+        if (NumberOfCollectablesCollected == levelCount)
+            UnlockAchievement(a_AchievementAllCollectables);
+    }
+#endregion
 
     // DEBUG ----------------------------------------------- 
     private void Update()
@@ -342,19 +382,34 @@ public class GameController : MonoBehaviour
             UnlockAllLevels();
         }
 
-        #if UNITY_EDITOR
-        if(Input.GetKeyDown(KeyCode.F11))
+#if UNITY_EDITOR
+#if !DISABLESTEAMWORKS
+        if (SteamManager.Initialized)
         {
-            print("All achievements deleted from steam here");
-            SteamUserStats.ClearAchievement("a_GameCompleted");
-            SteamUserStats.ClearAchievement("a_AllCollectables");
-            SteamUserStats.ClearAchievement("a_FirstArea");
-            SteamUserStats.ClearAchievement("a_SecondArea");
-            SteamUserStats.ClearAchievement("a_ThirdArea");
+            // UNLOCKS ACHIEVEMENTS
+            if (Input.GetKeyDown(KeyCode.F6))
+            {
+                UnlockAchievement("a_FirstArea");
+                UnlockAchievement("a_SecondArea");
+                UnlockAchievement("a_ThirdArea");
+                UnlockAchievement("a_GameCompleted");
+                UnlockAchievement("a_AllCollectables");
+            }
 
-            SteamUserStats.SetAchievement("a_FirstArea");
+            // REVOKES ALL ACHIEVEMENTS
+            if (Input.GetKeyDown(KeyCode.F7))
+            {
+                SteamUserStats.ClearAchievement("a_FirstArea");
+                SteamUserStats.ClearAchievement("a_SecondArea");
+                SteamUserStats.ClearAchievement("a_ThirdArea");
+                SteamUserStats.ClearAchievement("a_GameCompleted");
+                SteamUserStats.ClearAchievement("a_AllCollectables");
+
+                SteamUserStats.StoreStats();
+            }
         }
-        #endif
+#endif
+#endif
     }
 
     public void UnlockAllLevels()

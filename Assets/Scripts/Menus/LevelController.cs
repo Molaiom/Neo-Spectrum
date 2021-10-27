@@ -146,6 +146,7 @@ public class LevelController : MonoBehaviour
                         newArray[levelNumber - 1] = true;
                         GameController.instance.CollectableFromLevel = newArray;
                     }
+                    GameController.instance.CheckAchievementsStatus();
                 }
             }
             else
