@@ -7,41 +7,40 @@ using UnityEngine.UI;
 [RequireComponent(typeof(Image))]
 public class LevelAreaModifier : MonoBehaviour
 {
-    [Header("Background images")]
     [SerializeField]
     private Sprite[] backgroundImage;
 
-    [Header("Ground materials")]
-    [SerializeField]
-    private Material materialToChange;
-    [SerializeField]
-    private Material[] areaMaterial;
-
-
-    private void Start()
+    private void Awake()
     {
         // CHECKS FOR GAMECONTROLLER INSTANCE
         if (GameController.instance != null)
         {
             int levelArea = GameController.instance.GetLevelArea();
 
-            // IF THE LEVEL AREA IS VALID
-            if (levelArea >= 0 && levelArea <= areaMaterial.Length && levelArea <= areaMaterial.Length)
-            {
-                //print(backgroundImage[levelArea].name + ", " + areaMaterial[levelArea].name);
-                materialToChange.CopyPropertiesFromMaterial(areaMaterial[GameController.instance.GetLevelArea()]);
-                GetComponent<Image>().sprite = backgroundImage[levelArea];
-            }
-            // IF THE LEVEL AREA ISN'T VALID, SET A DEFAULT MATERIAL AND IMAGE
-            else
-            {
-                materialToChange.CopyPropertiesFromMaterial(areaMaterial[0]);
-            }
+            SetBackgroundImage(levelArea);
+            SetGroundSprite(levelArea);
         }
     }
 
-    private void OnApplicationQuit()
+    private void SetBackgroundImage(int levelArea)
     {
-        materialToChange.CopyPropertiesFromMaterial(areaMaterial[0]);
+        // IF THE LEVEL AREA IS VALID
+        if (levelArea >= 0 && levelArea <= backgroundImage.Length)
+        {
+            GetComponent<Image>().sprite = backgroundImage[levelArea];
+        }
+    }
+
+    private void SetGroundSprite(int levelArea)
+    {
+        GroundTileSprites[] groundTile = FindObjectsOfType<GroundTileSprites>();
+        for (int i = 0; i < groundTile.Length; i++)
+        {
+            if (groundTile[i].spriteFromArea[levelArea] != null)
+            {
+                groundTile[i].gameObject.GetComponent<SpriteRenderer>().sprite = groundTile[i].spriteFromArea[levelArea];
+            }
+        }
+
     }
 }
