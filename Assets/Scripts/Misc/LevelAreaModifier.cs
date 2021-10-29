@@ -28,6 +28,14 @@ public class LevelAreaModifier : MonoBehaviour
         if (levelArea >= 0 && levelArea <= backgroundImage.Length)
         {
             GetComponent<Image>().sprite = backgroundImage[levelArea];
+
+            if(levelArea == 0)
+            {
+                if(TryGetComponent(out BgColorChange bgColorChange))
+                {
+                    bgColorChange.enabled = true;
+                }
+            }
         }
     }
 

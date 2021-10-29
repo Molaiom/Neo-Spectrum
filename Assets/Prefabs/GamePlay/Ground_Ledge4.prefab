@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 60927101729046634}
   - component: {fileID: -410224892221026659}
   m_Layer: 9
-  m_Name: Ground_Ledge
+  m_Name: Ground_Ledge4
   m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -73,7 +73,7 @@ SpriteRenderer:
   m_SortingLayerID: 604344093
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: -5890475964008392681, guid: a0f11577841609e4299ba4330370e921,
+  m_Sprite: {fileID: -8363037125831177704, guid: 911e30771fc57314e9c3a2b716047811,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -131,10 +131,10 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -0.5, y: 0.5}
+    - - {x: 0.5, y: 0.5}
       - {x: -0.5, y: -0.5}
       - {x: 0.5, y: -0.5}
-      - {x: 0.5, y: -0.5}
+      - {x: 0.5, y: 0.5}
 --- !u!114 &-410224892221026659
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -148,7 +148,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spriteFromArea:
-  - {fileID: -5890475964008392681, guid: a0f11577841609e4299ba4330370e921, type: 3}
-  - {fileID: 3322390194149631326, guid: a0f11577841609e4299ba4330370e921, type: 3}
-  - {fileID: -729699537849065740, guid: a0f11577841609e4299ba4330370e921, type: 3}
-  - {fileID: -4001310389264471578, guid: a0f11577841609e4299ba4330370e921, type: 3}
+  - {fileID: -8363037125831177704, guid: 911e30771fc57314e9c3a2b716047811, type: 3}
+  - {fileID: 3234321577430410849, guid: 911e30771fc57314e9c3a2b716047811, type: 3}
+  - {fileID: -4361358284566400680, guid: 911e30771fc57314e9c3a2b716047811, type: 3}
+  - {fileID: 4616760485668005948, guid: 911e30771fc57314e9c3a2b716047811, type: 3}

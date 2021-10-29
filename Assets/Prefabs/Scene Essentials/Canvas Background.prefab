@@ -192,12 +192,6 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 56a9aaf0cd0caed4f92fa9898470fb8f, type: 3}
   - {fileID: 21300000, guid: 5ea3f42d438953147a580b22653e36f9, type: 3}
   - {fileID: 21300000, guid: 6b7ddd229e6b5d84998f33400ba4a298, type: 3}
-  materialToChange: {fileID: 2100000, guid: d74d80a138f53f04a80fccdfb78e777a, type: 2}
-  areaMaterial:
-  - {fileID: 2100000, guid: f505bd1de52d1034b9a4ed22257f1e8e, type: 2}
-  - {fileID: 2100000, guid: 9094402631d50ae4aa128d99b1bf2aab, type: 2}
-  - {fileID: 2100000, guid: 25caca4055788eb4aaca4ddfebc059d8, type: 2}
-  - {fileID: 2100000, guid: 7c014b2c1501ddb48a42bffbd7917a3c, type: 2}
 --- !u!114 &114487838670453572
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -205,7 +199,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1778245362444472}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1d4596ecb81f2184eb1b83b9e48f407f, type: 3}
   m_Name: 
