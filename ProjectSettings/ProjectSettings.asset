@@ -176,7 +176,7 @@ PlayerSettings:
   applicationIdentifier:
     Android: com.VictorGheno.NeoSpectrum
   buildNumber: {}
-  AndroidBundleVersionCode: 7
+  AndroidBundleVersionCode: 8
   AndroidMinSdkVersion: 19
   AndroidTargetSdkVersion: 30
   AndroidPreferredInstallLocation: 1

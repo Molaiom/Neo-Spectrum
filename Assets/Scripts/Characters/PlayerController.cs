@@ -41,12 +41,14 @@ public class PlayerController : CharacterPhysics
 
     private void Update() // INPUTS AND ANIMATIONS
     {
-        /*if (!Application.isMobilePlatform && !levelCompleted)
+
+        if (!Application.isMobilePlatform && !levelCompleted)
         {
+            /*
             SetMovementAxis(Input.GetAxisRaw("Horizontal"));
             SetJumpAxis(Input.GetAxisRaw("Jump"));
+            */
         }
-        */
         UpdateAnimations();
     }
 
