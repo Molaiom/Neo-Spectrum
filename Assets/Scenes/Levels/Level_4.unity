@@ -3408,9 +3408,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: 'to restart the level
+  m_Text: 'if you make a mistake,
 
-    press the top right button.'
+    press R to restart.'
 --- !u!222 &1015144618
 CanvasRenderer:
   m_ObjectHideFlags: 0
