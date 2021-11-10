@@ -5347,6 +5347,8 @@ MonoBehaviour:
   rangeSprite: {fileID: 212720878055547672}
   paintRange: 4
   collectable: 0
+  bounceForce: 18
+  maxSpeedToApplyBoost: -13
 --- !u!114 &114859345682539408
 MonoBehaviour:
   m_ObjectHideFlags: 0

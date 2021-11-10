@@ -445,6 +445,7 @@ GameObject:
   - component: {fileID: 123848727}
   - component: {fileID: 123848730}
   - component: {fileID: 123848729}
+  - component: {fileID: 123848731}
   - component: {fileID: 123848728}
   m_Layer: 5
   m_Name: Text
@@ -469,8 +470,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -183.7, y: 135.39}
-  m_SizeDelta: {x: 290.69116, y: 75.25425}
+  m_AnchoredPosition: {x: -211.8, y: 135.39}
+  m_SizeDelta: {x: 234.6376, y: 75.25425}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &123848728
 MonoBehaviour:
@@ -532,6 +533,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 123848726}
   m_CullTransparentMesh: 0
+--- !u!114 &123848731
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 123848726}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18f6ca97824417940a616e37d7f8e782, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PcText: Press Z to paint red.
+  MobileText: Press the red button to paint red.
 --- !u!1 &134846793
 GameObject:
   m_ObjectHideFlags: 0

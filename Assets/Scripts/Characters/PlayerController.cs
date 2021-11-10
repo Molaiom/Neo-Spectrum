@@ -2,6 +2,7 @@
 using UnityEngine.SceneManagement;
 using UnityEngine;
 using System.Collections;
+using System.Reflection;
 
 public class PlayerController : CharacterPhysics
 {
@@ -13,6 +14,9 @@ public class PlayerController : CharacterPhysics
     public float paintRange;
     [HideInInspector]
     public bool collectable = false;
+    [Header("Bouncy Attributes")]
+    public float bounceForce = 1;
+    public float maxSpeedToApplyBoost = -1;
 
     private bool playerDead = false;
     private RaycastHit2D hit;
@@ -39,14 +43,15 @@ public class PlayerController : CharacterPhysics
         }
     }
 
-    private void Update() // INPUTS AND ANIMATIONS
+    private void Update() // PC INPUTS AND ANIMATIONS
     {
-        if (!Application.isMobilePlatform && !levelCompleted)
+#if UNITY_STANDALONE_WIN
+        if (!levelCompleted)
         {
             SetMovementAxis(Input.GetAxisRaw("Horizontal"));
             SetJumpAxis(Input.GetAxisRaw("Jump"));
         }
-
+#endif
         UpdateAnimations();
     }
 
@@ -106,13 +111,17 @@ public class PlayerController : CharacterPhysics
         Vector2 size = new Vector2(groundRadius, groundRadius * 1.7f);
         Collider2D[] blocksBellow = Physics2D.OverlapBoxAll(position, size, 0, groundLayer);
 
-        if (blocksBellow != null && !BlockAboveHead() && AudioController.instance != null && rb2d.velocity.y != 0)
+        if (blocksBellow != null && !BlockAboveHead() && rb2d.velocity.y != 0)
         {
             foreach (Collider2D blockBelow in blocksBellow)
             {
                 if(blockBelow.gameObject.CompareTag("BouncyTile") && collision.gameObject.CompareTag("BouncyTile"))
                 {
-                    AudioController.instance.PlayBounce();
+                    if(AudioController.instance != null)
+                        AudioController.instance.PlayBounce();
+
+                    rb2d.velocity = new Vector2(rb2d.velocity.x, bounceForce);
+
                     return;
                 }
             }

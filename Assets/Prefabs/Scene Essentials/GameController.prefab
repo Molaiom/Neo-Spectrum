@@ -43,5 +43,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad8fa215b43cb9d40bc35bcb0489cffc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  targetPlatform: 0
   lastLevelOfArea: 050000000f000000190000001e000000
   collectablesRequiredForExtra: 01000000050000000f00000019000000

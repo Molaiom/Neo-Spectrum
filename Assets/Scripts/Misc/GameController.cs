@@ -137,6 +137,9 @@ public class GameController : MonoBehaviour
 
     // MISC
     public static GameController instance;
+    public enum e_TargetPlatform { Pc, Mobile }
+    [HideInInspector]
+    public e_TargetPlatform targetPlatform;
     private int levelCount;
     [SerializeField]
     private int[] lastLevelOfArea; // USED TO DETERMINE WICH AREA A LEVEL IS FROM
@@ -171,6 +174,12 @@ public class GameController : MonoBehaviour
         }
 
         ChangePauseState(false);
+
+#if UNITY_STANDALONE
+        targetPlatform = e_TargetPlatform.Pc;
+#elif UNITY_ANDROID
+        targetPlatform = e_TargetPlatform.Mobile;
+#endif
     }
 
     private void Start()
