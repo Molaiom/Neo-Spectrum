@@ -12593,7 +12593,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Everyone who supported me with this game
+  m_Text: the person reading this right now
 --- !u!222 &958351123
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -19730,7 +19730,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: LuIs Pedro / Ripa   for musical insight
+  m_Text: LuIs Pedro / Luan / Arquico for testing
 --- !u!222 &1910337190
 CanvasRenderer:
   m_ObjectHideFlags: 0
