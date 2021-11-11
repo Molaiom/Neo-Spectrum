@@ -9,15 +9,15 @@ public class PlatformBasedText : MonoBehaviour
 
     void Start()
     {
-        if(GameController.instance != null)
+        if (GameController.instance != null)
         {
+#if UNITY_STANDALONE
             // CHANGES TO PC TEXT
-            if (GameController.instance.targetPlatform == GameController.e_TargetPlatform.Pc)
-                GetComponent<Text>().text = PcText;
-
+            GetComponent<Text>().text = PcText;
+#elif UNITY_ANDROID
             // CHANGES TO MOBILE TEXT
-            if (GameController.instance.targetPlatform == GameController.e_TargetPlatform.Mobile)
-                GetComponent<Text>().text = MobileText;
+            GetComponent<Text>().text = MobileText;
+#endif
         }
     }
 }

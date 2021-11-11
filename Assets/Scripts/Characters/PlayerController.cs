@@ -45,7 +45,7 @@ public class PlayerController : CharacterPhysics
 
     private void Update() // PC INPUTS AND ANIMATIONS
     {
-#if UNITY_STANDALONE_WIN
+#if UNITY_STANDALONE
         if (!levelCompleted)
         {
             SetMovementAxis(Input.GetAxisRaw("Horizontal"));
