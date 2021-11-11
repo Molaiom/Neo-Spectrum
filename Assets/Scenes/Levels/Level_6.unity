@@ -745,7 +745,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Press X to paint Green.
+  m_Text: Press <color=#85F11F>X</color> to paint Green.
 --- !u!222 &315203713
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -766,8 +766,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18f6ca97824417940a616e37d7f8e782, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PcText: Press X to paint Green.
-  MobileText: Press the green button to paint Green.
+  PcText: Press <color=#85F11F>X</color> to paint Green.
+  MobileText: Press the <color=#85F11F>green button</color> to paint Green.
 --- !u!1001 &334330974
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1045,7 +1045,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: 'Green blocks are bouncy !
+  m_Text: 'Green blocks are <color=#85F11F>bouncy</color> !
 
     But immobile.'
 --- !u!222 &373020882

@@ -524,7 +524,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Press Z to paint red.
+  m_Text: Press <color=#EE2323>Z</color> to paint red.
 --- !u!222 &123848730
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -545,8 +545,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18f6ca97824417940a616e37d7f8e782, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PcText: Press Z to paint red.
-  MobileText: Press the red button to paint red.
+  PcText: Press <color=#EE2323>Z</color> to paint red.
+  MobileText: Press the <color=#EE2323>red button</color> to paint red.
 --- !u!1 &134846793
 GameObject:
   m_ObjectHideFlags: 0

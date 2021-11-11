@@ -3130,9 +3130,10 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: 'Red blocks are dynamic,
+  m_Text: 'Red blocks are <color=#EE2323>dynamic</color>,
 
-    they can be pushed around'
+    they can be pushed
+    around'
 --- !u!222 &760415999
 CanvasRenderer:
   m_ObjectHideFlags: 0

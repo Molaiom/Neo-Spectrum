@@ -4946,7 +4946,7 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: 'Blue blocks
 
-    are sticky!'
+    are <color=#2952CC>sticky</color>!'
 --- !u!222 &1535840326
 CanvasRenderer:
   m_ObjectHideFlags: 0
