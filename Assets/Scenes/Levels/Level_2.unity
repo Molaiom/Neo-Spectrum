@@ -470,8 +470,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -211.8, y: 135.39}
-  m_SizeDelta: {x: 234.6376, y: 75.25425}
+  m_AnchoredPosition: {x: -188.7, y: 135.39}
+  m_SizeDelta: {x: 280.87674, y: 75.25425}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &123848728
 MonoBehaviour:
@@ -542,11 +542,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 123848726}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 18f6ca97824417940a616e37d7f8e782, type: 3}
+  m_Script: {fileID: 11500000, guid: 9bb0d0b191df8444ea00fc75da436028, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PcText: Press <color=#EE2323>Z</color> to paint red.
-  MobileText: Press the <color=#EE2323>red button</color> to paint red.
+  platformBasedText: 1
+  englishDefaultText: Press <color=#EE2323>Z</color> to paint red.
+  englishMobileText: Press the <color=#EE2323>red button</color> to paint red.
+  portugueseDefaultText: Aperte <color=#EE2323>Z</color> para pintar vermelho.
+  portugueseMobileText: "Pressione o <color=#EE2323>bot\xE3o vermelho</color> para
+    pintar de vermelho."
+  spanishDefaultText: presione <color=#EE2323>Z</color> para pintar rojo.
+  spanishMobileText: "Presione el <color=#EE2323>bot\xF3n rojo</color> para pintar
+    de rojo."
 --- !u!1 &134846793
 GameObject:
   m_ObjectHideFlags: 0
@@ -1817,6 +1824,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -34.248116
+      objectReference: {fileID: 0}
+    - target: {fileID: 3521515182956426574, guid: b3e8804432bec8044b8e5123180c0eb7,
+        type: 3}
+      propertyPath: englishDefaultText
+      value: Paint !
+      objectReference: {fileID: 0}
+    - target: {fileID: 3521515182956426574, guid: b3e8804432bec8044b8e5123180c0eb7,
+        type: 3}
+      propertyPath: spanishDefaultText
+      value: "\xA1 Pintar !"
+      objectReference: {fileID: 0}
+    - target: {fileID: 3521515182956426574, guid: b3e8804432bec8044b8e5123180c0eb7,
+        type: 3}
+      propertyPath: portugueseDefaultText
+      value: Pintar !
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b3e8804432bec8044b8e5123180c0eb7, type: 3}

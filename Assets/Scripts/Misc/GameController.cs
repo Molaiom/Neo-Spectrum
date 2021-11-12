@@ -14,6 +14,7 @@ public class GameController : MonoBehaviour
     private bool[] collectableFromLevel;
     private float volumeEffects;
     private float volumeMusic;
+    private int language;
 
     public int NumberOfLevelsCompleted
     {
@@ -121,12 +122,25 @@ public class GameController : MonoBehaviour
         }
     }
 
+    public int Language
+    {
+        get { return language; }
+        
+        set
+        {
+            language = value;
+            PlayerPrefs.SetInt(k_Language, language);
+            PlayerPrefs.Save();
+        }
+    }
+
     // PLAYER PREF KEYS
     private readonly string k_Levels = "numberOfLevelsCompleted";
     private readonly string k_Collectables = "numberOfCollectablesCollected";
     private readonly string k_CollectablesArray = "collectableFromLevel";
     private readonly string k_VolumeEffects = "volumeEffects";
     private readonly string k_VolumeMusic = "volumeMusic";
+    private readonly string k_Language = "language";
 
     // ACHIEVEMENT KEYS
     private readonly string a_AchievementFirstArea = "a_FirstArea";
@@ -196,11 +210,15 @@ public class GameController : MonoBehaviour
         if (!PlayerPrefs.HasKey(k_VolumeMusic))
             PlayerPrefs.SetFloat(k_VolumeMusic, 0.5f);
 
+        if (!PlayerPrefs.HasKey(k_Language))
+            PlayerPrefs.SetInt(k_Language, GetSteamLanguage());
+
         // ASSIGN VALUES
         NumberOfLevelsCompleted = PlayerPrefs.GetInt(k_Levels);
         NumberOfCollectablesCollected = PlayerPrefs.GetInt(k_Collectables);
         VolumeEffects = PlayerPrefs.GetFloat(k_VolumeEffects);
         VolumeMusic = PlayerPrefs.GetFloat(k_VolumeMusic);
+        Language = PlayerPrefs.GetInt(k_Language);
 
         if (PlayerPrefsX.GetBoolArray(k_CollectablesArray).Length != 0)
         {
@@ -367,7 +385,32 @@ public class GameController : MonoBehaviour
         if (NumberOfCollectablesCollected == levelCount)
             UnlockAchievement(a_AchievementAllCollectables);
     }
-#endregion
+
+    private int GetSteamLanguage()
+    {
+        int language = 0;
+#if !DISABLESTEAMWORKS
+        if(SteamManager.Initialized)
+        {
+            switch(SteamApps.GetCurrentGameLanguage())
+            {
+                case "english" : default :
+                    language = 0;
+                    break;
+
+                case "portuguese" : "brazilian" :
+                    language = 1;
+                    break;
+
+                case "spanish" :
+                    language = 2;
+                    break;
+            }
+        }
+#endif
+        return language;
+    }
+    #endregion
 
     // DEBUG ----------------------------------------------- 
     private void Update()
@@ -383,6 +426,25 @@ public class GameController : MonoBehaviour
         }
 
 #if UNITY_EDITOR
+
+        if (Input.GetKeyDown(KeyCode.Alpha0))
+        {
+            Language = 0;
+            RestartScene();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            Language = 1;
+            RestartScene();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            Language = 2;
+            RestartScene();
+        }
+
 #if !DISABLESTEAMWORKS
         if (SteamManager.Initialized)
         {

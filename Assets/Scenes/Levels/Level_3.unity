@@ -2119,8 +2119,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 182.8, y: 202.4}
-  m_SizeDelta: {x: 293.74237, y: 99.33014}
+  m_AnchoredPosition: {x: 173.9, y: 202.4}
+  m_SizeDelta: {x: 276.20325, y: 99.33014}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &500963717
 MonoBehaviour:
@@ -2191,11 +2191,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 500963715}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 18f6ca97824417940a616e37d7f8e782, type: 3}
+  m_Script: {fileID: 11500000, guid: 9bb0d0b191df8444ea00fc75da436028, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PcText: if you make a mistake, press R to restart.
-  MobileText: To restart the level, press the top right button.
+  platformBasedText: 1
+  englishDefaultText: if you make a mistake, press R to restart.
+  englishMobileText: To restart the level, press the top right button.
+  portugueseDefaultText: "se voc\xEA cometer um erro, pressione R para reiniciar."
+  portugueseMobileText: "Para reiniciar o n\xEDvel, pressione o bot\xE3o superior
+    direito."
+  spanishDefaultText: si comete un error, presione R para reiniciar.
+  spanishMobileText: "Para reiniciar el nivel, presione el bot\xF3n superior derecho."
 --- !u!1001 &522600737
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2744,6 +2750,21 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -34.248116
       objectReference: {fileID: 0}
+    - target: {fileID: 3521515182956426574, guid: b3e8804432bec8044b8e5123180c0eb7,
+        type: 3}
+      propertyPath: englishDefaultText
+      value: Platforms !
+      objectReference: {fileID: 0}
+    - target: {fileID: 3521515182956426574, guid: b3e8804432bec8044b8e5123180c0eb7,
+        type: 3}
+      propertyPath: spanishDefaultText
+      value: "\xA1 Plataformas !"
+      objectReference: {fileID: 0}
+    - target: {fileID: 3521515182956426574, guid: b3e8804432bec8044b8e5123180c0eb7,
+        type: 3}
+      propertyPath: portugueseDefaultText
+      value: Plataformas !
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b3e8804432bec8044b8e5123180c0eb7, type: 3}
 --- !u!224 &629255122 stripped
@@ -3052,6 +3073,7 @@ GameObject:
   - component: {fileID: 760415996}
   - component: {fileID: 760415999}
   - component: {fileID: 760415998}
+  - component: {fileID: 760416000}
   - component: {fileID: 760415997}
   m_Layer: 5
   m_Name: Text
@@ -3130,10 +3152,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: 'Red blocks are <color=#EE2323>dynamic</color>,
-
-    they can be pushed
-    around'
+  m_Text: Red blocks are <color=#EE2323>dynamic</color>, they can be pushed around.
 --- !u!222 &760415999
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3142,6 +3161,28 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 760415995}
   m_CullTransparentMesh: 0
+--- !u!114 &760416000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 760415995}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9bb0d0b191df8444ea00fc75da436028, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  platformBasedText: 0
+  englishDefaultText: Red blocks are <color=#EE2323>dynamic</color>, they can be
+    pushed around.
+  englishMobileText: 
+  portugueseDefaultText: "Os blocos vermelhos s\xE3o <color=#EE2323>din\xE2micos</color>,
+    eles podem ser empurrados."
+  portugueseMobileText: 
+  spanishDefaultText: "Los bloques rojos son <color=#EE2323>din\xE1micos</color>,
+    pueden ser empujados."
+  spanishMobileText: 
 --- !u!1001 &780106889
 PrefabInstance:
   m_ObjectHideFlags: 0

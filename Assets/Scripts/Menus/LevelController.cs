@@ -49,7 +49,7 @@ public class LevelController : MonoBehaviour
             playerCount = FindObjectsOfType<PlayerController>().Length;
         }
 
-        AssignLevelNumberText();
+        StartCoroutine(AssignLevelNumberText());
         levelCompleted = false;
     }
 
@@ -82,16 +82,17 @@ public class LevelController : MonoBehaviour
         }
     }
 
-    private void AssignLevelNumberText()
+    private IEnumerator AssignLevelNumberText()
     {
         if (GameController.instance != null)
         {
-            string levelText = "Level " + GameController.instance.GetLevelNumber().ToString();
-            pauseLevelNumberText.text = levelText;
+            yield return new WaitForEndOfFrame();
+
+            int levelNumber = GameController.instance.GetLevelNumber();
 
             if (hudLevelNumberText.IsActive())
-                hudLevelNumberText.text = levelText;
-
+                hudLevelNumberText.text = hudLevelNumberText.text + " " + levelNumber;
+            pauseLevelNumberText.text = levelNumber.ToString();
         }
     }
 

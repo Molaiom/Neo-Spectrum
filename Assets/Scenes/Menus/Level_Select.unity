@@ -344,6 +344,7 @@ GameObject:
   - component: {fileID: 568198321}
   - component: {fileID: 568198323}
   - component: {fileID: 568198322}
+  - component: {fileID: 568198324}
   m_Layer: 5
   m_Name: Level Select Text
   m_TagString: Untagged
@@ -411,6 +412,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 568198320}
   m_CullTransparentMesh: 0
+--- !u!114 &568198324
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 568198320}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9bb0d0b191df8444ea00fc75da436028, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  platformBasedText: 0
+  englishDefaultText: Level Select
+  englishMobileText: 
+  portugueseDefaultText: "Sele\xE7\xE3o de N\xEDvel"
+  portugueseMobileText: 
+  spanishDefaultText: "Selecci\xF3n de nivel"
+  spanishMobileText: 
 --- !u!1 &615268291
 GameObject:
   m_ObjectHideFlags: 0

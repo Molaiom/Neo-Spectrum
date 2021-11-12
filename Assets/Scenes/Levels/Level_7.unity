@@ -749,6 +749,21 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3521515182956426574, guid: b3e8804432bec8044b8e5123180c0eb7,
+        type: 3}
+      propertyPath: englishDefaultText
+      value: Red and Green !
+      objectReference: {fileID: 0}
+    - target: {fileID: 3521515182956426574, guid: b3e8804432bec8044b8e5123180c0eb7,
+        type: 3}
+      propertyPath: spanishDefaultText
+      value: "\xA1 Rojo y verde !"
+      objectReference: {fileID: 0}
+    - target: {fileID: 3521515182956426574, guid: b3e8804432bec8044b8e5123180c0eb7,
+        type: 3}
+      propertyPath: portugueseDefaultText
+      value: Vermelho e Verde !
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b3e8804432bec8044b8e5123180c0eb7, type: 3}
 --- !u!224 &216127101 stripped

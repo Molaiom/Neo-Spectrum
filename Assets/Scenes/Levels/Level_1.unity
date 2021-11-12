@@ -1356,7 +1356,7 @@ GameObject:
   - component: {fileID: 434718120}
   - component: {fileID: 434718123}
   - component: {fileID: 434718122}
-  - component: {fileID: 434718124}
+  - component: {fileID: 434718125}
   - component: {fileID: 434718121}
   m_Layer: 5
   m_Name: Text
@@ -1446,7 +1446,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 434718119}
   m_CullTransparentMesh: 0
---- !u!114 &434718124
+--- !u!114 &434718125
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1455,11 +1455,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 434718119}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 18f6ca97824417940a616e37d7f8e782, type: 3}
+  m_Script: {fileID: 11500000, guid: 9bb0d0b191df8444ea00fc75da436028, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PcText: Use the arrow keys to move and space bar to jump.
-  MobileText: 
+  platformBasedText: 1
+  englishDefaultText: Use the arrow keys to move and space bar to jump.
+  englishMobileText: 
+  portugueseDefaultText: "Use as setas para mover e a barra de espa\xE7o para pular."
+  portugueseMobileText: 
+  spanishDefaultText: Usa las teclas de flechas para moverte y la barra espaciadora
+    para saltar.
+  spanishMobileText: 
 --- !u!4 &454536509 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4751760421044026, guid: aa623127aa54b994d8c059c8620fde64,
@@ -2011,6 +2017,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -34.248116
+      objectReference: {fileID: 0}
+    - target: {fileID: 3521515182956426574, guid: b3e8804432bec8044b8e5123180c0eb7,
+        type: 3}
+      propertyPath: englishDefaultText
+      value: Welcome !
+      objectReference: {fileID: 0}
+    - target: {fileID: 3521515182956426574, guid: b3e8804432bec8044b8e5123180c0eb7,
+        type: 3}
+      propertyPath: spanishDefaultText
+      value: "\xA1 Bienvenido(a) !"
+      objectReference: {fileID: 0}
+    - target: {fileID: 3521515182956426574, guid: b3e8804432bec8044b8e5123180c0eb7,
+        type: 3}
+      propertyPath: portugueseDefaultText
+      value: Bem Vindo(a) !
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b3e8804432bec8044b8e5123180c0eb7, type: 3}
