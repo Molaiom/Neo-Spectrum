@@ -1461,7 +1461,8 @@ MonoBehaviour:
   platformBasedText: 1
   englishDefaultText: Use the arrow keys to move and space bar to jump.
   englishMobileText: 
-  portugueseDefaultText: "Use as setas para mover e a barra de espa\xE7o para pular."
+  portugueseDefaultText: "Use as setas para se mover e a barra de espa\xE7o para
+    pular."
   portugueseMobileText: 
   spanishDefaultText: Usa las teclas de flechas para moverte y la barra espaciadora
     para saltar.

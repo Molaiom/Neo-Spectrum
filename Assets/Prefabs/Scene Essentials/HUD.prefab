@@ -782,7 +782,7 @@ MonoBehaviour:
   englishMobileText: 
   portugueseDefaultText: "Voc\xEA Falhou..."
   portugueseMobileText: 
-  spanishDefaultText: "\xA1 Fallaste !"
+  spanishDefaultText: "\xA1 Se Acab\xF3 !"
   spanishMobileText: 
 --- !u!114 &2596989465515952999
 MonoBehaviour:
@@ -1424,8 +1424,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -15.5, y: 148}
-  m_SizeDelta: {x: 161.42444, y: 70.63336}
+  m_AnchoredPosition: {x: -45.4, y: 148}
+  m_SizeDelta: {x: 115.21286, y: 70.63336}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &222890914401056640
 CanvasRenderer:
@@ -1461,7 +1461,7 @@ MonoBehaviour:
     m_BestFit: 1
     m_MinSize: 1
     m_MaxSize: 30
-    m_Alignment: 4
+    m_Alignment: 5
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
@@ -8416,8 +8416,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 32, y: 148}
-  m_SizeDelta: {x: 161.42444, y: 70.63336}
+  m_AnchoredPosition: {x: 89.73, y: 148}
+  m_SizeDelta: {x: 133.2056, y: 70.63336}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2814510140338292305
 CanvasRenderer:
@@ -8453,7 +8453,7 @@ MonoBehaviour:
     m_BestFit: 1
     m_MinSize: 1
     m_MaxSize: 30
-    m_Alignment: 4
+    m_Alignment: 3
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0

@@ -666,7 +666,7 @@ GameObject:
   - component: {fileID: 315203710}
   - component: {fileID: 315203713}
   - component: {fileID: 315203712}
-  - component: {fileID: 315203714}
+  - component: {fileID: 315203715}
   - component: {fileID: 315203711}
   m_Layer: 5
   m_Name: Text
@@ -745,7 +745,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Press <color=#85F11F>X</color> to paint Green.
+  m_Text: Press <color=#85F11F>X</color> to paint green.
 --- !u!222 &315203713
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -754,7 +754,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 315203709}
   m_CullTransparentMesh: 0
---- !u!114 &315203714
+--- !u!114 &315203715
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -763,11 +763,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 315203709}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 18f6ca97824417940a616e37d7f8e782, type: 3}
+  m_Script: {fileID: 11500000, guid: 9bb0d0b191df8444ea00fc75da436028, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PcText: Press <color=#85F11F>X</color> to paint Green.
-  MobileText: Press the <color=#85F11F>green button</color> to paint Green.
+  platformBasedText: 1
+  englishDefaultText: Press <color=#85F11F>X</color> to paint green.
+  englishMobileText: Press the <color=#85F11F>green button</color> to paint green.
+  portugueseDefaultText: Aperte <color=#85F11F>X</color> para pintar verde.
+  portugueseMobileText: "Pressione o <color=#85F11F>bot\xE3o verde</color> para pintar
+    de verde."
+  spanishDefaultText: Presione <color=#85F11F>X</color> para pintar verde.
+  spanishMobileText: "Presione el <color=#85F11F>bot\xF3n verde</color> para pintar
+    de verde."
 --- !u!1001 &334330974
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -967,6 +974,7 @@ GameObject:
   - component: {fileID: 373020879}
   - component: {fileID: 373020882}
   - component: {fileID: 373020881}
+  - component: {fileID: 373020883}
   - component: {fileID: 373020880}
   m_Layer: 5
   m_Name: Text
@@ -991,8 +999,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -236.99997, y: 118}
-  m_SizeDelta: {x: 374.08582, y: 99.33014}
+  m_AnchoredPosition: {x: -244.1, y: 118}
+  m_SizeDelta: {x: 290.33014, y: 99.33014}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &373020880
 MonoBehaviour:
@@ -1045,9 +1053,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: 'Green blocks are <color=#85F11F>bouncy</color> !
-
-    But immobile.'
+  m_Text: Green blocks are <color=#85F11F>bouncy</color>, But immobile.
 --- !u!222 &373020882
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1056,6 +1062,27 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 373020878}
   m_CullTransparentMesh: 0
+--- !u!114 &373020883
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 373020878}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9bb0d0b191df8444ea00fc75da436028, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  platformBasedText: 0
+  englishDefaultText: Green blocks are <color=#85F11F>bouncy</color>, But immobile.
+  englishMobileText: 
+  portugueseDefaultText: "Blocos verdes s\xE3o <color=#85F11F>trampolins</color>,
+    por\xE9m im\xF3veis"
+  portugueseMobileText: 
+  spanishDefaultText: "Los bloques verdes son <color=#85F11F>trampolines</color>!
+    pero inm\xF3viles"
+  spanishMobileText: 
 --- !u!1001 &406205657
 PrefabInstance:
   m_ObjectHideFlags: 0

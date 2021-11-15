@@ -2304,7 +2304,7 @@ PrefabInstance:
     - target: {fileID: 114501006671751582, guid: b3e8804432bec8044b8e5123180c0eb7,
         type: 3}
       propertyPath: m_Text
-      value: Game Completed!
+      value: Game Completed !
       objectReference: {fileID: 0}
     - target: {fileID: 114823058343971320, guid: b3e8804432bec8044b8e5123180c0eb7,
         type: 3}
@@ -2480,6 +2480,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1201282639048510670, guid: b3e8804432bec8044b8e5123180c0eb7,
+        type: 3}
+      propertyPath: englishDefaultText
+      value: Game Completed !
+      objectReference: {fileID: 0}
+    - target: {fileID: 1201282639048510670, guid: b3e8804432bec8044b8e5123180c0eb7,
+        type: 3}
+      propertyPath: spanishDefaultText
+      value: "\xA1 Juego completado !"
+      objectReference: {fileID: 0}
+    - target: {fileID: 1201282639048510670, guid: b3e8804432bec8044b8e5123180c0eb7,
+        type: 3}
+      propertyPath: portugueseDefaultText
+      value: "Jogo Conclu\xEDdo !"
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b3e8804432bec8044b8e5123180c0eb7, type: 3}

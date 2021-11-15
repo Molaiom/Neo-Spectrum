@@ -273,8 +273,8 @@ Transform:
   - {fileID: 1227969186}
   - {fileID: 1307601020}
   - {fileID: 50829501}
-  - {fileID: 1181717080}
   - {fileID: 2130129448}
+  - {fileID: 1181717080}
   m_Father: {fileID: 1893087373}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1319,6 +1319,7 @@ GameObject:
   - component: {fileID: 361595974}
   - component: {fileID: 361595977}
   - component: {fileID: 361595976}
+  - component: {fileID: 361595978}
   - component: {fileID: 361595975}
   m_Layer: 5
   m_Name: Text
@@ -1343,8 +1344,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 135, y: 220}
-  m_SizeDelta: {x: 290.69116, y: 75.25425}
+  m_AnchoredPosition: {x: 161.5, y: 220}
+  m_SizeDelta: {x: 260.01068, y: 75.25425}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &361595975
 MonoBehaviour:
@@ -1397,7 +1398,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Red blocks can't touch white ones
+  m_Text: Red blocks can't touch white ones.
 --- !u!222 &361595977
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1406,6 +1407,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 361595973}
   m_CullTransparentMesh: 0
+--- !u!114 &361595978
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 361595973}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9bb0d0b191df8444ea00fc75da436028, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  platformBasedText: 0
+  englishDefaultText: Red blocks can't touch white ones.
+  englishMobileText: 
+  portugueseDefaultText: "Blocos vermelhos n\xE3o podem tocar os brancos."
+  portugueseMobileText: 
+  spanishDefaultText: Los bloques rojos no pueden tocar los blancos.
+  spanishMobileText: 
 --- !u!1001 &380830703
 PrefabInstance:
   m_ObjectHideFlags: 0

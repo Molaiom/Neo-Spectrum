@@ -4881,6 +4881,7 @@ GameObject:
   - component: {fileID: 1535840323}
   - component: {fileID: 1535840326}
   - component: {fileID: 1535840325}
+  - component: {fileID: 1535840327}
   - component: {fileID: 1535840324}
   m_Layer: 5
   m_Name: Text
@@ -4906,7 +4907,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -262, y: 198}
-  m_SizeDelta: {x: 243.39728, y: 107.820526}
+  m_SizeDelta: {x: 240, y: 107.820526}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1535840324
 MonoBehaviour:
@@ -4959,9 +4960,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: 'Blue blocks
-
-    are <color=#2952CC>sticky</color>!'
+  m_Text: Blue blocks are <color=#2952CC>sticky</color>.
 --- !u!222 &1535840326
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4970,6 +4969,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1535840322}
   m_CullTransparentMesh: 0
+--- !u!114 &1535840327
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1535840322}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9bb0d0b191df8444ea00fc75da436028, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  platformBasedText: 0
+  englishDefaultText: Blue blocks are <color=#2952CC>sticky</color>.
+  englishMobileText: 
+  portugueseDefaultText: "Blocos azuis s\xE3o <color=#2952CC>grudentos</color>."
+  portugueseMobileText: 
+  spanishDefaultText: Los bloques azules son <color=#2952CC>pegajosos</color>.
+  spanishMobileText: 
 --- !u!1001 &1552591477
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5382,6 +5400,7 @@ GameObject:
   - component: {fileID: 1635098037}
   - component: {fileID: 1635098040}
   - component: {fileID: 1635098039}
+  - component: {fileID: 1635098041}
   - component: {fileID: 1635098038}
   m_Layer: 5
   m_Name: Text (2)
@@ -5407,7 +5426,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -262, y: 66}
-  m_SizeDelta: {x: 243.39728, y: 107.820526}
+  m_SizeDelta: {x: 240, y: 107.820526}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1635098038
 MonoBehaviour:
@@ -5460,7 +5479,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: "then jump again \nto get out."
+  m_Text: Pule novamente para desgrudar.
 --- !u!222 &1635098040
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5469,6 +5488,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1635098036}
   m_CullTransparentMesh: 0
+--- !u!114 &1635098041
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1635098036}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9bb0d0b191df8444ea00fc75da436028, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  platformBasedText: 0
+  englishDefaultText: Jump again to get out.
+  englishMobileText: 
+  portugueseDefaultText: Pule novamente para desgrudar.
+  portugueseMobileText: 
+  spanishDefaultText: Salta de nuevo para despegar.
+  spanishMobileText: 
 --- !u!4 &1635641387 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4751760421044026, guid: aa623127aa54b994d8c059c8620fde64,
@@ -6452,6 +6490,7 @@ GameObject:
   - component: {fileID: 1908269165}
   - component: {fileID: 1908269168}
   - component: {fileID: 1908269167}
+  - component: {fileID: 1908269169}
   - component: {fileID: 1908269166}
   m_Layer: 5
   m_Name: Text (1)
@@ -6477,7 +6516,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -262, y: 132}
-  m_SizeDelta: {x: 243.39728, y: 107.820526}
+  m_SizeDelta: {x: 210, y: 107.820526}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1908269166
 MonoBehaviour:
@@ -6530,9 +6569,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: 'Jump onto them
-
-    to get stuck,'
+  m_Text: Jump onto them to get stuck,
 --- !u!222 &1908269168
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -6541,6 +6578,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1908269164}
   m_CullTransparentMesh: 0
+--- !u!114 &1908269169
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1908269164}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9bb0d0b191df8444ea00fc75da436028, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  platformBasedText: 0
+  englishDefaultText: Jump onto them to get stuck,
+  englishMobileText: 
+  portugueseDefaultText: Pule neles para ficar grudado,
+  portugueseMobileText: 
+  spanishDefaultText: Salta sobre ellos para quedarte atascado,
+  spanishMobileText: 
 --- !u!4 &1918871299 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4621207588422536, guid: 3a925518bb3fbd74fbec3205b6e1d480,

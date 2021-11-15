@@ -7,7 +7,7 @@ using Steamworks;
 
 public class GameController : MonoBehaviour
 {
-#region Attributes
+    #region Attributes
     // DATA TO BE SAVED
     private int numberOfLevelsCompleted;
     private int numberOfCollectablesCollected;
@@ -125,7 +125,7 @@ public class GameController : MonoBehaviour
     public int Language
     {
         get { return language; }
-        
+
         set
         {
             language = value;
@@ -156,11 +156,11 @@ public class GameController : MonoBehaviour
     private int[] lastLevelOfArea; // USED TO DETERMINE WICH AREA A LEVEL IS FROM
     [SerializeField]
     private int[] collectablesRequiredForExtra; // USED TO DETERMINE HOW MANY COLLECTABLES ARE NEEDED FOR EACH EXTRA
-#endregion
+    #endregion
 
     //------------------------------------------------------
 
-#region Setters and Getters
+    #region Setters and Getters
     private void Awake()
     {
         if (instance == null)
@@ -211,7 +211,7 @@ public class GameController : MonoBehaviour
             PlayerPrefs.SetFloat(k_VolumeMusic, 0.5f);
 
         if (!PlayerPrefs.HasKey(k_Language))
-            PlayerPrefs.SetInt(k_Language, GetSteamLanguage());
+            PlayerPrefs.SetInt(k_Language, GetSystemLanguage());
 
         // ASSIGN VALUES
         NumberOfLevelsCompleted = PlayerPrefs.GetInt(k_Levels);
@@ -255,7 +255,7 @@ public class GameController : MonoBehaviour
 
     public void SetVolume() // SETS VOLUME ON SCENE GAMEOBJECTS
     {
-        if(AudioController.instance != null)
+        if (AudioController.instance != null)
         {
             AudioController.instance.musicMaxVolume = VolumeMusic;
             AudioController.instance.SetEffectsVolume(VolumeEffects);
@@ -267,40 +267,40 @@ public class GameController : MonoBehaviour
     public int[] GetLastLevelOfArea() { return lastLevelOfArea; }
 
     public int[] GetCollectablesRequiredForExtra() { return collectablesRequiredForExtra; }
-#endregion
+    #endregion
 
-#region Scene Management
+    #region Scene Management
     public void RestartScene()
-    {        
+    {
         Scene currentScene = SceneManager.GetActiveScene();
         SceneManager.LoadScene(currentScene.buildIndex);
     }
 
     public void LoadMainMenu()
-    {        
+    {
         SceneManager.LoadScene("Main_Menu");
     }
 
     public void LoadExtras()
-    {        
+    {
         SceneManager.LoadScene("Extras");
     }
 
     public void LoadNextLevel()
     {
-        if(Application.CanStreamedLevelBeLoaded("Level_" + (GetLevelNumber() + 1)))
-        {            
+        if (Application.CanStreamedLevelBeLoaded("Level_" + (GetLevelNumber() + 1)))
+        {
             SceneManager.LoadScene("Level_" + (GetLevelNumber() + 1));
         }
         else
-        {            
+        {
             Debug.LogWarning("There was an error loading the next level.");
             LoadLevelSelect();
         }
     }
 
     public void LoadLevelSelect()
-    {        
+    {
         SceneManager.LoadScene("Level_Select");
     }
 
@@ -328,24 +328,24 @@ public class GameController : MonoBehaviour
             return 0;
         }
     }
-   
+
     public void QuitGame()
     {
         Application.Quit();
         print("Game build closed.");
     }
-    
+
     // TELLS AUDIO CONTROLLER THE SCENE HAS CHANGED
     private void TriggerSceneChanged()
     {
-        if(AudioController.instance != null)
+        if (AudioController.instance != null)
         {
             AudioController.instance.OnSceneChanged();
         }
     }
-#endregion
+    #endregion
 
-#region Steam
+    #region Steam / Localization
     private void UnlockAchievement(string achievementID) // UNLOCKS STEAM ACHIEVEMENTS IF THE PLAYER DOESN'T ALREADY HAS THEM
     {
 #if !DISABLESTEAMWORKS
@@ -386,26 +386,45 @@ public class GameController : MonoBehaviour
             UnlockAchievement(a_AchievementAllCollectables);
     }
 
-    private int GetSteamLanguage()
+    private int GetSystemLanguage()
     {
         int language = 0;
 #if !DISABLESTEAMWORKS
         if(SteamManager.Initialized)
         {
-            switch(SteamApps.GetCurrentGameLanguage())
+            switch(SteamUtils.GetSteamUILanguage())
             {
-                case "english" : default :
+                case "english": default:
                     language = 0;
                     break;
 
-                case "portuguese" : "brazilian" :
+                case "portuguese":
                     language = 1;
                     break;
 
-                case "spanish" :
+                case "brazilian":
+                    language = 1;
+                    break;
+
+                case "spanish":
                     language = 2;
                     break;
             }
+        }
+#elif DISABLESTEAMWORKS
+        switch (Application.systemLanguage)
+        {
+            case SystemLanguage.English: default:
+                language = 0;
+                break;
+
+            case SystemLanguage.Portuguese:
+                language = 1;
+                break;
+
+            case SystemLanguage.Spanish:
+                language = 2;
+                break;
         }
 #endif
         return language;
@@ -419,7 +438,7 @@ public class GameController : MonoBehaviour
         {
             RestartScene();
         }
-        
+
         if (Input.GetKeyDown(KeyCode.F12) && (Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl)))
         {
             UnlockAllLevels();
