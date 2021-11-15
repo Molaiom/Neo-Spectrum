@@ -126,7 +126,7 @@ PlayerSettings:
     16:10: 1
     16:9: 1
     Others: 1
-  bundleVersion: 2.0
+  bundleVersion: 2.2
   preloadedAssets:
   - {fileID: 1941468122895132, guid: 20220b85a4c6b4b4e9e416ada23a1ea8, type: 3}
   - {fileID: 1631081164215448, guid: dfd8f0c29ea9ee94ea6ed926e94e8c8e, type: 3}
@@ -176,9 +176,9 @@ PlayerSettings:
   applicationIdentifier:
     Android: com.VictorGheno.NeoSpectrum
   buildNumber: {}
-  AndroidBundleVersionCode: 3
+  AndroidBundleVersionCode: 9
   AndroidMinSdkVersion: 19
-  AndroidTargetSdkVersion: 0
+  AndroidTargetSdkVersion: 30
   AndroidPreferredInstallLocation: 1
   aotOptions: 
   stripEngineCode: 1
@@ -254,7 +254,7 @@ PlayerSettings:
   AndroidTargetArchitectures: 1
   AndroidSplashScreenScale: 0
   androidSplashScreen: {fileID: 2800000, guid: f1af4c64c88b44245a5760f1d553411d, type: 3}
-  AndroidKeystoreName: C:/Users/Molaiom/Desktop/Projects/Neo Spectrum/Builds/GooglePlayVersion/NeoSpectrumKeystore.jks
+  AndroidKeystoreName: C:/Users/Molaiom/Projects/Neo Spectrum/NeoSpectrumKeystore.jks
   AndroidKeyaliasName: upload
   AndroidBuildApkPerCpuArchitecture: 0
   AndroidTVCompatibility: 0
@@ -706,7 +706,7 @@ PlayerSettings:
   scriptingDefineSymbols:
     1: CROSS_PLATFORM_INPUT
     4: CROSS_PLATFORM_INPUT
-    7: CROSS_PLATFORM_INPUT
+    7: CROSS_PLATFORM_INPUT;DISABLESTEAMWORKS
     14: 
     17: 
     20: 

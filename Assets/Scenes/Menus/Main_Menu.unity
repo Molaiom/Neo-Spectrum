@@ -11659,7 +11659,7 @@ MonoBehaviour:
   englishMobileText: 
   portugueseDefaultText: <color=#8E8E8E>Criado por:</color> Victor Gheno de Souza
   portugueseMobileText: 
-  spanishDefaultText: <color=#8E8E8E>Criado por:</color> Victor Gheno de Souza
+  spanishDefaultText: <color=#8E8E8E>Creado por:</color> Victor Gheno de Souza
   spanishMobileText: 
 --- !u!1001 &563682264
 PrefabInstance:
@@ -13127,11 +13127,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   platformBasedText: 0
-  englishDefaultText: you, for playing the game
+  englishDefaultText: You, for playing the game
   englishMobileText: 
-  portugueseDefaultText: "voc\xEA, por jogar o jogo"
+  portugueseDefaultText: "Voc\xEA, por jogar o jogo"
   portugueseMobileText: 
-  spanishDefaultText: "t\xFA, por jugar el juego"
+  spanishDefaultText: Usted, por jugar el juego
   spanishMobileText: 
 --- !u!114 &973189392 stripped
 MonoBehaviour:
