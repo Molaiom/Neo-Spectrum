@@ -704,7 +704,7 @@ PlayerSettings:
   webGLThreadsSupport: 0
   webGLWasmStreaming: 0
   scriptingDefineSymbols:
-    1: CROSS_PLATFORM_INPUT
+    1: CROSS_PLATFORM_INPUT;DISABLESTEAMWORKS
     4: CROSS_PLATFORM_INPUT
     7: CROSS_PLATFORM_INPUT;DISABLESTEAMWORKS
     14: 

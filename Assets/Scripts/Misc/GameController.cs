@@ -409,6 +409,10 @@ public class GameController : MonoBehaviour
                 case "spanish":
                     language = 2;
                     break;
+
+                case "latam":
+                    language = 2;
+                    break;
             }
         }
 #elif DISABLESTEAMWORKS
