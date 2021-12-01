@@ -411,7 +411,7 @@ public class GameController : MonoBehaviour
                     break;
 
                 case "latam":
-                    language = 2;
+                    language = 2; 
                     break;
             }
         }

@@ -200,7 +200,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -77.1}
+  m_AnchoredPosition: {x: 0, y: -69}
   m_SizeDelta: {x: -168, y: -169.205}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &222564959390479484
@@ -1125,13 +1125,14 @@ RectTransform:
   - {fileID: 4525384255352168790}
   - {fileID: 224205690411627060}
   - {fileID: 224089453151219674}
+  - {fileID: 6919870895684151961}
   m_Father: {fileID: 224067713785910560}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.316, y: 0.34425226}
+  m_AnchorMin: {x: 0.314, y: 0.31100002}
   m_AnchorMax: {x: 0.693, y: 0.75200003}
-  m_AnchoredPosition: {x: -4, y: 2.300003}
-  m_SizeDelta: {x: 0.89001465, y: 2.4967651}
+  m_AnchoredPosition: {x: -3, y: 2.300003}
+  m_SizeDelta: {x: -1.1099854, y: 2.553833}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &222574273567098670
 CanvasRenderer:
@@ -1775,7 +1776,7 @@ MonoBehaviour:
   englishMobileText: 
   portugueseDefaultText: Pausado
   portugueseMobileText: 
-  spanishDefaultText: Pausado
+  spanishDefaultText: En Pausa
   spanishMobileText: 
 --- !u!1 &1648707994995742
 GameObject:
@@ -7013,7 +7014,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -10}
+  m_AnchoredPosition: {x: 0, y: -1.8999798}
   m_SizeDelta: {x: -168, y: -167.95}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &222272436020624488
@@ -9017,3 +9018,101 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!1 &8170684873777562843
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6919870895684151961}
+  - component: {fileID: 8444254059843980210}
+  - component: {fileID: 5513268639138655798}
+  - component: {fileID: 4105468287388041189}
+  m_Layer: 5
+  m_Name: Press Jump to proceed text
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &6919870895684151961
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8170684873777562843}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 224462958619414004}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.02358088}
+  m_AnchorMax: {x: 0.5, y: 0.12958087}
+  m_AnchoredPosition: {x: 0, y: 2.0999908}
+  m_SizeDelta: {x: 377.78363, y: 3}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &8444254059843980210
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8170684873777562843}
+  m_CullTransparentMesh: 0
+--- !u!114 &5513268639138655798
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8170684873777562843}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: d9ccef15c4436e2408f0617429dfd85c, type: 3}
+    m_FontSize: 14
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 1
+    m_MaxSize: 40
+    m_Alignment: 4
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 1
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: Press Jump to proceed.
+--- !u!114 &4105468287388041189
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8170684873777562843}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9bb0d0b191df8444ea00fc75da436028, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  platformBasedText: 1
+  englishDefaultText: Press Jump to proceed.
+  englishMobileText: 
+  portugueseDefaultText: "Aperte Espa\xE7o para continuar."
+  portugueseMobileText: 
+  spanishDefaultText: Presione espacio para continuar.
+  spanishMobileText: 
