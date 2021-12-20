@@ -126,7 +126,7 @@ PlayerSettings:
     16:10: 1
     16:9: 1
     Others: 1
-  bundleVersion: 2.2
+  bundleVersion: 2.3.1
   preloadedAssets:
   - {fileID: 1941468122895132, guid: 20220b85a4c6b4b4e9e416ada23a1ea8, type: 3}
   - {fileID: 1631081164215448, guid: dfd8f0c29ea9ee94ea6ed926e94e8c8e, type: 3}
@@ -176,7 +176,7 @@ PlayerSettings:
   applicationIdentifier:
     Android: com.VictorGheno.NeoSpectrum
   buildNumber: {}
-  AndroidBundleVersionCode: 9
+  AndroidBundleVersionCode: 11
   AndroidMinSdkVersion: 19
   AndroidTargetSdkVersion: 30
   AndroidPreferredInstallLocation: 1
@@ -251,10 +251,10 @@ PlayerSettings:
   clonedFromGUID: 00000000000000000000000000000000
   templatePackageId: 
   templateDefaultScene: 
-  AndroidTargetArchitectures: 1
+  AndroidTargetArchitectures: 3
   AndroidSplashScreenScale: 0
   androidSplashScreen: {fileID: 2800000, guid: f1af4c64c88b44245a5760f1d553411d, type: 3}
-  AndroidKeystoreName: C:/Users/Molaiom/Projects/Neo Spectrum/NeoSpectrumKeystore.jks
+  AndroidKeystoreName: '{dedicated}: Neo Spectrum Misc Files/NeoSpectrumKeystore.jks'
   AndroidKeyaliasName: upload
   AndroidBuildApkPerCpuArchitecture: 0
   AndroidTVCompatibility: 0
@@ -704,14 +704,15 @@ PlayerSettings:
   webGLThreadsSupport: 0
   webGLWasmStreaming: 0
   scriptingDefineSymbols:
-    1: CROSS_PLATFORM_INPUT;DISABLESTEAMWORKS
+    1: CROSS_PLATFORM_INPUT
     4: CROSS_PLATFORM_INPUT
     7: CROSS_PLATFORM_INPUT;DISABLESTEAMWORKS
     14: 
     17: 
     20: 
   platformArchitecture: {}
-  scriptingBackend: {}
+  scriptingBackend:
+    Android: 1
   il2cppCompilerConfiguration: {}
   managedStrippingLevel: {}
   incrementalIl2cppBuild: {}
@@ -722,7 +723,8 @@ PlayerSettings:
   gcIncremental: 0
   assemblyVersionValidation: 1
   gcWBarrierValidation: 0
-  apiCompatibilityLevelPerPlatform: {}
+  apiCompatibilityLevelPerPlatform:
+    Android: 3
   m_RenderingPath: 1
   m_MobileRenderingPath: 1
   metroPackageName: VVID
